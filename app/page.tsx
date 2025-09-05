@@ -1,3 +1,11 @@
+/*
+ * @Author: vblazing
+ * @Date: 2025-09-02 18:01:24
+ * @LastEditors: vblazing
+ * @LastEditTime: 2025-09-05 22:08:33
+ * @Description:
+ */
+import Header from "@/components/layout/header";
 import { useTranslations } from "next-intl";
 
 export default function Home() {
@@ -5,11 +13,7 @@ export default function Home() {
 
   return (
     <div className="grad min-h-screen w-full items-center justify-items-center bg-gray-50 font-sans">
-      <nav className="drop-blur-lg sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
-        <div className="flex h-16 items-center justify-center">
-          {t("test_navigation")}
-        </div>
-      </nav>
+      <Header />
       <main className="row-start-2 flex h-[1000px] w-full flex-col items-center gap-[32px] sm:items-start">
         <h2>{t("test_content")}</h2>
       </main>

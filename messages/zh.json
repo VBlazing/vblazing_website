@@ -3,5 +3,8 @@
     "test_navigation": "这里是导航",
     "test_content": "这里是威布雷泽的个人网站",
     "test_copyright": "© 威布雷泽个人网站"
+  },
+  "header": {
+    "header_home": "主页"
   }
 }
