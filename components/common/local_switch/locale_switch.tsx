@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 22:08:55
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-06 00:43:43
+ * @LastEditTime: 2025-09-17 09:44:27
  * @Description: 更换语言环境前端组件
  */
 "use client";
@@ -52,7 +52,7 @@ export default function LocaleSwitchClient({
             key={lang.code}
             onClick={() => handleSwitchLocale(lang.code)}
             className={`flex cursor-pointer items-center space-x-3 ${
-              currentLocaleConfig.code === lang.code ? "bg-slate-100" : ""
+              currentLocaleConfig.code === lang.code ? "bg-accent" : ""
             }`}
           >
             <span>{lang.name}</span>

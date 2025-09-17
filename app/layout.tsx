@@ -1,6 +1,14 @@
+/*
+ * @Author: vblazing
+ * @Date: 2025-09-02 18:01:24
+ * @LastEditors: vblazing
+ * @LastEditTime: 2025-09-17 09:55:56
+ * @Description: 布局
+ */
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,11 +32,21 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        {/* 国际化 */}
+        <NextIntlClientProvider>
+          {/* 主题 */}
+          <ThemeProvider
+            attribute="class"
+            enableSystem={false}
+            storageKey="VBLAZING_THEME"
+          >
+            {children}
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
