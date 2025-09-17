@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-17 01:16:04
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-17 10:08:10
+ * @LastEditTime: 2025-09-17 10:17:17
  * @Description: 更换主题组件
  */
 "use client";
@@ -20,7 +20,6 @@ export default function ThemeSwitch() {
 
   const handleSwitchTheme = () => {
     setTheme((theme) => {
-      console.log("now theme", theme);
       return theme === THEME.DARK ? THEME.LIGHT : THEME.DARK;
     });
   };
