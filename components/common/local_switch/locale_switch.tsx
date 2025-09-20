@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 22:08:55
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-17 09:44:27
+ * @LastEditTime: 2025-09-20 17:53:03
  * @Description: 更换语言环境前端组件
  */
 "use client";
@@ -37,13 +37,20 @@ export default function LocaleSwitchClient({
   };
 
   return isPending ? (
-    <Skeleton className="h-[32px] w-[98px]" />
+    <Skeleton className="h-[32px] w-[36px] sm:w-[98px]" />
   ) : (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="flex items-center">
+        {/* focus-visible:ring-[0]：删除自带的聚焦后边框 */}
+        <Button
+          variant="ghost"
+          size="sm"
+          className="flex items-center focus-visible:ring-[0]"
+        >
           <Globe className="mr-0 h-2 w-2" />
-          <span className="text-sm">{currentLocaleConfig.name}</span>
+          <span className="hidden text-sm sm:block">
+            {currentLocaleConfig.name}
+          </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
