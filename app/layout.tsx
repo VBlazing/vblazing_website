@@ -2,13 +2,14 @@
  * @Author: vblazing
  * @Date: 2025-09-02 18:01:24
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-17 09:55:56
+ * @LastEditTime: 2025-09-20 09:25:57
  * @Description: 布局
  */
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
+import Header from "@/components/layout/header";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -44,7 +45,17 @@ export default async function RootLayout({
             enableSystem={false}
             storageKey="VBLAZING_THEME"
           >
-            {children}
+            <div className="grad bg-main-content min-h-screen w-full items-center justify-items-center font-sans">
+              <Header />
+              <main className="row-start-2 flex h-[1000px] w-full flex-col items-center gap-[32px] sm:items-start">
+                {children}
+              </main>
+              <footer className="bg-background border-border mt-auto w-full border-t">
+                <div className="mx-auto flex max-w-6xl items-center justify-center px-6 py-12 sm:px-8">
+                  test_copyright
+                </div>
+              </footer>
+            </div>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

@@ -38,6 +38,10 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --radius-sm: calc(var(--radius) - 4px);
+  /* 页面内容区背景颜色 */
+  --color-main-content: var(--main-content);
+  /* 页面内容区文字颜色 */
+  --color-main-text: var(--main-text);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
@@ -76,6 +80,10 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  /* 页面内容区背景颜色 */
+  --main-content: oklch(0.9846 0.0017 247.84);
+  /* 页面内容区文字颜色 */
+  --main-text: oklch(0.145 0 0);
 }
 
 .dark {
@@ -110,6 +118,10 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  /* 页面内容区背景颜色 */
+  --main-content: oklch(0.2293 0.009 255.6);
+  /* 页面内容区文字颜色 */
+  --main-text: oklch(0.8717 0.0093 258.34);
 }
 
 @layer base {
