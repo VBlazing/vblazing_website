@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-02 18:01:24
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-20 09:25:57
+ * @LastEditTime: 2025-09-20 10:20:05
  * @Description: 布局
  */
 import type { Metadata } from "next";
@@ -45,9 +45,9 @@ export default async function RootLayout({
             enableSystem={false}
             storageKey="VBLAZING_THEME"
           >
-            <div className="grad bg-main-content min-h-screen w-full items-center justify-items-center font-sans">
+            <div className="bg-main-content flex min-h-screen w-full flex-col items-center font-sans sm:items-start">
               <Header />
-              <main className="row-start-2 flex h-[1000px] w-full flex-col items-center gap-[32px] sm:items-start">
+              <main className="flex w-full flex-1 flex-col items-center sm:items-start">
                 {children}
               </main>
               <footer className="bg-background border-border mt-auto w-full border-t">
