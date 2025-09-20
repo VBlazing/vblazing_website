@@ -4,7 +4,14 @@
     "test_content": "这里是威布雷泽的个人网站",
     "test_copyright": "© 威布雷泽个人网站"
   },
-  "header": {
-    "header_home": "主页"
+  "not_found": {
+    "text": "页面未找到",
+    "go_home": "返回主页"
+  },
+  "nav": {
+    "nav_home": "主页",
+    "nav_blog": "博客",
+    "nav_products": "产品",
+    "nav_about": "关于我"
   }
 }
