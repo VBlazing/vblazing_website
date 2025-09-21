@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 18:32:24
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-21 01:59:24
+ * @LastEditTime: 2025-09-21 19:36:22
  * @Description:
  */
 import * as motion from "motion/react-client";
@@ -17,13 +17,13 @@ export default async function HeroSection() {
   const homeHeroInfo = await fetchHomeHeroInfo();
 
   return (
-    <section className="bg-home-hero-section relative w-full pt-12 pb-20">
+    <section className="bg-home-hero-section relative w-full pb-8 sm:pt-12 sm:pb-20">
       <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mx-auto max-w-4xl pt-16 pb-8 text-center"
+          className="mx-auto max-w-4xl pt-12 pb-8 text-center sm:pt-16"
         >
           {/* Welcome badge */}
           <motion.div
