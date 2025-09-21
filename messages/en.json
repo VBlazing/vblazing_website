@@ -13,5 +13,11 @@
     "nav_blog": "Blog",
     "nav_products": "Products",
     "nav_about": "About"
+  },
+  "home": {
+    "hero": {
+      "explore": "Explore",
+      "about": "About"
+    }
   }
 }

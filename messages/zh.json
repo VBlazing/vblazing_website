@@ -13,5 +13,11 @@
     "nav_blog": "博客",
     "nav_products": "产品",
     "nav_about": "关于我"
+  },
+  "home": {
+    "hero": {
+      "explore": "发现",
+      "about": "关于我"
+    }
   }
 }

@@ -2,13 +2,16 @@
  * @Author: vblazing
  * @Date: 2025-09-02 18:01:24
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-20 09:38:00
+ * @LastEditTime: 2025-09-20 18:50:15
  * @Description:
  */
-import { useTranslations } from "next-intl";
+import HeroSection from "@/components/home/hero_section";
 
 export default function Home() {
-  const t = useTranslations("test");
-
-  return <h2 className="text-main-text">{t("test_content")}</h2>;
+  return (
+    <div className="min-h-screen w-full">
+      {/* 介绍 */}
+      <HeroSection />
+    </div>
+  );
 }
