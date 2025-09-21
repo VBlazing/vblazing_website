@@ -4,6 +4,10 @@
     "test_content": "这里是威布雷泽的个人网站",
     "test_copyright": "© 威布雷泽个人网站"
   },
+  "error_page": {
+    "wrong": "出错啦！",
+    "try_again": "点击重试"
+  },
   "not_found": {
     "text": "页面未找到",
     "go_home": "返回主页"

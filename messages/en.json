@@ -4,6 +4,10 @@
     "test_content": "This is Wei Blazer's personal website",
     "test_copyright": "© Wei Brazer's personal website"
   },
+  "error_page": {
+    "wrong": "Something went wrong!",
+    "try_again": "Try again"
+  },
   "not_found": {
     "text": "Page Not Found",
     "go_home": "Go Home"
