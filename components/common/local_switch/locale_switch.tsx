@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 22:08:55
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-20 17:53:03
+ * @LastEditTime: 2025-09-21 19:06:59
  * @Description: 更换语言环境前端组件
  */
 "use client";
@@ -37,7 +37,7 @@ export default function LocaleSwitchClient({
   };
 
   return isPending ? (
-    <Skeleton className="h-[32px] w-[36px] sm:w-[98px]" />
+    <Skeleton className="h-8 w-9 sm:w-24" />
   ) : (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
