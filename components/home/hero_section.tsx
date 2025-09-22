@@ -32,7 +32,7 @@ export default async function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-main-text border-border mb-8 inline-flex items-center space-x-2 rounded-full border px-4 py-2 text-sm shadow-sm"
           >
-            <Sparkles className="h-4 w-4" />
+            <Sparkles className="size-4" />
             <span>{homeHeroInfo.welcome}</span>
           </motion.div>
 

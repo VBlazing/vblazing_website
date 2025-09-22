@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-17 01:16:04
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-17 10:17:17
+ * @LastEditTime: 2025-09-22 23:27:31
  * @Description: 更换主题组件
  */
 "use client";
@@ -26,8 +26,8 @@ export default function ThemeSwitch() {
 
   return (
     <Button size="icon" variant={"ghost"} onClick={handleSwitchTheme}>
-      <Sun className="h-2 w-2 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-      <Moon className="absolute h-2 w-2 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+      <Sun className="scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+      <Moon className="absolute scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
     </Button>
   );
 }

@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 09:55:34
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-22 21:38:14
+ * @LastEditTime: 2025-09-22 23:26:58
  * @Description: 页面未找到
  */
 import { useTranslations } from "next-intl";
@@ -24,7 +24,7 @@ export default function NotFound() {
         <div className="mt-10">
           <Button variant="outline" className="p-0">
             <Link href="/" className="flex items-center space-x-2 px-4 py-2">
-              <Home className="h-4 w-4" />
+              <Home />
               <span>{t("go_home")}</span>
             </Link>
           </Button>

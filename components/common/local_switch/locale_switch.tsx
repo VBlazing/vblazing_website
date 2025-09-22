@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 22:08:55
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-22 21:28:33
+ * @LastEditTime: 2025-09-22 23:27:59
  * @Description: 更换语言环境前端组件
  */
 "use client";
@@ -47,7 +47,7 @@ export default function LocaleSwitchClient({
           size="sm"
           className="flex items-center font-normal focus-visible:ring-[0]"
         >
-          <Globe className="mr-0 h-2 w-2" />
+          <Globe />
           <span className="hidden text-sm sm:block">
             {currentLocaleConfig.name}
           </span>
