@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 15:41:47
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-20 17:47:08
+ * @LastEditTime: 2025-09-22 21:25:40
  * @Description: 移动端通过logo切换导航
  */
 "use client";
@@ -54,7 +54,7 @@ export default function LogoMenu({
                   href={item.href}
                   className="flex flex-row items-center"
                 >
-                  <Icon className="mr-1 h-4 w-4" />
+                  <Icon className="text-foreground mr-1 h-4 w-4" />
                   <span>{item.title}</span>
                 </Link>
               </DropdownMenuItem>

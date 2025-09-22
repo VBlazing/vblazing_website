@@ -2,8 +2,8 @@
  * @Author: vblazing
  * @Date: 2025-09-20 18:32:24
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-21 19:36:22
- * @Description:
+ * @LastEditTime: 2025-09-22 21:30:41
+ * @Description: 主页介绍组件
  */
 import * as motion from "motion/react-client";
 import { ArrowRight, Sparkles } from "lucide-react";

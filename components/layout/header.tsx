@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 21:32:17
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-20 17:48:52
+ * @LastEditTime: 2025-09-22 21:34:35
  * @Description: 页面顶部
  */
 import Link from "next/link";
@@ -40,7 +40,7 @@ export default async function Header() {
                       href={item.href}
                       className="flex flex-row items-center"
                     >
-                      <Icon className="mr-1 h-4 w-4" />
+                      <Icon className="text-foreground mr-1 h-4 w-4" />
                       <span>{item.title}</span>
                     </Link>
                   </NavigationMenuLink>
