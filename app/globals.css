@@ -43,9 +43,9 @@
   /* 页面内容区标题颜色 */
   --color-main-title: var(--main-title);
   /* 页面内容区副标题颜色 */
-  --color-main-subtitle: var(--main-subtitle);
-  /* 页面内容正文颜色 */
   --color-main-text: var(--main-text);
+  /* 页面内容正文颜色 */
+  --color-main-label: var(--main-label);
   /* 主页介绍部分背景颜色 */
   --color-home-hero-section: var(--home-hero-section);
   --radius-md: calc(var(--radius) - 2px);
@@ -56,7 +56,7 @@
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --foreground: #0a0a0a;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -87,20 +87,20 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   /* 页面内容区背景颜色 #f9fafb */
-  --main-content: oklch(0.9846 0.0017 247.84);
+  --main-content: #f9fafb;
   /* 页面内容区标题颜色 #0a0a0a */
-  --main-title: oklch(0.145 0 0);
+  --main-title: #0a0a0a;
   /* 页面内容区副标题颜色 #4a5568 */
-  --main-subtitle: oklch(0.4474 0.0343 261.32);
+  --main-text: #4a5568;
   /* 页面内容正文颜色 #718096 */
-  --main-text: oklch(0.5956 0.0381 257.87);
+  --main-label: #718096;
   /* 主页介绍部分背景颜色 #fefefe */
-  --home-hero-section: oklch(0.997 0 0);
+  --home-hero-section: #fefefe;
 }
 
 .dark {
   --background: oklch(0.145 0 0);
-  --foreground: oklch(0.9834 0.0042 236.5);
+  --foreground: #f7fafc;
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
@@ -131,15 +131,15 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
   /* 页面内容区背景颜色 #1a1d21 */
-  --main-content: oklch(0.2293 0.009 255.6);
+  --main-content: #1a1d21;
   /* 页面内容区标题颜色  #f7fafc */
-  --main-title: oklch(0.9834 0.0042 236.5);
+  --main-title: #f7fafc;
   /* 页面内容区副标题颜色 #e2e8f0  */
-  --main-subtitle: oklch(0.9288 0.0126 255.51);
+  --main-text: #e2e8f0;
   /* 页面内容正文颜色 #cbd5e0 */
-  --main-text: oklch(0.8687 0.0187 250.61);
+  --main-label: #cbd5e0;
   /* 主页介绍部分背景颜色 #15181c */
-  --home-hero-section: oklch(0.2076 0.0092 255.62);
+  --home-hero-section: #15181c;
 }
 
 @layer base {

@@ -30,7 +30,7 @@ export default async function HeroSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-main-subtitle border-border mb-8 inline-flex items-center space-x-2 rounded-full border px-4 py-2 text-sm shadow-sm"
+            className="text-main-text border-border mb-8 inline-flex items-center space-x-2 rounded-full border px-4 py-2 text-sm shadow-sm"
           >
             <Sparkles className="h-4 w-4" />
             <span>{homeHeroInfo.welcome}</span>
@@ -51,7 +51,7 @@ export default async function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-main-subtitle mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light md:text-2xl"
+            className="text-main-text mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light md:text-2xl"
           >
             {homeHeroInfo.subtitle}
           </motion.p>
