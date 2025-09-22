@@ -48,6 +48,9 @@
   --color-main-label: var(--main-label);
   /* 主页介绍部分背景颜色 */
   --color-home-hero-section: var(--home-hero-section);
+  /* 精选图片背景渐变色 */
+  --color-featured-img-from: var(--featured-img-from);
+  --color-featured-img-to: var(--featured-img-to);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
@@ -56,7 +59,7 @@
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  --foreground: #0a0a0a;
+  --foreground: #1e293b;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -89,13 +92,16 @@
   /* 页面内容区背景颜色 #f9fafb */
   --main-content: #f9fafb;
   /* 页面内容区标题颜色 #0a0a0a */
-  --main-title: #0a0a0a;
-  /* 页面内容区副标题颜色 #4a5568 */
+  --main-title: #1e293b;
+  /* 页面内容区正文颜色 #4a5568 */
   --main-text: #4a5568;
-  /* 页面内容正文颜色 #718096 */
+  /* 页面内容标签颜色 #718096 */
   --main-label: #718096;
   /* 主页介绍部分背景颜色 #fefefe */
   --home-hero-section: #fefefe;
+  /* 精选图片背景渐变色 */
+  --featured-img-from: #f1f5f9;
+  --featured-img-to: #e2e8f0;
 }
 
 .dark {
@@ -134,12 +140,15 @@
   --main-content: #1a1d21;
   /* 页面内容区标题颜色  #f7fafc */
   --main-title: #f7fafc;
-  /* 页面内容区副标题颜色 #e2e8f0  */
+  /* 页面内容区正文颜色 #e2e8f0  */
   --main-text: #e2e8f0;
-  /* 页面内容正文颜色 #cbd5e0 */
+  /* 页面内容标签颜色 #cbd5e0 */
   --main-label: #cbd5e0;
   /* 主页介绍部分背景颜色 #15181c */
   --home-hero-section: #15181c;
+  /* 精选图片背景渐变色 */
+  --featured-img-from: #1a1d21;
+  --featured-img-to: #0f1419;
 }
 
 @layer base {
