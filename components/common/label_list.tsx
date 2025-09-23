@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-23 13:33:12
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-23 15:14:07
+ * @LastEditTime: 2025-09-23 18:02:42
  * @Description: 标签列表组件
  */
 import { cn } from "@/lib/utils";
@@ -23,7 +23,7 @@ export default function LabelList({
 }) {
   return (
     <div className={cn("flex w-full flex-wrap items-center gap-1", className)}>
-      {labelList?.map((item) => (
+      {labelList?.slice(0, maxLength)?.map((item) => (
         <Label key={item.key} text={item.name} />
       ))}
       {labelList?.length > maxLength && <Label text="+1" />}
