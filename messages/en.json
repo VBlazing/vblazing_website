@@ -12,6 +12,9 @@
     "text": "Page Not Found",
     "go_home": "Go Home"
   },
+  "common": {
+    "read_more": "Read more"
+  },
   "nav": {
     "nav_home": "Home",
     "nav_blog": "Blog",
@@ -22,6 +25,9 @@
     "hero": {
       "explore": "Explore",
       "about": "About"
+    },
+    "featured_blog": {
+      "title": "Featured Blog"
     }
   }
 }

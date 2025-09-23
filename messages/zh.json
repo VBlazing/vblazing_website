@@ -12,6 +12,9 @@
     "text": "页面未找到",
     "go_home": "返回主页"
   },
+  "common": {
+    "read_more": "阅读全文"
+  },
   "nav": {
     "nav_home": "主页",
     "nav_blog": "博客",
@@ -22,6 +25,9 @@
     "hero": {
       "explore": "发现",
       "about": "关于我"
+    },
+    "featured_blog": {
+      "title": "精选博客"
     }
   }
 }
