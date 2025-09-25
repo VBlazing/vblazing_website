@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-21 19:40:07
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-21 19:56:08
+ * @LastEditTime: 2025-09-23 18:08:43
  * @Description: 报错页面
  */
 "use client";
@@ -21,6 +21,7 @@ export default function Error({
   const t = useTranslations("error_page");
 
   useEffect(() => {
+    // todo
     // 1. 页面打印信息
     // 2. 上报
     // console.log("errorerror", error);
