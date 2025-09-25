@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-23 15:52:28
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-23 18:32:54
+ * @LastEditTime: 2025-09-25 17:03:42
  * @Description: 博客卡片组件
  */
 import Link from "next/link";
@@ -49,10 +49,10 @@ export default async function BlogCard({
     labelList,
   } = blogInfo ?? {};
   return (
-    <div className="bg-background group w-full overflow-hidden rounded-2xl border shadow-sm transition-all duration-300 hover:shadow-lg">
-      <div className="flex flex-col gap-0 lg:flex-row">
+    <div className="bg-background group @container flex w-full overflow-hidden rounded-2xl border shadow-sm transition-all duration-300 hover:shadow-lg">
+      <div className="flex flex-grow flex-col gap-0 @lg:flex-row">
         {/* 图片 */}
-        <div className="relative h-50 w-full overflow-hidden sm:h-64 lg:h-auto">
+        <div className="relative h-50 w-full overflow-hidden @sm:h-64 @lg:h-auto">
           <Link href={`/detail/${id}`}>
             <CategoryTag
               category={category}
@@ -66,16 +66,16 @@ export default async function BlogCard({
           </Link>
         </div>
         {/* 博客内容 */}
-        <div className="w-full p-6 sm:p-8">
+        <div className="flex w-full flex-grow flex-col justify-between p-6 @sm:p-8">
           <div className="mb-6 flex w-full flex-col justify-center">
-            <div className="mb-4 flex items-center space-x-3 text-xs sm:space-x-5 sm:text-sm [&_svg]:size-3 sm:[&_svg]:size-4">
+            <div className="mb-4 flex items-center space-x-3 text-xs @sm:space-x-5 @sm:text-sm [&_svg]:size-3 @sm:[&_svg]:size-4">
               <BlogDate date={lastEditedTime} />
               <ReadingTime time={readingTime} />
             </div>
-            <h3 className="text-main-title mb-2 text-2xl leading-tight font-light sm:mb-4 lg:text-3xl">
+            <h3 className="text-main-title mb-2 text-2xl leading-tight font-light @sm:mb-4 @lg:text-3xl">
               <Link href={`/detail/${id}`}>{title}</Link>
             </h3>
-            <p className="text-main-text mb-4 line-clamp-3 text-base leading-relaxed overflow-ellipsis lg:text-lg">
+            <p className="text-main-text mb-4 line-clamp-3 text-base leading-relaxed overflow-ellipsis @lg:text-lg">
               {content}
             </p>
             {showLabel && <LabelList labelList={labelList} className="mb-4" />}
