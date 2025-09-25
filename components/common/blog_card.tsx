@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-23 15:52:28
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-25 18:44:26
+ * @LastEditTime: 2025-09-25 18:48:50
  * @Description: 博客卡片组件
  */
 import Link from "next/link";
@@ -54,7 +54,7 @@ export default async function BlogCard({
   return (
     <div
       className={cn(
-        "bg-background group @container flex w-full overflow-hidden rounded-2xl border shadow-sm transition-all duration-300 hover:shadow-lg",
+        "group @container flex w-full overflow-hidden rounded-2xl border bg-white shadow-sm transition-all duration-300 hover:shadow-lg dark:bg-[#15181c]",
         className,
       )}
     >
