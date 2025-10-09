@@ -14,30 +14,21 @@ import BlogDate from "@/components/common/blog_date";
 import ReadingTime from "@/components/common/reading_time";
 import LabelList from "@/components/common/label_list";
 import { cn } from "@/lib/utils";
+import { BlogInfo } from "@/lib/definitions";
 
 // todo: 类型待修改
 interface IBlogCardPros {
-  blogInfo: {
-    id: string;
-    title: string;
-    content: string;
-    category: string;
-    lastEditedTime: string;
-    readingTime: number;
-    image: string;
-    labelList: {
-      key: string;
-      name: string;
-    }[];
-  };
+  blog_info: BlogInfo & { category_name: string };
   showLabel?: boolean;
   className?: string;
+  labelMaxLength?: number;
 }
 
 export default async function BlogCard({
-  blogInfo,
+  blog_info,
   showLabel = false,
   className,
+  labelMaxLength = 3,
 }: IBlogCardPros) {
   const t = await getTranslations("common");
 
@@ -45,12 +36,13 @@ export default async function BlogCard({
     id,
     title,
     content,
-    category,
-    lastEditedTime,
-    readingTime,
-    image,
-    labelList,
-  } = blogInfo ?? {};
+    introduction,
+    category_name,
+    last_edited_time,
+    reading_time,
+    image_url,
+    labels,
+  } = blog_info ?? {};
   return (
     <div
       className={cn(
@@ -63,11 +55,11 @@ export default async function BlogCard({
         <div className="relative h-50 w-full overflow-hidden @sm:h-64 @lg:h-auto">
           <Link href={`/detail/${id}`}>
             <CategoryTag
-              category={category}
+              category={category_name}
               className="absolute top-3 left-3 z-50"
             />
             <FeaturedImage
-              url={image}
+              url={image_url}
               title={title}
               className="group-hover:scale-105"
             />
@@ -77,16 +69,22 @@ export default async function BlogCard({
         <div className="flex w-full flex-grow flex-col justify-between p-6 @sm:p-8">
           <div className="mb-6 flex w-full flex-col justify-center">
             <div className="mb-4 flex items-center space-x-3 text-xs @sm:space-x-5 @sm:text-sm [&_svg]:size-3 @sm:[&_svg]:size-4">
-              <BlogDate date={lastEditedTime} />
-              <ReadingTime time={readingTime} />
+              <BlogDate date={last_edited_time} />
+              <ReadingTime time={reading_time} />
             </div>
             <h3 className="text-main-title mb-2 text-2xl leading-tight font-light @sm:mb-4 @lg:text-3xl">
               <Link href={`/detail/${id}`}>{title}</Link>
             </h3>
             <p className="text-main-text mb-4 line-clamp-3 text-base leading-relaxed overflow-ellipsis @lg:text-lg">
-              {content}
+              {introduction || content}
             </p>
-            {showLabel && <LabelList labelList={labelList} className="mb-4" />}
+            {showLabel && (
+              <LabelList
+                labels={labels}
+                maxLength={labelMaxLength}
+                className="mb-4"
+              />
+            )}
           </div>
           <Link
             href={`/detail/${id}`}

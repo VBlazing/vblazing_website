@@ -6,13 +6,14 @@
  * @Description: 数据类型定义
  */
 
-export type IBlogFilter = {
+export type BlogFilter = {
   category?: number
   label?: string[]
   state?: number[]
+  is_featured?: boolean
 }
 
-export type IPagination = {
+export type Pagination = {
   page: number
   pageSize: number
 }
@@ -23,7 +24,12 @@ export type BlogState = 1 | 2 | 3 | 4
 export type BlogCategoryKey = 'THOUGHTS' | 'TECHNOLOGY' | 'FINANCE' | 'TRAVEL' | 'READING' | 'PERSONAL'
 export type BlogCategory = 1 | 2 | 3 | 4 | 5 | 6
 
-export type IBlogInfo = {
+export type CategoryInfo = {
+  id: BlogCategory
+  name: string
+}
+
+export type BlogInfo = {
   id: string
   title: string
   content: string

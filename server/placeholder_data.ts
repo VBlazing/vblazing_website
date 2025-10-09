@@ -2,10 +2,10 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:57:15
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-21 01:54:19
+ * @LastEditTime: 2025-09-25 16:14:11
  * @Description: mock数据
  */
-import { IHomeHeroInfo } from "./definitions";
+import { IHomeHeroInfo } from "@/lib/definitions";
 
 export const homeHeroInfo: Record<string, IHomeHeroInfo> = {
   zh: {

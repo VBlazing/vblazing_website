@@ -9,24 +9,20 @@ import { cn } from "@/lib/utils";
 import Label from "@/components/common/label";
 
 export default function LabelList({
-  labelList,
+  labels,
   maxLength = 3,
   className,
 }: {
-  // todo: 类型待修改
-  labelList: {
-    key: string;
-    name: string;
-  }[];
+  labels: string[];
   maxLength?: number;
   className?: string;
 }) {
   return (
     <div className={cn("flex w-full flex-wrap items-center gap-1", className)}>
-      {labelList?.slice(0, maxLength)?.map((item) => (
-        <Label key={item.key} text={item.name} />
+      {labels?.slice(0, maxLength)?.map((item) => (
+        <Label key={item} text={item} />
       ))}
-      {labelList?.length > maxLength && <Label text="+1" />}
+      {labels?.length > maxLength && <Label text="+1" />}
     </div>
   );
 }
