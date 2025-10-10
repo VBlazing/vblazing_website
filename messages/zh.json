@@ -1,9 +1,4 @@
 {
-  "test": {
-    "test_navigation": "这里是导航",
-    "test_content": "这里是威布雷泽的个人网站",
-    "test_copyright": "© 威布雷泽个人网站"
-  },
   "error_page": {
     "wrong": "出错啦！",
     "try_again": "点击重试"
@@ -14,6 +9,9 @@
   },
   "common": {
     "read_more": "阅读全文"
+  },
+  "footer": {
+    "copyright": "© 威布雷泽个人网站"
   },
   "nav": {
     "nav_home": "主页",

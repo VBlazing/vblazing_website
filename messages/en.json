@@ -1,9 +1,4 @@
 {
-  "test": {
-    "test_navigation": "Here is the navigation",
-    "test_content": "This is Wei Blazer's personal website",
-    "test_copyright": "© Wei Brazer's personal website"
-  },
   "error_page": {
     "wrong": "Something went wrong!",
     "try_again": "Try again"
@@ -14,6 +9,9 @@
   },
   "common": {
     "read_more": "Read more"
+  },
+  "footer": {
+    "copyright": "© Wei Blazer's personal website"
   },
   "nav": {
     "nav_home": "Home",

@@ -10,6 +10,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
 import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -50,11 +51,7 @@ export default async function RootLayout({
               <main className="flex w-full flex-1 flex-col items-center sm:items-start">
                 {children}
               </main>
-              <footer className="bg-background border-border mt-auto w-full border-t">
-                <div className="mx-auto flex max-w-6xl items-center justify-center px-6 py-12 sm:px-8">
-                  test_copyright
-                </div>
-              </footer>
+              <Footer />
             </div>
           </ThemeProvider>
         </NextIntlClientProvider>
