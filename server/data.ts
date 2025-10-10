@@ -106,3 +106,19 @@ export async function fetchPublishedBlogList(query: {
   }
   return fetchBlogList(queryWithState)
 }
+
+/**
+ * @description: 获取已发布博客数量
+ * @return {number} 已发布博客数量
+ */
+export async function fetchPublishedBlogTotal() {
+  try {
+    const result = await sql<{ count: number }[]>`
+      SELECT COUNT(*) FROM blog_with_labels
+      WHERE state = ${BLOG_STATE.PUBLISHED}
+    `
+    return result?.[0]?.count
+  } catch (e) {
+    console.error('Failed to fetch blog total:', e);
+  }
+}

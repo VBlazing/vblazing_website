@@ -10,12 +10,12 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
-import { fetchHomeHeroInfo } from "@/server/data";
+import { fetchHomeHeroInfo, fetchPublishedBlogTotal } from "@/server/data";
 
 export default async function HeroSection() {
   const t = await getTranslations("home.hero");
   const homeHeroInfo = await fetchHomeHeroInfo();
-
+  const blog_total = await fetchPublishedBlogTotal();
   return (
     <section className="bg-home-hero-section relative w-full pb-8 sm:pt-12 sm:pb-20">
       <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
@@ -85,6 +85,57 @@ export default async function HeroSection() {
               </Link>
             </Button>
           </motion.div>
+        </motion.div>
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mx-auto flex w-full max-w-2xl items-center justify-around pt-6 pb-8 text-center sm:mt-12 sm:border-t sm:border-slate-300 sm:pt-12"
+        >
+          {blog_total && (
+            <Link
+              href={"/blog"}
+              className="group cursor-pointer text-center transition-all"
+            >
+              <div className="text-main-title mb-1 text-xl font-light duration-200 group-hover:-translate-y-1 md:text-3xl">
+                {blog_total}
+                {t("stats_blog_count")}
+              </div>
+              <div className="text-main-text relative overflow-hidden text-xs tracking-wide md:text-base">
+                <div className="w-full translate-x-0 scale-100 uppercase duration-200 group-hover:translate-x-20 group-hover:scale-0">
+                  {t("stats_blog_title")}
+                </div>
+                <div className="absolute top-0 w-full -translate-x-20 scale-0 duration-200 group-hover:translate-x-0 group-hover:scale-100">
+                  {t("stats_view_all")}
+                </div>
+              </div>
+            </Link>
+          )}
+          {/* <div className="text-center">
+            <div className="text-main-title mb-1 text-xl font-light md:text-3xl">
+              12{t("stats_product_count")}
+            </div>
+            <div className="text-main-text text-xs tracking-wide uppercase md:text-base">
+              {t("stats_product_title")}
+            </div>
+          </div> */}
+          <Link
+            href={"/"}
+            className="group cursor-pointer text-center transition-all"
+          >
+            <div className="text-main-title mb-1 text-xl font-light duration-200 group-hover:-translate-y-1 md:text-3xl">
+              {t("stats_idea_count")}
+            </div>
+            <div className="text-main-text relative text-xs tracking-wide md:text-base">
+              <div className="w-full translate-x-0 scale-100 uppercase duration-200 group-hover:translate-x-20 group-hover:scale-0">
+                {t("stats_idea_title")}
+              </div>
+              <div className="absolute top-0 w-full -translate-x-20 scale-0 duration-200 group-hover:translate-x-0 group-hover:scale-100">
+                {t("stats_idea_all")}
+              </div>
+            </div>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -24,7 +24,15 @@
   "home": {
     "hero": {
       "explore": "Explore",
-      "about": "About"
+      "about": "About",
+      "stats_view_all": "View All",
+      "stats_blog_count": "+ Blogs",
+      "stats_blog_title": "Blogs",
+      "stats_product_count": "+ Products",
+      "stats_product_title": "Products",
+      "stats_idea_count": "∞ Ideas",
+      "stats_idea_title": "Ideas",
+      "stats_idea_all": "Brainstorming"
     },
     "featured_blog": {
       "title": "Featured Blog"
