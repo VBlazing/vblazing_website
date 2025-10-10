@@ -6,6 +6,12 @@
  * @Description: 数据类型定义
  */
 
+export type HomeHeroInfo = {
+  welcome: string
+  title: string
+  subtitle: string
+}
+
 export type BlogFilter = {
   category?: number
   label?: string[]
@@ -42,10 +48,4 @@ export type BlogInfo = {
   state: BlogState
   is_featured: boolean
   labels: string[]
-}
-
-export type IHomeHeroInfo = {
-  welcome: string
-  title: string
-  subtitle: string
 }

@@ -14,7 +14,7 @@ import { fetchHomeHeroInfo, fetchPublishedBlogTotal } from "@/server/data";
 
 export default async function HeroSection() {
   const t = await getTranslations("home.hero");
-  const homeHeroInfo = await fetchHomeHeroInfo();
+  const home_hero_info = await fetchHomeHeroInfo();
   const blog_total = await fetchPublishedBlogTotal();
   return (
     <section className="bg-home-hero-section relative w-full pb-8 sm:pt-12 sm:pb-20">
@@ -33,7 +33,7 @@ export default async function HeroSection() {
             className="text-main-text border-border mb-8 inline-flex items-center space-x-2 rounded-full border px-4 py-2 text-sm shadow-sm"
           >
             <Sparkles className="size-4" />
-            <span>{homeHeroInfo.welcome}</span>
+            <span>{home_hero_info?.welcome}</span>
           </motion.div>
 
           {/* Main heading */}
@@ -43,7 +43,7 @@ export default async function HeroSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-main-title mb-6 text-5xl leading-tight font-extralight tracking-tight md:text-7xl"
           >
-            {homeHeroInfo.title}
+            {home_hero_info?.title}
           </motion.h1>
 
           {/* Subtitle */}
@@ -53,7 +53,7 @@ export default async function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-main-text mx-auto mb-12 max-w-3xl text-xl leading-relaxed font-light md:text-2xl"
           >
-            {homeHeroInfo.subtitle}
+            {home_hero_info?.subtitle}
           </motion.p>
 
           {/* CTA Buttons */}

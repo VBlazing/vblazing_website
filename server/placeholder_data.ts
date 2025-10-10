@@ -5,9 +5,9 @@
  * @LastEditTime: 2025-09-25 16:14:11
  * @Description: mock数据
  */
-import { IHomeHeroInfo } from "@/lib/definitions";
+import { HomeHeroInfo } from "@/lib/definitions";
 
-export const homeHeroInfo: Record<string, IHomeHeroInfo> = {
+export const homeHeroInfo: Record<string, HomeHeroInfo> = {
   zh: {
     welcome: '欢迎来到我的个人网页',
     title: '想法、故事与创意',

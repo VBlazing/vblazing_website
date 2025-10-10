@@ -8,8 +8,7 @@
 import postgres from 'postgres';
 import { isNotNil } from 'es-toolkit';
 import { getUserLocaleConfig } from "@/i18n/service";
-import { BlogFilter, BlogInfo, CategoryInfo, Pagination } from '@/lib/definitions';
-import { homeHeroInfo } from "./placeholder_data";
+import { BlogFilter, BlogInfo, CategoryInfo, HomeHeroInfo, Pagination } from '@/lib/definitions';
 import { BLOG_STATE } from '@/lib/const';
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -18,7 +17,7 @@ const sql = postgres(process.env.POSTGRES_URL!, { ssl: isProduction ? 'require' 
 
 /**
  * @description: 获取博客类型列表
- * @return {*} homeHeroInfo 主页简介数据
+ * @return {CategoryInfo[]} 博客类型列表
  */
 export async function fetchCategoryList() {
   const currentLocaleConfig = await getUserLocaleConfig();
@@ -35,11 +34,19 @@ export async function fetchCategoryList() {
 
 /**
  * @description: 获取主页简介数据
- * @return {*} homeHeroInfo 主页简介数据
+ * @return {HomeHeroInfo} 主页简介数据
  */
 export async function fetchHomeHeroInfo() {
   const currentLocaleConfig = await getUserLocaleConfig();
-  return homeHeroInfo[currentLocaleConfig?.code]
+  try {
+    const result = await sql<HomeHeroInfo[]>`
+      SELECT welcome, title, subtitle FROM home_info
+      WHERE locale = ${currentLocaleConfig.code}
+    `
+    return result?.[0]
+  } catch (e) {
+    console.error('Failed to fetch home info:', e);
+  }
 }
 
 /**
