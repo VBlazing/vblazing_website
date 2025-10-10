@@ -28,6 +28,9 @@
     },
     "featured_blog": {
       "title": "精选博客"
+    },
+    "recent_blog": {
+      "title": "最新博客"
     }
   }
 }

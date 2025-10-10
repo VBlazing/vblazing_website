@@ -28,6 +28,9 @@
     },
     "featured_blog": {
       "title": "Featured Blog"
+    },
+    "recent_blog": {
+      "title": "Recent Blogs"
     }
   }
 }

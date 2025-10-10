@@ -29,4 +29,38 @@ function HomeHeroSkeleton() {
   );
 }
 
-export { Skeleton, HomeHeroSkeleton };
+function BlogCardSkeleton() {
+  return (
+    <div className="@container flex w-full rounded-2xl border bg-white not-first:hidden sm:not-first:block dark:bg-[#15181c]">
+      <div className="flex flex-grow flex-col gap-0 @lg:flex-row">
+        <div className="h-50 w-full p-4 @sm:h-64 @lg:h-auto">
+          <Skeleton className="h-full w-full" />
+        </div>
+        <div className="flex w-full flex-col justify-between p-4">
+          <Skeleton className="mb-4 h-4 w-[25%]" />
+          <Skeleton className="mb-4 h-6 w-full" />
+          <Skeleton className="mb-4 h-16 w-[75%]" />
+          <Skeleton className="mb-4 h-4 w-full" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RecentBlogSkeleton() {
+  return (
+    <div className="mx-auto mb-20 w-full max-w-6xl px-6 sm:px-8">
+      <Skeleton className="mx-auto mb-10 h-10 w-[50%] sm:h-16 sm:w-[25%]" />
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <BlogCardSkeleton />
+        <BlogCardSkeleton />
+        <BlogCardSkeleton />
+        <BlogCardSkeleton />
+        <BlogCardSkeleton />
+        <BlogCardSkeleton />
+      </div>
+    </div>
+  );
+}
+
+export { Skeleton, HomeHeroSkeleton, BlogCardSkeleton, RecentBlogSkeleton };
