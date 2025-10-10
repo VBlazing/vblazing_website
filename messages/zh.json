@@ -24,7 +24,7 @@
       "explore": "发现",
       "about": "关于我",
       "stats_view_all": "查看所有",
-      "stats_blog_count": " 篇博客",
+      "stats_blog_count": " 篇文章",
       "stats_blog_title": "博客",
       "stats_product_count": " 个产品",
       "stats_product_title": "产品",
@@ -33,14 +33,14 @@
       "stats_idea_all": "脑洞大开"
     },
     "featured_blog": {
-      "title": "精选博客"
+      "title": "精选文章"
     },
     "recent_blog": {
-      "title": "最新博客"
+      "title": "最新文章"
     },
     "explore_blog": {
       "title": "探索所有故事",
-      "subtitle": "从完整的归档中发现更多想法、见解和故事。",
+      "subtitle": "从完整的档案发现更多想法、见解和故事。",
       "explore": "查看所有"
     }
   }

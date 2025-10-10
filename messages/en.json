@@ -24,7 +24,7 @@
       "explore": "Explore",
       "about": "About",
       "stats_view_all": "View All",
-      "stats_blog_count": "+ Blogs",
+      "stats_blog_count": "+ Posts",
       "stats_blog_title": "Blogs",
       "stats_product_count": "+ Products",
       "stats_product_title": "Products",
@@ -33,10 +33,10 @@
       "stats_idea_all": "Brainstorming"
     },
     "featured_blog": {
-      "title": "Featured Blog"
+      "title": "Featured Post"
     },
     "recent_blog": {
-      "title": "Recent Blogs"
+      "title": "Recent Posts"
     },
     "explore_blog": {
       "title": "Explore All",
