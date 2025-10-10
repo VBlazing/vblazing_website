@@ -37,6 +37,11 @@
     },
     "recent_blog": {
       "title": "Recent Blogs"
+    },
+    "explore_blog": {
+      "title": "Explore All",
+      "subtitle": "Discover more thoughts, insights, and stories from the complete archive.",
+      "explore": "View All"
     }
   }
 }

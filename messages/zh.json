@@ -37,6 +37,11 @@
     },
     "recent_blog": {
       "title": "最新博客"
+    },
+    "explore_blog": {
+      "title": "探索所有故事",
+      "subtitle": "从完整的归档中发现更多想法、见解和故事。",
+      "explore": "查看所有"
     }
   }
 }
