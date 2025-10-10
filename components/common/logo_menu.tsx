@@ -36,6 +36,7 @@ export default function LogoMenu({
     <div className={className}>
       <DropdownMenu open={openMenu} onOpenChange={handleOpenMenu}>
         <DropdownMenuTrigger asChild>
+          {/* todo: 待整理*/}
           {/* focus-visible:ring-[0]：删除自带的聚焦后边框 */}
           <Button variant={"ghost"} className="p-0 focus-visible:ring-[0]">
             <div>{openMenu ? <X /> : <Menu />}</div>

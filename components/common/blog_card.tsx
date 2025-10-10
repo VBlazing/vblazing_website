@@ -16,7 +16,6 @@ import LabelList from "@/components/common/label_list";
 import { cn } from "@/lib/utils";
 import { BlogInfo } from "@/lib/definitions";
 
-// todo: 类型待修改
 interface IBlogCardPros {
   blog_info: BlogInfo & { category_name: string };
   showLabel?: boolean;
