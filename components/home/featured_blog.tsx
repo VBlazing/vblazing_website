@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-21 23:51:43
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-23 18:51:01
+ * @LastEditTime: 2025-10-11 20:52:58
  * @Description: 精选博客组件
  */
 import * as motion from "motion/react-client";
@@ -28,7 +28,7 @@ export default async function FeaturedBlog() {
   );
 
   return (
-    <section className="mx-auto mb-20 w-full max-w-6xl px-6 sm:px-8">
+    <section className="mx-auto mb-16 w-full max-w-6xl px-6 sm:mb-20 sm:px-8">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
