@@ -2,17 +2,20 @@
  * @Author: vblazing
  * @Date: 2025-09-23 13:18:35
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-23 15:14:13
+ * @LastEditTime: 2025-10-11 21:39:04
  * @Description: 标签组件
  */
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { Tag } from "lucide-react";
 
 export default function Label({
   text,
+  showIcon,
   className,
 }: {
   text: string;
+  showIcon?: boolean;
   className?: string;
 }) {
   return (
@@ -20,6 +23,7 @@ export default function Label({
       variant="outline"
       className={cn("text-main-label rounded-xl font-medium", className)}
     >
+      {showIcon && <Tag />}
       {text}
     </Badge>
   );

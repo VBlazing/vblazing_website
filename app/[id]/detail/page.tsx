@@ -2,11 +2,13 @@
  * @Author: vblazing
  * @Date: 2025-10-11 12:38:53
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 15:29:27
+ * @LastEditTime: 2025-10-11 21:18:35
  * @Description: 博客详情页面
  */
 import { notFound } from "next/navigation";
-import { fetchPublishedBlogDetail } from "@/server/data";
+import { fetchCategoryList, fetchPublishedBlogDetail } from "@/server/data";
+import { formatBlogListWithCategoryName } from "@/lib/formatData";
+import { DetailHeader } from "@/components/detail/detail_header";
 
 type UrlParams = {
   id: string;
@@ -23,14 +25,23 @@ interface IDetailProps {
 
 export default async function Detail(props: IDetailProps) {
   const params = await props.params;
-  const searchParams = await props.searchParams;
 
-  const blogInfo = await fetchPublishedBlogDetail(params?.id);
-  console.log("blogInfo, ", blogInfo);
+  const blog_info = await fetchPublishedBlogDetail(params?.id);
+  const category_list = await fetchCategoryList();
 
-  if (!blogInfo) {
+  if (!blog_info) {
     notFound();
   }
 
-  return <div>this is detail</div>;
+  const blog_list_with_category_name = formatBlogListWithCategoryName(
+    [blog_info],
+    category_list || [],
+  );
+
+  return (
+    <article className="min-h-screen w-full pb-10 sm:pb-16">
+      {/* Header */}
+      <DetailHeader blog_info={blog_list_with_category_name[0]} />
+    </article>
+  );
 }
