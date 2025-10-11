@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-25 15:52:46
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-25 18:45:10
+ * @LastEditTime: 2025-10-11 13:50:52
  * @Description: 最近博客
  */
 import * as motion from "motion/react-client";
@@ -16,7 +16,7 @@ export default async function RecentBlog() {
 
   const category_list = await fetchCategoryList();
   const featured_blog_list = await fetchPublishedBlogList({
-    pagination: { page: 1, pageSize: 5 },
+    pagination: { page: 1, pageSize: 6 },
   });
 
   const blog_list_with_category_name = formatBlogListWithCategoryName(
