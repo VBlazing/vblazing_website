@@ -15,7 +15,7 @@
   },
   "nav": {
     "nav_home": "主页",
-    "nav_blog": "博客",
+    "nav_docs": "文档",
     "nav_products": "产品",
     "nav_about": "关于我"
   },
@@ -25,7 +25,7 @@
       "about": "关于我",
       "stats_view_all": "查看所有",
       "stats_blog_count": " 篇文章",
-      "stats_blog_title": "博客",
+      "stats_blog_title": "文档",
       "stats_product_count": " 个产品",
       "stats_product_title": "产品",
       "stats_idea_count": "∞ 想法",
@@ -42,6 +42,14 @@
       "title": "探索所有故事",
       "subtitle": "从完整的档案发现更多想法、见解和故事。",
       "explore": "查看所有"
+    }
+  },
+  "detail": {
+    "loading": "文章加载中...",
+    "not_found": {
+      "title": "文章未找到",
+      "text": "你要找的文章不存在，或者已经被删除了。",
+      "back": "返回文章列表"
     }
   }
 }

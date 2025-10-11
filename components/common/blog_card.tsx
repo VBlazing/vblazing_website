@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-23 15:52:28
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-25 18:48:50
+ * @LastEditTime: 2025-10-11 14:50:41
  * @Description: 博客卡片组件
  */
 import Link from "next/link";
@@ -15,6 +15,7 @@ import ReadingTime from "@/components/common/reading_time";
 import LabelList from "@/components/common/label_list";
 import { cn } from "@/lib/utils";
 import { BlogInfo } from "@/lib/definitions";
+import { getBlogDetailUrl } from "@/lib/navigate";
 
 interface IBlogCardPros {
   blog_info: BlogInfo & { category_name: string };
@@ -42,6 +43,7 @@ export default async function BlogCard({
     image_url,
     labels,
   } = blog_info ?? {};
+  const blogDetailUrl = getBlogDetailUrl(id);
   return (
     <div
       className={cn(
@@ -52,7 +54,7 @@ export default async function BlogCard({
       <div className="flex flex-grow flex-col gap-0 @lg:flex-row">
         {/* 图片 */}
         <div className="relative h-50 w-full overflow-hidden @sm:h-64 @lg:h-auto">
-          <Link href={`/detail/${id}`}>
+          <Link href={blogDetailUrl}>
             <CategoryTag
               category={category_name}
               className="absolute top-3 left-3 z-50"
@@ -72,7 +74,7 @@ export default async function BlogCard({
               <ReadingTime time={reading_time} />
             </div>
             <h3 className="text-main-title mb-2 text-2xl leading-tight font-light @sm:mb-4 @lg:text-3xl">
-              <Link href={`/detail/${id}`}>{title}</Link>
+              <Link href={blogDetailUrl}>{title}</Link>
             </h3>
             <p className="text-main-text mb-4 line-clamp-3 text-base leading-relaxed overflow-ellipsis @lg:text-lg">
               {introduction || content}
@@ -86,7 +88,7 @@ export default async function BlogCard({
             )}
           </div>
           <Link
-            href={`/detail/${id}`}
+            href={blogDetailUrl}
             className="text-main-title inline-flex items-center space-x-2 font-medium transition-all duration-200 group-hover:translate-x-1"
           >
             <span>{t("read_more")}</span>

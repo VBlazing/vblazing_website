@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-26 10:10:20
+ * @LastEditTime: 2025-10-11 15:16:33
  * @Description: 获取页面数据
  */
 import postgres from 'postgres';
@@ -10,6 +10,7 @@ import { isNotNil } from 'es-toolkit';
 import { getUserLocaleConfig } from "@/i18n/service";
 import { BlogFilter, BlogInfo, CategoryInfo, HomeHeroInfo, Pagination } from '@/lib/definitions';
 import { BLOG_STATE } from '@/lib/const';
+import { delay } from '@/lib/utils';
 
 const isProduction = process.env.NODE_ENV === 'production'
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: isProduction ? 'require' : false })
@@ -127,5 +128,20 @@ export async function fetchPublishedBlogTotal() {
     return result?.[0]?.count
   } catch (e) {
     console.error('Failed to fetch blog total:', e);
+  }
+}
+
+
+export async function fetchPublishedBlogDetail(id: string) {
+  try {
+    await delay(20000)
+    const result = await sql<BlogInfo[]>`
+      SELECT * FROM blog_with_labels
+      WHERE state = ${BLOG_STATE.PUBLISHED}
+      AND id = ${id}
+    `
+    return result?.[0]
+  } catch (e) {
+    console.error('Failed to fetch blog :', e);
   }
 }

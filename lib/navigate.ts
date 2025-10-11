@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-19 16:34:38
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-20 17:49:57
+ * @LastEditTime: 2025-10-11 15:48:07
  * @Description: 导航配置
  */
 import { getTranslations } from 'next-intl/server';
@@ -28,7 +28,7 @@ export async function getNavigate(): Promise<INavigateConfig[]> {
     icon: 'Home'
   }, {
     key: 'blog',
-    title: t('nav_blog'),
+    title: t('nav_docs'),
     href: '/blog',
     icon: 'BookOpen'
   }, {
@@ -43,3 +43,9 @@ export async function getNavigate(): Promise<INavigateConfig[]> {
     icon: 'UserIcon'
   }]
 }
+
+/**
+ * @description: 获取跳转文章详情url
+ * @return {string} url
+ */
+export const getBlogDetailUrl = (id: string) => `/${id}/detail`
