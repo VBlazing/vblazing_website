@@ -11,6 +11,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -53,6 +54,7 @@ export default async function RootLayout({
               </main>
               <Footer />
             </div>
+            <Toaster position="top-right" />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

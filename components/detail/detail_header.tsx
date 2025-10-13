@@ -7,20 +7,56 @@
  */
 "use client";
 
+import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 import * as motion from "motion/react-client";
+import { Share2 } from "lucide-react";
 import { BlogInfo } from "@/lib/definitions";
 import { Button } from "@/components/ui/button";
 import LabelList from "@/components/common/label_list";
 import CategoryTag from "@/components/common/category_tag";
 import BlogDate from "@/components/common/blog_date";
 import ReadingTime from "@/components/common/reading_time";
-import { Share2 } from "lucide-react";
 
 interface IDetailHeaderProps {
   blog_info: BlogInfo & { category_name: string };
 }
 
 export function DetailHeader({ blog_info }: IDetailHeaderProps) {
+  const t = useTranslations("detail");
+  const [shareLoading, setShareLoading] = useState(false);
+
+  const handleShare = async () => {
+    if (navigator.share && blog_info) {
+      setShareLoading(true);
+      try {
+        await navigator.share({
+          title: blog_info.title,
+          text: blog_info.introduction,
+          url: window.location.href,
+        });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (e: any) {
+        // 20 为 DOMException 中的 AbortError，代表用户取消分享
+        if (e.code === 20) {
+          toast.info(t("cancel_share"));
+        } else {
+          toast.warning(t("failed_share"), {
+            richColors: true,
+            description: e.message,
+          });
+        }
+      } finally {
+        setShareLoading(false);
+      }
+    } else {
+      // Fallback: copy URL to clipboard
+      toast.info(t("copy_clipboard"));
+      navigator.clipboard.writeText(window.location.href);
+    }
+  };
+
   return (
     <div className="w-full px-6 py-8 sm:px-8">
       {/* Post Header */}
@@ -30,9 +66,21 @@ export function DetailHeader({ blog_info }: IDetailHeaderProps) {
         transition={{ duration: 0.6 }}
       >
         {/* Title */}
-        <h1 className="text-main-title mb-6 text-3xl leading-tight md:text-4xl lg:text-5xl">
-          {blog_info.title}
-        </h1>
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-main-title text-3xl leading-tight md:text-4xl lg:text-5xl">
+            {blog_info.title}
+          </h1>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleShare}
+            disabled={shareLoading}
+            className="flex cursor-pointer items-center space-x-2"
+          >
+            <Share2 />
+            <span>{t("share")}</span>
+          </Button>
+        </div>
 
         {/* Meta Info */}
         <div className="mb-6 flex flex-wrap items-center gap-4 text-sm">
@@ -58,26 +106,13 @@ export function DetailHeader({ blog_info }: IDetailHeaderProps) {
         )}
 
         {/* Share Button */}
-        <div className="flex items-center justify-between">
-          <div className="flex flex-wrap gap-2">
-            <LabelList
-              labels={blog_info.labels}
-              maxLength={10}
-              showIcon={true}
-              className="gap-2"
-            />
-          </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              console.log("share");
-            }}
-            className="flex cursor-pointer items-center space-x-2"
-          >
-            <Share2 />
-            <span>Share</span>
-          </Button>
+        <div className="flex flex-wrap gap-2">
+          <LabelList
+            labels={blog_info.labels}
+            maxLength={10}
+            showIcon={true}
+            className="gap-2"
+          />
         </div>
       </motion.div>
     </div>
