@@ -33,6 +33,19 @@ export async function fetchCategoryList() {
 }
 
 /**
+ * @description: 获取博客标签列表
+ * @return {string[]} 博客标签列表
+ */
+export async function fetchLabelList() {
+  try {
+    const list = await sql<{ id: string }[]>`SELECT id FROM labels`
+    return list?.map(item => item.id)
+  } catch (e) {
+    console.error('Failed to fetch labels:', e);
+  }
+}
+
+/**
  * @description: 获取主页简介数据
  * @return {HomeHeroInfo} 主页简介数据
  */
@@ -130,7 +143,10 @@ export async function fetchPublishedBlogTotal() {
   }
 }
 
-
+/**
+ * @description: 获取博客详情
+ * @return {BlogInfo} 博客详情
+ */
 export async function fetchPublishedBlogDetail(id: string) {
   try {
     const result = await sql<BlogInfo[]>`

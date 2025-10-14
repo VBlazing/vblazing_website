@@ -8,7 +8,10 @@
     "go_home": "返回主页"
   },
   "common": {
-    "read_more": "阅读全文"
+    "read_more": "阅读全文",
+    "tags": "标签",
+    "filter_by_tags": "标签筛选",
+    "clear": "清除选择"
   },
   "footer": {
     "copyright": "© 威布雷泽个人网站"
@@ -55,5 +58,6 @@
     "cancel_share": "已取消分享",
     "failed_share": "分享失败",
     "copy_clipboard": "链接已复制到粘贴板"
-  }
+  },
+  "blog": {}
 }

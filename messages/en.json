@@ -8,7 +8,10 @@
     "go_home": "Go Home"
   },
   "common": {
-    "read_more": "Read more"
+    "read_more": "Read more",
+    "tags": "Tags",
+    "filter_by_tags": "Filter by tags",
+    "clear": "Clear"
   },
   "footer": {
     "copyright": "© Wei Blazer's personal website"
@@ -55,5 +58,6 @@
     "cancel_share": "Share canceled",
     "failed_share": "Share Failed",
     "copy_clipboard": "Copied to clipboard"
-  }
+  },
+  "blog": {}
 }

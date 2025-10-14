@@ -9,15 +9,17 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { Tag } from "lucide-react";
 
-export default function Label({
-  text,
-  showIcon,
-  className,
-}: {
+export interface ILabelProps {
   text: string;
   showIcon?: boolean;
   className?: string;
-}) {
+}
+
+export default function Label({
+  text,
+  showIcon = false,
+  className,
+}: ILabelProps) {
   return (
     <Badge
       variant="outline"

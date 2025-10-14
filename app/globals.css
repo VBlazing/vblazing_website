@@ -51,6 +51,12 @@
   /* 精选图片背景渐变色 */
   --color-featured-img-from: var(--featured-img-from);
   --color-featured-img-to: var(--featured-img-to);
+  /* 鼠标浮动时背景色 */
+  --color-hover-background: var(--hover-background);
+  /* 选中时背景色 */
+  --color-active-background: var(--active-background);
+  /* 选中时字体色 */
+  --color-active-text: var(--active-text);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
@@ -102,6 +108,12 @@
   /* 精选图片背景渐变色 */
   --featured-img-from: #f1f5f9;
   --featured-img-to: #e2e8f0;
+  /* 鼠标浮动时背景色 */
+  --hover-background: #f5f5f5;
+  /* 选中时背景色 */
+  --active-background: #262626;
+  /* 选中时字体色 */
+  --active-text: #f7fafc;
 }
 
 .dark {
@@ -149,6 +161,12 @@
   /* 精选图片背景渐变色 */
   --featured-img-from: #1a1d21;
   --featured-img-to: #0f1419;
+  /* 鼠标浮动时背景色 */
+  --hover-background: #262626;
+  /* 选中时背景色 */
+  --active-background: #f5f5f5;
+  /* 选中时字体色 */
+  --active-text: #1e293b;
 }
 
 @layer base {
