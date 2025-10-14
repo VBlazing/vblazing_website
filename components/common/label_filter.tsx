@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-14 13:13:33
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-14 20:24:32
+ * @LastEditTime: 2025-10-14 22:39:10
  * @Description: 标签过滤组件
  */
 "use client";
@@ -23,6 +23,7 @@ interface ILabelFilterProps {
   value: string[];
   onChange: (value: string[]) => void;
   clear?: boolean;
+  className?: string;
 }
 
 export default function LabelFilter({
@@ -30,6 +31,7 @@ export default function LabelFilter({
   value = [],
   onChange,
   clear = true,
+  className,
 }: ILabelFilterProps) {
   const t = useTranslations("common");
 
@@ -47,9 +49,13 @@ export default function LabelFilter({
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          className={cn("relative cursor-pointer", {
-            "bg-hover-background": !!value.length,
-          })}
+          className={cn(
+            "relative cursor-pointer",
+            {
+              "bg-hover-background": !!value.length,
+            },
+            className,
+          )}
           variant="outline"
         >
           <Tag />

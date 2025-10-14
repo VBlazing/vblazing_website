@@ -11,7 +11,8 @@
     "read_more": "Read more",
     "tags": "Tags",
     "filter_by_tags": "Filter by tags",
-    "clear": "Clear"
+    "clear": "Clear",
+    "search_post": "Search posts..."
   },
   "footer": {
     "copyright": "© Wei Blazer's personal website"
@@ -59,5 +60,7 @@
     "failed_share": "Share Failed",
     "copy_clipboard": "Copied to clipboard"
   },
-  "blog": {}
+  "blog": {
+    "clear_all": "Clear All Filters"
+  }
 }

@@ -11,7 +11,8 @@
     "read_more": "阅读全文",
     "tags": "标签",
     "filter_by_tags": "标签筛选",
-    "clear": "清除选择"
+    "clear": "清除选择",
+    "search_post": "查询文章..."
   },
   "footer": {
     "copyright": "© 威布雷泽个人网站"
@@ -59,5 +60,7 @@
     "failed_share": "分享失败",
     "copy_clipboard": "链接已复制到粘贴板"
   },
-  "blog": {}
+  "blog": {
+    "clear_all": "清除所有筛选"
+  }
 }
