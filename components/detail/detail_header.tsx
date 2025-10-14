@@ -66,8 +66,8 @@ export function DetailHeader({ blog_info }: IDetailHeaderProps) {
         transition={{ duration: 0.6 }}
       >
         {/* Title */}
-        <div className="mb-6 flex items-center justify-between">
-          <h1 className="text-main-title text-3xl leading-tight md:text-4xl lg:text-5xl">
+        <div className="mb-6 flex items-center justify-between space-x-10">
+          <h1 className="text-main-title text-2xl leading-tight md:text-4xl lg:text-5xl">
             {blog_info.title}
           </h1>
           <Button
