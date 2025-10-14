@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-23 15:52:28
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 14:50:41
+ * @LastEditTime: 2025-10-14 23:00:00
  * @Description: 博客卡片组件
  */
 import Link from "next/link";
@@ -57,7 +57,7 @@ export default async function BlogCard({
           <Link href={blogDetailUrl}>
             <CategoryTag
               category={category_name}
-              className="absolute top-3 left-3 z-50"
+              className="absolute top-3 left-3 z-1"
             />
             <FeaturedImage
               url={image_url}
