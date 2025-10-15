@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-14 13:20:38
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-15 16:38:55
+ * @LastEditTime: 2025-10-15 23:10:10
  * @Description: 搜索功能区
  */
 "use client";
@@ -15,7 +15,7 @@ import Search from "@/components/common/search";
 import { Button } from "@/components/ui/button";
 
 interface ISearchBarProps {
-  labels?: string[];
+  labels: string[];
 }
 
 export default function SearchBar({ labels }: ISearchBarProps) {
