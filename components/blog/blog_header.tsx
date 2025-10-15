@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-14 12:23:17
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-14 23:16:13
+ * @LastEditTime: 2025-10-15 14:14:53
  * @Description: 博客页头
  */
 import * as motion from "motion/react-client";
@@ -52,7 +52,13 @@ export default async function BlogHeader() {
               />
             ))}
           </div>
-          <SearchBar labels={labels} />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <SearchBar labels={labels} />
+          </motion.div>
         </motion.div>
       </div>
     </div>
