@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-14 13:20:38
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-14 22:39:58
+ * @LastEditTime: 2025-10-15 16:38:55
  * @Description: 搜索功能区
  */
 "use client";
@@ -55,7 +55,10 @@ export default function SearchBar({ labels }: ISearchBarProps) {
   const handleClearAll = () => {
     setSearchValue("");
     setLabelValue([]);
-    replace(pathname);
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("labels");
+    params.delete("search");
+    replace(`${pathname}?${params.toString()}`);
   };
 
   return (
@@ -76,7 +79,7 @@ export default function SearchBar({ labels }: ISearchBarProps) {
             variant="outline"
             onClick={handleClearAll}
           >
-            {t("clear_all")}
+            {t("clear_filter")}
           </Button>
         )}
       </div>
