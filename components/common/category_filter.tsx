@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-15 14:09:32
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-15 18:21:11
+ * @LastEditTime: 2025-10-15 22:33:37
  * @Description: 文章分类筛选器
  */
 "use client";
@@ -37,7 +37,7 @@ export default function CategoryFilter({
   ];
 
   const [value, setValue] = useState<string>(
-    searchParams.get("category") || "",
+    searchParams.get("category") || ALL,
   );
 
   const createQuery = useDebouncedCallback((name: string, value: string) => {
