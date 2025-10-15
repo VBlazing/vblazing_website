@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:57:15
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-21 10:50:33
+ * @LastEditTime: 2025-10-15 13:56:11
  * @Description: 数据类型定义
  */
 
@@ -13,8 +13,9 @@ export type HomeHeroInfo = {
 }
 
 export type BlogFilter = {
+  search?: string
   category?: number
-  label?: string[]
+  labels?: string[]
   state?: number[]
   is_featured?: boolean
 }

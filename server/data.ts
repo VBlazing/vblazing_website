@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 15:55:23
+ * @LastEditTime: 2025-10-15 14:06:41
  * @Description: 获取页面数据
  */
 import postgres from 'postgres';
@@ -76,20 +76,28 @@ export async function fetchBlogList({
   filter?: BlogFilter
 }) {
   const { page, pageSize } = pagination ?? {}
-  const { category, label, state, is_featured } = filter ?? {}
+  const { category, labels, state, is_featured, search } = filter ?? {}
 
   try {
     const list = await sql<BlogInfo[]>`
       SELECT * FROM blog_with_labels
       WHERE TRUE
+      ${search
+        ? sql`
+          AND (
+            title LIKE ${'%' + search + '%'}
+            OR content LIKE ${'%' + search + '%'}
+            OR introduction LIKE ${'%' + search + '%'}
+          )
+        `
+        : sql``}
       ${category ? sql`AND category_id = ${category}` : sql``}
-      ${label
+      ${labels
         ? sql`
           AND id IN (
-            SELECT b.id FROM blogs b
+            SELECT DISTINCT b.id FROM blogs b
             LEFT JOIN blog_labels bl ON b.id = bl.blog_id
-            WHERE bl.label_id IN ${sql(label)}
-            GROUP BY b.id
+            WHERE bl.label_id IN ${sql(labels)}
           )
         `
         : sql``}
