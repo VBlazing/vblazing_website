@@ -47,7 +47,7 @@ export default function CategoryFilter({
     } else {
       params.delete(name);
     }
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
   }, 300);
 
   const handleChange = (value: string) => {

@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-14 13:20:38
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-15 23:10:10
+ * @LastEditTime: 2025-10-15 23:23:56
  * @Description: 搜索功能区
  */
 "use client";
@@ -39,7 +39,7 @@ export default function SearchBar({ labels }: ISearchBarProps) {
     } else {
       params.delete(name);
     }
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
   }, 300);
 
   const handleChangeSearch = (value: string) => {
@@ -58,7 +58,7 @@ export default function SearchBar({ labels }: ISearchBarProps) {
     const params = new URLSearchParams(searchParams.toString());
     params.delete("labels");
     params.delete("search");
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (
