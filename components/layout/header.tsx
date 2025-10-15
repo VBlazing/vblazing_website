@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 21:32:17
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 13:39:25
+ * @LastEditTime: 2025-10-15 22:51:53
  * @Description: 页面顶部
  */
 import Link from "next/link";
@@ -12,7 +12,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import LocaleSwitch from "@/components/common/local_switch";
+import LocaleSwitch from "@/components/common/locale_switch";
 import ThemeSwitch from "@/components/common/theme_switch";
 import LogoMenu from "@/components//common/logo_menu";
 import { getNavigate } from "@/lib/navigate";

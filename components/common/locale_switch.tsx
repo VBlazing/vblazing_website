@@ -2,12 +2,13 @@
  * @Author: vblazing
  * @Date: 2025-09-05 22:08:55
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-22 23:27:59
+ * @LastEditTime: 2025-10-15 22:52:07
  * @Description: 更换语言环境前端组件
  */
 "use client";
 
 import { useTransition } from "react";
+import { useLocale } from "next-intl";
 import { Globe } from "lucide-react";
 import {
   DropdownMenu,
@@ -17,18 +18,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { localeConfigs } from "@/i18n/config";
+import { defaultLocaleConfig, localeConfigs } from "@/i18n/config";
 import { setUserLocale } from "@/i18n/service";
 
-export default function LocaleSwitchClient({
-  currentLocaleConfig,
-}: {
-  currentLocaleConfig: {
-    code: string;
-    name: string;
-  };
-}) {
+export default function LocaleSwitchClient() {
+  const locale = useLocale();
   const [isPending, startTransition] = useTransition();
+
+  const currentLocaleConfig =
+    localeConfigs.find((item) => item.code === locale) ?? defaultLocaleConfig;
 
   const handleSwitchLocale = (value: string) => {
     startTransition(() => {
