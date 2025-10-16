@@ -1,4 +1,8 @@
 {
+  "error": {
+    "client_common_error": "Something went wrong, please try again later",
+    "failed_set_cookie": "Failed Set Cookie"
+  },
   "error_page": {
     "wrong": "Something went wrong!",
     "try_again": "Try again"

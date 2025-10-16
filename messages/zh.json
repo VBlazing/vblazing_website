@@ -1,4 +1,8 @@
 {
+  "error": {
+    "client_common_error": "出错了，请稍后再试",
+    "failed_set_cookie": "设置 Cookie 失败"
+  },
   "error_page": {
     "wrong": "出错啦！",
     "try_again": "点击重试"

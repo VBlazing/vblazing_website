@@ -1,5 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { toast } from 'sonner'
+import { getTranslations } from 'next-intl/server';
+const t = await getTranslations('error')
+
+export enum ERROR_CODE {
+  CLIENT_COMMON_ERROR = 4000,
+  FAILED_SET_COOKIE = 5001
+}
+
+export const errorMsgMap = {
+  [ERROR_CODE.CLIENT_COMMON_ERROR]: t('client_common_error'),
+  [ERROR_CODE.FAILED_SET_COOKIE]: t('failed_set_cookie')
+}
 
 type ErrorType = 'runtime' | 'unhandledrejection' | 'caught' | 'render';
 
@@ -16,7 +28,7 @@ interface ErrorReport {
 
 /** 弹出用户提示（UI层） */
 function showUserNotification(error: ErrorReport) {
-  toast.error('😞 出错了，请稍后再试', {
+  toast.error(errorMsgMap[ERROR_CODE.CLIENT_COMMON_ERROR], {
     description: error.message.slice(0, 200),
     duration: 5000,
   });
