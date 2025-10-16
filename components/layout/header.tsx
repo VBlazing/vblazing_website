@@ -22,7 +22,7 @@ export default async function Header() {
   const navigate = await getNavigate();
 
   return (
-    <header className="drop-blur-lg border-border/40 bg-background/90 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b font-medium backdrop-blur">
+    <header className="drop-blur-lg border-border/40 bg-background/90 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-100 w-full border-b font-medium backdrop-blur">
       <div className="flex h-16 items-center justify-between px-4 sm:px-8">
         {/* 标志 */}
         <div className="hidden sm:block">logo</div>
