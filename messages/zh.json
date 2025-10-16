@@ -16,7 +16,10 @@
     "filter_by_tags": "标签筛选",
     "clear": "清除",
     "search_post": "查询文章...",
-    "all": "全部"
+    "all": "全部",
+    "settings": {
+      "simple_mode": "简约模式"
+    }
   },
   "footer": {
     "copyright": "© 威布雷泽个人网站"

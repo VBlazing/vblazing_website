@@ -16,7 +16,10 @@
     "filter_by_tags": "Filter by tags",
     "clear": "Clear",
     "search_post": "Search posts...",
-    "all": "All"
+    "all": "All",
+    "settings": {
+      "simple_mode": "Simple Mode"
+    }
   },
   "footer": {
     "copyright": "© Wei Blazer's personal website"

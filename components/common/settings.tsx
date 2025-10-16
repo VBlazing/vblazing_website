@@ -11,12 +11,14 @@ import {
 } from "@/components/ui/popover";
 import { SettingsType } from "@/lib/definitions";
 import { setSettings } from "@/lib/settings";
+import { useTranslations } from "next-intl";
 
 export default function Settings({
   defaultValue,
 }: {
   defaultValue: SettingsType;
 }) {
+  const t = useTranslations("common.settings");
   const [checked, setChecked] = useState<boolean>(
     defaultValue.mode === "simple",
   );
@@ -39,7 +41,7 @@ export default function Settings({
           className="flex cursor-pointer items-center gap-2 pr-4 text-sm font-medium"
         >
           <Switch checked={checked} />
-          <span>Simple Mode</span>
+          <span>{t("simple_mode")}</span>
         </div>
       </PopoverContent>
     </Popover>
