@@ -50,3 +50,7 @@ export type BlogInfo = {
   is_featured: boolean
   labels: string[]
 }
+
+export type SettingsType = {
+  mode: "simple" | "full";
+};
