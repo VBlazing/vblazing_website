@@ -5,9 +5,9 @@
  * @LastEditTime: 2025-10-15 22:40:11
  * @Description: 获取页面数据
  */
+import { getLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
 import { isNotNil } from 'es-toolkit';
-import { getUserLocaleConfig } from "@/i18n/service";
 import { BlogFilter, BlogInfo, CategoryInfo, HomeHeroInfo, Pagination } from '@/lib/definitions';
 import { BLOG_STATE } from '@/lib/const';
 import { sql } from './client'
@@ -17,8 +17,7 @@ import { sql } from './client'
  * @return {CategoryInfo[]} 博客类型列表
  */
 export const fetchCategoryList = async () => {
-  const currentLocaleConfig = await getUserLocaleConfig();
-  const locale = currentLocaleConfig.code
+  const locale = await getLocale()
   return unstable_cache(
     async () => {
       try {
@@ -58,8 +57,7 @@ export const fetchLabelList = unstable_cache(
  * @return {HomeHeroInfo} 主页简介数据
  */
 export const fetchHomeHeroInfo = async () => {
-  const currentLocaleConfig = await getUserLocaleConfig();
-  const locale = currentLocaleConfig.code;
+  const locale = await getLocale()
   return unstable_cache(
     async () => {
       try {
