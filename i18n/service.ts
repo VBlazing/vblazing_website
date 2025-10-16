@@ -6,7 +6,7 @@
  * @Description: 国际化服务
  */
 'use server'
-
+import { cache } from "react";
 import { cookies, headers } from "next/headers";
 import { defaultLocaleConfig, localeConfigs } from "./config";
 
@@ -16,7 +16,7 @@ const COOKIE_NAME = 'VBLAZING_LOCALE'
  * @description: 获取当前用户语言环境
  * @return {*} localeConfig 当前用户语言环境
  */
-export async function getUserLocaleConfig() {
+export const getUserLocaleConfigImpl = async () => {
   // cookie中携带的语言环境
   const cookiesLocale = (await cookies()).get(COOKIE_NAME)?.value
 
@@ -35,6 +35,7 @@ export async function getUserLocaleConfig() {
   return localeConfigs.find(item => item.code === locale) ?? defaultLocaleConfig
 }
 
+export const getUserLocaleConfig = cache(getUserLocaleConfigImpl)
 
 /**
  * @description: 设置语言环境到cookie中
