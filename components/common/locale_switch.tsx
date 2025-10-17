@@ -51,7 +51,7 @@ export default function LocaleSwitchClient() {
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="z-100">
         {localeConfigs.map((lang) => (
           <DropdownMenuItem
             key={lang.code}

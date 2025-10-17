@@ -43,7 +43,7 @@ export default function LogoMenu({
             <span>logo</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="m-0 h-screen w-screen border-none px-4">
+        <DropdownMenuContent className="z-100 m-0 h-screen w-screen border-none px-4">
           {navigate?.map((item) => {
             const Icon = getIcon(item.icon);
             return (
