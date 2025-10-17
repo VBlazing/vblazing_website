@@ -8,7 +8,7 @@
 import { BlogState, BlogStateKey, BlogCategory, BlogCategoryKey } from "@/lib/definitions";
 
 // `所有`的id
-export const ALL = '-1'
+export const ALL = -1
 
 // 博客状态
 export const BLOG_STATE: Record<BlogStateKey, BlogState> = {

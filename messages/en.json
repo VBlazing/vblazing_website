@@ -17,6 +17,8 @@
     "clear": "Clear",
     "search_post": "Search posts...",
     "all": "All",
+    "category": "category",
+    "select_something": "Please select a {value}",
     "settings": {
       "simple_mode": "Simple Mode"
     }

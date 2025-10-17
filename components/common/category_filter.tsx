@@ -15,6 +15,15 @@ import { Button } from "@/components/ui/button";
 import { CategoryInfo } from "@/lib/definitions";
 import { cn } from "@/lib/utils";
 import { ALL } from "@/lib/const";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+  SelectLabel,
+  SelectGroup,
+} from "../ui/select";
 
 interface ICategoryFilterProps {
   category_list: CategoryInfo[];
@@ -37,7 +46,7 @@ export default function CategoryFilter({
   ];
 
   const [value, setValue] = useState<string>(
-    searchParams.get("category") || ALL,
+    searchParams.get("category") || String(ALL),
   );
 
   const createQuery = useDebouncedCallback((name: string, value: string) => {
@@ -56,27 +65,52 @@ export default function CategoryFilter({
   };
 
   return (
-    <div className="border-border bg-background inline-flex items-center rounded-sm border-1 shadow-sm">
-      {categoryListWithAll.map((item) => {
-        const idStr = String(item.id);
-        const isChoose = idStr === value;
-        return (
-          <Button
-            variant="ghost"
-            onClick={() => handleChange(idStr)}
-            key={item.id}
-            className={cn(
-              "hover:bg-background dark:hover:bg-background cursor-pointer rounded-none px-6 first:rounded-l-sm last:rounded-r-sm",
-              {
-                "bg-active-background text-active-text dark:hover:bg-active-background hover:bg-active-background dark:hover:text-active-text hover:text-active-text":
-                  isChoose,
-              },
-            )}
-          >
-            {item.name}
-          </Button>
-        );
-      })}
-    </div>
+    <>
+      {/* Mobile */}
+      <div className="block sm:hidden">
+        <Select onValueChange={(v) => handleChange(v)}>
+          <SelectTrigger className="max-w-52 min-w-24">
+            <SelectValue
+              placeholder={t("select_something", { value: t("category") })}
+            />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>{t("category").toUpperCase()}</SelectLabel>
+              {categoryListWithAll.map((item) => {
+                return (
+                  <SelectItem key={item.id} value={String(item.id)}>
+                    {item.name}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+      {/* PC */}
+      <div className="border-border bg-background hidden items-center rounded-sm border-1 shadow-sm sm:inline-flex">
+        {categoryListWithAll.map((item) => {
+          const idStr = String(item.id);
+          const isChoose = idStr === value;
+          return (
+            <Button
+              variant="ghost"
+              onClick={() => handleChange(idStr)}
+              key={item.id}
+              className={cn(
+                "hover:bg-background dark:hover:bg-background cursor-pointer rounded-none px-6 first:rounded-l-sm last:rounded-r-sm",
+                {
+                  "bg-active-background text-active-text dark:hover:bg-active-background hover:bg-active-background dark:hover:text-active-text hover:text-active-text":
+                    isChoose,
+                },
+              )}
+            >
+              {item.name}
+            </Button>
+          );
+        })}
+      </div>
+    </>
   );
 }

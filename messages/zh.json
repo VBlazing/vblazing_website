@@ -17,6 +17,8 @@
     "clear": "清除",
     "search_post": "查询文章...",
     "all": "全部",
+    "category": "分类",
+    "select_something": "请选择{value}",
     "settings": {
       "simple_mode": "简约模式"
     }
