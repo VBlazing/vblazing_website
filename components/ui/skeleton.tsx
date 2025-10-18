@@ -2,9 +2,10 @@
  * @Author: vblazing
  * @Date: 2025-09-06 00:42:41
  * @LastEditors: vblazing
- * @LastEditTime: 2025-09-22 00:07:48
+ * @LastEditTime: 2025-10-15 23:17:27
  * @Description: 骨架屏组件
  */
+import { SettingsType } from "@/lib/definitions";
 import { cn } from "@/lib/utils";
 
 function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
@@ -47,20 +48,59 @@ function BlogCardSkeleton() {
   );
 }
 
-function RecentBlogSkeleton() {
+function SimpleBlogCardSkeleton() {
   return (
-    <div className="mx-auto mb-20 w-full max-w-6xl px-6 sm:px-8">
-      <Skeleton className="mx-auto mb-10 h-10 w-[50%] sm:h-16 sm:w-[25%]" />
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <BlogCardSkeleton />
-        <BlogCardSkeleton />
-        <BlogCardSkeleton />
-        <BlogCardSkeleton />
-        <BlogCardSkeleton />
-        <BlogCardSkeleton />
+    <div
+      className={
+        "flex items-center justify-between rounded-sm border bg-white p-4 dark:bg-[#15181c]"
+      }
+    >
+      <div className="flex w-full gap-4">
+        <Skeleton className="h-6 w-12" />
+        <Skeleton className="h-6 w-[75%]" />
       </div>
+      <Skeleton className="h-6 w-12 flex-shrink-0" />
     </div>
   );
 }
 
-export { Skeleton, HomeHeroSkeleton, BlogCardSkeleton, RecentBlogSkeleton };
+function BlogListSkeleton({ mode = "full" }: { mode?: SettingsType["mode"] }) {
+  if (mode === "simple") {
+    return (
+      <div className="flex flex-col gap-6">
+        <SimpleBlogCardSkeleton />
+        <SimpleBlogCardSkeleton />
+        <SimpleBlogCardSkeleton />
+        <SimpleBlogCardSkeleton />
+        <SimpleBlogCardSkeleton />
+      </div>
+    );
+  }
+  return (
+    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <BlogCardSkeleton />
+      <BlogCardSkeleton />
+      <BlogCardSkeleton />
+      <BlogCardSkeleton />
+      <BlogCardSkeleton />
+      <BlogCardSkeleton />
+    </div>
+  );
+}
+
+function RecentBlogSkeleton() {
+  return (
+    <div className="mx-auto mb-20 w-full max-w-6xl px-6 sm:px-8">
+      <Skeleton className="mx-auto mb-10 h-10 w-[50%] sm:h-16 sm:w-[25%]" />
+      <BlogListSkeleton />
+    </div>
+  );
+}
+
+export {
+  Skeleton,
+  HomeHeroSkeleton,
+  BlogCardSkeleton,
+  BlogListSkeleton,
+  RecentBlogSkeleton,
+};

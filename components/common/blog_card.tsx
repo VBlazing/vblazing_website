@@ -14,17 +14,63 @@ import BlogDate from "@/components/common/blog_date";
 import ReadingTime from "@/components/common/reading_time";
 import LabelList from "@/components/common/label_list";
 import { cn } from "@/lib/utils";
-import { BlogInfo } from "@/lib/definitions";
+import { BlogInfo, SettingsType } from "@/lib/definitions";
 import { getBlogDetailUrl } from "@/lib/navigate";
+import { JSX } from "react";
 
-interface IBlogCardPros {
+export interface IBlogCardPros {
   blog_info: BlogInfo & { category_name: string };
+  mode?: SettingsType["mode"];
   showLabel?: boolean;
   className?: string;
   labelMaxLength?: number;
 }
 
-export default async function BlogCard({
+async function SimpleBlogCard({
+  blog_info,
+  className,
+}: Omit<IBlogCardPros, "showLabel" | "labelMaxLength" | "mode">) {
+  const t = await getTranslations("common");
+  const { id, title, content, introduction, category_name, last_edited_time } =
+    blog_info ?? {};
+  const blogDetailUrl = getBlogDetailUrl(id);
+  return (
+    <Link href={blogDetailUrl} className="w-full">
+      <div
+        className={cn(
+          "group flex items-center justify-between space-x-0 rounded-sm border bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg sm:space-x-4 dark:bg-[#15181c]",
+          className,
+        )}
+      >
+        <div className="flex max-sm:w-full max-sm:flex-col sm:items-center">
+          <div className="flex items-center max-sm:mb-3 max-sm:max-w-full sm:mr-4 sm:flex-shrink-0">
+            <CategoryTag
+              category={category_name}
+              className="bg-featured-img-from mr-4 flex-shrink-0 rounded-sm font-medium opacity-100"
+            />
+            <div className="flex flex-grow items-end justify-between gap-3 max-sm:min-w-0 max-sm:flex-shrink">
+              <h3 className="text-main-title flex-shrink leading-tight break-words max-sm:min-w-0">
+                {title}
+              </h3>
+              <div className="flex-shrink-0 text-xs [&_svg]:size-3">
+                <BlogDate date={last_edited_time} />
+              </div>
+            </div>
+          </div>
+          <p className="text-main-text line-clamp-2 max-w-xl overflow-hidden text-sm overflow-ellipsis italic sm:line-clamp-1">
+            {introduction || content}
+          </p>
+        </div>
+        <div className="hidden flex-shrink-0 items-center gap-2 text-sm transition-all duration-200 group-hover:translate-x-1 sm:flex">
+          <span>{t("read_more")}</span>
+          <ArrowRight className="size-4" />
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+async function FullBlogCard({
   blog_info,
   showLabel = false,
   className,
@@ -73,10 +119,10 @@ export default async function BlogCard({
               <BlogDate date={last_edited_time} />
               <ReadingTime time={reading_time} />
             </div>
-            <h3 className="text-main-title mb-2 text-2xl leading-tight font-light @sm:mb-4 @lg:text-3xl">
+            <h3 className="text-main-title mb-2 text-2xl leading-tight @sm:mb-4 @lg:text-3xl">
               <Link href={blogDetailUrl}>{title}</Link>
             </h3>
-            <p className="text-main-text mb-4 line-clamp-3 text-base leading-relaxed overflow-ellipsis @lg:text-lg">
+            <p className="text-main-text mb-4 line-clamp-3 text-base leading-relaxed overflow-ellipsis italic @lg:text-lg">
               {introduction || content}
             </p>
             {showLabel && (
@@ -99,3 +145,25 @@ export default async function BlogCard({
     </div>
   );
 }
+
+function BlogCard(
+  props: Omit<IBlogCardPros, "mode"> & { mode?: "full" },
+): Promise<JSX.Element>;
+function BlogCard(
+  props: Omit<IBlogCardPros, "showLabel" | "labelMaxLength" | "mode"> & {
+    mode?: "simple";
+  },
+): Promise<JSX.Element>;
+async function BlogCard({ mode = "full", ...restProps }: IBlogCardPros) {
+  if (mode === "simple") {
+    return (
+      <SimpleBlogCard
+        blog_info={restProps.blog_info}
+        className={restProps.className}
+      />
+    );
+  }
+  return <FullBlogCard {...restProps} />;
+}
+
+export default BlogCard;
