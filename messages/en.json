@@ -70,6 +70,10 @@
     "copy_clipboard": "Copied to clipboard"
   },
   "blog": {
-    "clear_filter": "Clear Filters"
+    "clear_filter": "Clear Filters",
+    "not_found": {
+      "title": "No posts found",
+      "description": "Try adjusting your filters or search term"
+    }
   }
 }
