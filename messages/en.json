@@ -11,6 +11,7 @@
     "go_home": "Go Home"
   },
   "common": {
+    "loading": "Loading...",
     "read_more": "Read more",
     "tags": "Tags",
     "filter_by_tags": "Filter by tags",

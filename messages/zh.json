@@ -11,6 +11,7 @@
     "go_home": "返回主页"
   },
   "common": {
+    "loading": "加载中...",
     "read_more": "阅读全文",
     "tags": "标签",
     "filter_by_tags": "标签筛选",
