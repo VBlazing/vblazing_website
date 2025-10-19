@@ -13,13 +13,13 @@ export default function Tabbar({ settings, category_list }: ITabBar) {
     <div className="flex items-center justify-between sm:block">
       {/* Filter */}
       {!!category_list?.length && (
-        <div className="mb-4">
+        <div className="mb-6 sm:mb-4">
           <CategoryFilter category_list={category_list} />
         </div>
       )}
 
       {/* Settings */}
-      <div className="mb-4 flex justify-end sm:w-full">
+      <div className="mb-6 flex justify-end sm:mb-4 sm:w-full">
         <Settings defaultValue={settings} />
       </div>
     </div>

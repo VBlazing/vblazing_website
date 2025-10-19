@@ -38,7 +38,7 @@ function FullBlogList({
   blog_list: IBlogCardPros["blog_info"][];
 }) {
   return (
-    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
       {blog_list?.map((item, index) => {
         return (
           <motion.article
@@ -68,7 +68,7 @@ function SimpleBlogList({
   blog_list: IBlogCardPros["blog_info"][];
 }) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col space-y-4 sm:space-y-6">
       {blog_list?.map((item, index) => {
         return (
           <motion.article
