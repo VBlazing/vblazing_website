@@ -86,7 +86,7 @@ export function DetailHeader({ blog_info }: IDetailHeaderProps) {
         <div className="mb-6 flex flex-wrap items-center gap-4 text-sm">
           <CategoryTag
             category={blog_info.category_name}
-            className="bg-featured-img-from font-medium opacity-100"
+            className="dark:bg-background bg-[#edf1f6] font-medium opacity-100"
           />
           <BlogDate
             date={blog_info.last_edited_time}

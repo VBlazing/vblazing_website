@@ -19,7 +19,7 @@ export default function CategoryTag({
     <Badge
       variant="secondary"
       className={cn(
-        "text-main-text bg-background rounded-xl border-0 font-bold opacity-90",
+        "text-main-text bg-background rounded-sm border-0 px-3 py-1 font-bold opacity-90",
         className,
       )}
     >
