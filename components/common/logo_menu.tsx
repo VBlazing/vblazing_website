@@ -46,6 +46,9 @@ export default function LogoMenu({
         <DropdownMenuContent className="z-100 m-0 h-screen w-screen border-none px-4">
           {navigate?.map((item) => {
             const Icon = getIcon(item.icon);
+            if (item.hidden) {
+              return null;
+            }
             return (
               <DropdownMenuItem key={item.key} className="mb-2 font-medium">
                 <Link

@@ -29,10 +29,16 @@ export default async function Header() {
         <LogoMenu className="block sm:hidden" navigate={navigate} />
 
         {/* 导航栏 */}
-        <NavigationMenu viewport={false} className="hidden sm:block">
+        <NavigationMenu
+          viewport={false}
+          className="absolute left-[50%] hidden -translate-x-[50%] sm:block"
+        >
           <NavigationMenuList className="space-x-6">
             {navigate?.map((item) => {
               const Icon = getIcon(item.icon);
+              if (item.hidden) {
+                return null;
+              }
               return (
                 <NavigationMenuItem key={item.key}>
                   <NavigationMenuLink asChild>

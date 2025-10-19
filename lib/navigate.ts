@@ -12,6 +12,7 @@ export interface INavigateConfig {
   title: string
   href: string
   icon: string
+  hidden?: boolean
 }
 
 /**
@@ -35,7 +36,8 @@ export async function getNavigate(): Promise<INavigateConfig[]> {
     key: 'products',
     title: t('nav_products'),
     href: '/products',
-    icon: 'Briefcase'
+    icon: 'Briefcase',
+    hidden: true
   }, {
     key: 'about',
     title: t('nav_about'),
