@@ -41,14 +41,14 @@ export default async function Detail(props: IDetailProps) {
   );
 
   return (
-    <article className="bg-background min-h-screen w-full pb-10 sm:pb-16">
+    <article className="bg-main-content min-h-screen w-full pb-10 sm:pb-16">
       <div className="mx-auto w-full max-w-4xl">
         {/* Header */}
         <DetailHeader blog_info={blog_list_with_category_name[0]} />
 
         {/* Featured Image */}
         {blog_info.image_url && (
-          <div className="bg-background w-full">
+          <div className="w-full">
             <motion.div
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
