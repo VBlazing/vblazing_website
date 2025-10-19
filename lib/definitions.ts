@@ -12,6 +12,11 @@ export type HomeHeroInfo = {
   subtitle: string
 }
 
+export type BlogSummary = {
+  title: string
+  content: string
+}
+
 export type BlogFilter = {
   search?: string
   category?: number

@@ -70,6 +70,10 @@
     "copy_clipboard": "链接已复制到粘贴板"
   },
   "blog": {
+    "header": {
+      "title": "所有文章",
+      "subtitle": "探索旅途的故事、技术、和我的思考"
+    },
     "clear_filter": "清除筛选",
     "not_found": {
       "title": "未找到文章",

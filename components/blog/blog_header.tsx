@@ -6,27 +6,15 @@
  * @Description: 博客页头
  */
 import * as motion from "motion/react-client";
-import { fetchLabelList } from "@/server/data";
+import { getTranslations } from "next-intl/server";
+import { fetchBlogSummaries, fetchLabelList } from "@/server/data";
 import SearchBar from "@/components/blog/search_bar";
 import SummaryCard from "@/components/blog/summary_card";
 
 export default async function BlogHeader() {
+  const t = await getTranslations("blog");
   const labels = await fetchLabelList();
-
-  const summary = [
-    {
-      title: "旅行见闻",
-      content: "旅行中看到听到的有趣故事",
-    },
-    {
-      title: "技术博客",
-      content: "技术文章与个人见解，持续更新高质量内容",
-    },
-    {
-      title: "个人思考",
-      content: "去码头整点薯条的路上脑子里还是有些奇思妙想胡思乱想",
-    },
-  ];
+  const summary = await fetchBlogSummaries();
 
   return (
     <div className="bg-background border-border/40 w-full border-b">
@@ -38,10 +26,10 @@ export default async function BlogHeader() {
           className="text-center"
         >
           <h1 className="text-main-title mb-4 text-4xl font-light md:text-5xl">
-            All Stories
+            {t("header.title")}
           </h1>
           <p className="text-main-text mx-auto mb-8 max-w-2xl text-base md:text-xl">
-            Explore thoughts, ideas, and experiences from my personal journey
+            {t("header.subtitle")}
           </p>
           <div className="mx-auto mb-8 hidden max-w-3xl justify-evenly gap-6 sm:flex">
             {summary?.map((item) => (
@@ -52,13 +40,7 @@ export default async function BlogHeader() {
               />
             ))}
           </div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <SearchBar labels={labels || []} />
-          </motion.div>
+          <SearchBar labels={labels || []} />
         </motion.div>
       </div>
     </div>
