@@ -80,5 +80,11 @@
       "title": "No posts found",
       "description": "Try adjusting your filters or search term"
     }
+  },
+  "about": {
+    "get_touch": "Get in Touch",
+    "my_story": "My Story",
+    "connect": "Connect",
+    "interest": "Interest"
   }
 }

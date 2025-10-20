@@ -59,3 +59,11 @@ export type BlogInfo = {
 export type SettingsType = {
   mode: "simple" | "full";
 };
+
+export type AboutInfo = {
+  avatar: string
+  title: string
+  subtitle: string
+  story: string
+  interests: string[]
+}

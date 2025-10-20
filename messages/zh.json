@@ -80,5 +80,11 @@
       "title": "未找到文章",
       "description": "尝试调整您的过滤器或搜索词"
     }
+  },
+  "about": {
+    "get_touch": "联系我",
+    "my_story": "关于我",
+    "connect": "联系方式",
+    "interest": "兴趣标签"
   }
 }

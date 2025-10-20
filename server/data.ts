@@ -8,7 +8,7 @@
 import { getLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
 import { isNotNil } from 'es-toolkit';
-import { BlogFilter, BlogInfo, BlogSummary, CategoryInfo, HomeHeroInfo, Pagination } from '@/lib/definitions';
+import { AboutInfo, BlogFilter, BlogInfo, BlogSummary, CategoryInfo, HomeHeroInfo, Pagination } from '@/lib/definitions';
 import { BLOG_STATE } from '@/lib/const';
 import { sql } from './client'
 
@@ -207,6 +207,29 @@ export const fetchBlogSummaries = async () => {
           WHERE locale = ${locale}
         `
         return result
+      } catch (e) {
+        console.error('Failed to fetch home info:', e);
+      }
+    },
+    [locale],
+    { revalidate: 60 * 60 * 2 }
+  )()
+}
+
+/**
+ * @description: 获取关于我信息
+ * @return {AboutInfo[]} 关于我信息
+ */
+export const fetchAboutInfo = async () => {
+  const locale = await getLocale()
+  return unstable_cache(
+    async () => {
+      try {
+        const result = await sql<AboutInfo[]>`
+          SELECT avatar, title, subtitle, story, interests FROM about_me
+          WHERE locale = ${locale}
+        `
+        return result[0]
       } catch (e) {
         console.error('Failed to fetch home info:', e);
       }
