@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 21:32:17
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-15 22:51:53
+ * @LastEditTime: 2025-10-22 15:52:10
  * @Description: 页面顶部
  */
 import Link from "next/link";
@@ -21,6 +21,7 @@ import { getIcon } from "@/lib/icon";
 export default async function Header() {
   const navigate = await getNavigate();
 
+  console.log("navigate: ", navigate);
   return (
     <header className="drop-blur-lg border-border/40 bg-background/90 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-100 w-full border-b font-medium backdrop-blur">
       <div className="flex h-16 items-center justify-between px-4 sm:px-8">
