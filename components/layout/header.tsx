@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 21:32:17
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-22 16:37:35
+ * @LastEditTime: 2025-10-22 19:40:43
  * @Description: 页面顶部
  */
 import Link from "next/link";
@@ -43,7 +43,8 @@ export default async function Header() {
               console.log("menu item: ", item);
               return (
                 <NavigationMenuItem key={item.key}>
-                  <NavigationMenuLink asChild>
+                  <div>
+                    {item.title}
                     <Link
                       href={item.href}
                       className="flex flex-row items-center"
@@ -51,7 +52,10 @@ export default async function Header() {
                       <Icon className="text-foreground mr-1 h-4 w-4" />
                       <span>{item.title}</span>
                     </Link>
-                  </NavigationMenuLink>
+                  </div>
+                  {/* <NavigationMenuLink>
+                    {item.title}
+                  </NavigationMenuLink> */}
                 </NavigationMenuItem>
               );
             })}
