@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-19 19:18:50
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-20 21:25:25
+ * @LastEditTime: 2025-10-22 22:36:45
  * @Description: 关于我页面
  */
 import { getTranslations } from "next-intl/server";
@@ -13,6 +13,7 @@ import { fetchAboutInfo } from "@/server/data";
 import Information from "@/components/about/information";
 
 export default async function About() {
+  console.log("prefetch about");
   const t = await getTranslations("about");
   const about_info = await fetchAboutInfo();
   return (

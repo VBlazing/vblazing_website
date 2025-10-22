@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-11 12:38:53
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 22:55:32
+ * @LastEditTime: 2025-10-22 22:36:38
  * @Description: 博客详情页面
  */
 import Image from "next/image";
@@ -26,6 +26,7 @@ interface IDetailProps {
 }
 
 export default async function Detail(props: IDetailProps) {
+  console.log("prefetch detail");
   const params = await props.params;
 
   const blog_info = await fetchPublishedBlogDetail(params?.id);
