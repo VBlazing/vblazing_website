@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 21:32:17
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-22 22:56:09
+ * @LastEditTime: 2025-10-22 23:33:14
  * @Description: 页面顶部
  */
 import Link from "next/link";
@@ -42,7 +42,6 @@ export default async function Header() {
                 <NavigationMenuItem key={item.key}>
                   <Link
                     href={item.href}
-                    prefetch
                     className="data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-ring/50 [&_svg:not([class*='text-'])]:text-muted-foreground flex flex-row items-center gap-1 rounded-sm p-2 text-sm transition-all outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4"
                   >
                     <Icon className="text-foreground mr-1 h-4 w-4" />
