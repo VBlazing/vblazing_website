@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 15:41:47
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-22 15:53:01
+ * @LastEditTime: 2025-10-22 16:37:43
  * @Description: 移动端通过logo切换导航
  */
 "use client";
@@ -49,6 +49,7 @@ export default function LogoMenu({
             if (item.hidden) {
               return null;
             }
+            console.log("mobile menu item: ", item);
             return (
               <DropdownMenuItem
                 asChild

@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 21:32:17
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-22 15:52:10
+ * @LastEditTime: 2025-10-22 16:37:35
  * @Description: 页面顶部
  */
 import Link from "next/link";
@@ -40,6 +40,7 @@ export default async function Header() {
               if (item.hidden) {
                 return null;
               }
+              console.log("menu item: ", item);
               return (
                 <NavigationMenuItem key={item.key}>
                   <NavigationMenuLink asChild>
