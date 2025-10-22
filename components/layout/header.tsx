@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 21:32:17
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-22 20:09:39
+ * @LastEditTime: 2025-10-22 20:21:48
  * @Description: 页面顶部
  */
 import Link from "next/link";
@@ -37,20 +37,20 @@ export default async function Header() {
           <NavigationMenuList className="space-x-6">
             {navigate?.map((item) => {
               const Icon = getIcon(item.icon);
-              if (item.hidden) {
-                return null;
-              }
+              // if (item.hidden) {
+              //   return null;
+              // }
               console.log("menu item: ", item);
               return (
                 <NavigationMenuItem key={item.key}>
                   <NavigationMenuLink asChild>
-                    <div>
-                      {item.title}
-                      {/* <Link href={item.href} className="flex flex-row items-center">
-                    <Icon className="text-foreground mr-1 h-4 w-4" />
-                    <span>{item.title}</span>
-                  </Link> */}
-                    </div>
+                    <Link
+                      href={item.href}
+                      className="flex flex-row items-center"
+                    >
+                      <Icon className="text-foreground mr-1 h-4 w-4" />
+                      <span>{item.title}</span>
+                    </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               );
