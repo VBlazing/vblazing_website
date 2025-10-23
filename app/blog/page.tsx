@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 17:54:37
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-22 22:36:22
+ * @LastEditTime: 2025-10-23 12:33:34
  * @Description: 博客页面
  */
 import { Suspense } from "react";
@@ -26,7 +26,7 @@ interface IBlogProps {
 }
 
 export default async function Blog({ searchParams }: IBlogProps) {
-  console.log("prefetch blg");
+  console.log("prefetch blog");
   const params = await searchParams;
 
   const query = {
