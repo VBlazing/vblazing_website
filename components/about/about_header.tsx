@@ -3,7 +3,6 @@ import { Mail } from "lucide-react";
 import * as motion from "motion/react-client";
 import { Button } from "@/components/ui/button";
 import { AboutInfo } from "@/lib/definitions";
-import Link from "next/link";
 
 export default async function AboutHeader({
   about_info,
@@ -13,7 +12,7 @@ export default async function AboutHeader({
   const t = await getTranslations("about");
   return (
     <section className="bg-background py-20 max-sm:py-14">
-      <div className="mx-auto max-w-4xl px-6 sm:px-8">
+      <div className="mx-auto max-w-4xl px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

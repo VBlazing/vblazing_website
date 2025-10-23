@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-10-14 12:23:17
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-15 23:10:28
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-24 00:56:12
  * @Description: 博客页头
  */
 import * as motion from "motion/react-client";
@@ -18,7 +18,7 @@ export default async function BlogHeader() {
 
   return (
     <div className="bg-background border-border/40 w-full border-b">
-      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8">
+      <div className="mx-auto max-w-6xl px-8 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
