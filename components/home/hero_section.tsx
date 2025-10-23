@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-20 18:32:24
- * @LastEditors: vblazing
- * @LastEditTime: 2025-09-22 21:30:41
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-24 00:50:09
  * @Description: 主页介绍组件
  */
 import * as motion from "motion/react-client";
@@ -18,7 +18,7 @@ export default async function HeroSection() {
   const blog_total = await fetchPublishedBlogTotal();
   return (
     <section className="bg-home-hero-section relative w-full pb-8 sm:pt-12 sm:pb-20">
-      <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
+      <div className="relative mx-auto max-w-6xl px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
