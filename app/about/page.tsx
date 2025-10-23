@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-10-19 19:18:50
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-20 21:25:25
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-24 01:54:07
  * @Description: 关于我页面
  */
 import { getTranslations } from "next-intl/server";
@@ -31,7 +31,7 @@ export default async function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-main-title mb-6 text-3xl font-light">
+            <h2 className="text-main-title mb-6 text-3xl font-light max-sm:text-2xl">
               {t("my_story")}
             </h2>
             <div>{about_info?.story}</div>
