@@ -113,7 +113,7 @@ export default function Information({ about_info }: { about_info: AboutInfo }) {
           <CardTitle>{t("interest")}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-wrap gap-2 px-6">
-          {about_info.interests.map((interest, index) => (
+          {about_info.interests?.map((interest, index) => (
             <span
               key={index}
               className="bg-featured-img-to text-main-text rounded-full px-3 py-1 text-xs"
