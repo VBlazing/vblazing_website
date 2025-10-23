@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-14 13:13:33
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-23 23:22:49
+ * @LastEditTime: 2025-10-24 01:50:51
  * @Description: 标签过滤组件
  */
 "use client";
@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import ActiveLabel from "@/components/common/active_label";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 interface ILabelFilterProps {
   labels: string[];
@@ -35,18 +36,26 @@ export default function LabelFilter({
 }: ILabelFilterProps) {
   const t = useTranslations("common");
 
+  const [open, setOpen] = useState(false);
+
   const handleClickLabel = (key: string, isActive: boolean) => {
     onChange(isActive ? [...value, key] : value.filter((item) => item !== key));
   };
 
   const handleClear = () => {
     onChange([]);
+    setOpen(false);
   };
 
   const couldClear = clear && !!value.length;
 
   return (
-    <Popover>
+    <Popover
+      open={open}
+      onOpenChange={() => {
+        setOpen((open) => !open);
+      }}
+    >
       <PopoverTrigger asChild>
         <Button
           className={cn(
