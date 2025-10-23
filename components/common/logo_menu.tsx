@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 15:41:47
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-22 22:39:17
+ * @LastEditTime: 2025-10-23 19:03:52
  * @Description: 移动端通过logo切换导航
  */
 "use client";
@@ -52,7 +52,10 @@ export default function LogoMenu({
             return (
               <DropdownMenuItem key={item.key} className="mb-2 font-medium">
                 <Link
-                  onClick={() => {
+                  // onClick={() => {
+                  // setOpenMenu(false);
+                  // }}
+                  onNavigate={() => {
                     setOpenMenu(false);
                   }}
                   href={item.href}
