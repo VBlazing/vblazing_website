@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-05 22:08:55
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-15 22:52:07
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-23 23:47:51
  * @Description: 更换语言环境前端组件
  */
 "use client";
@@ -45,7 +45,7 @@ export default function LocaleSwitchClient() {
           size="sm"
           className="flex items-center font-normal focus-visible:ring-[0]"
         >
-          <Globe />
+          <Globe className="max-sm:size-5" />
           <span className="hidden text-sm sm:block">
             {currentLocaleConfig.name}
           </span>

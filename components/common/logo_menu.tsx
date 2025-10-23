@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-20 15:41:47
- * @LastEditors: vblazing
- * @LastEditTime: 2025-09-22 21:25:40
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-23 23:58:33
  * @Description: 移动端通过logo切换导航
  */
 "use client";
@@ -39,8 +39,14 @@ export default function LogoMenu({
           {/* todo: 待整理*/}
           {/* focus-visible:ring-[0]：删除自带的聚焦后边框 */}
           <Button variant={"ghost"} className="p-0 focus-visible:ring-[0]">
-            <div>{openMenu ? <X /> : <Menu />}</div>
-            <span>logo</span>
+            <div>
+              {openMenu ? (
+                <X className="max-sm:size-5" />
+              ) : (
+                <Menu className="max-sm:size-5" />
+              )}
+            </div>
+            <span className="text-lg">logo</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="z-100 m-0 h-screen w-screen border-none px-4">
@@ -50,15 +56,18 @@ export default function LogoMenu({
               return null;
             }
             return (
-              <DropdownMenuItem key={item.key} className="mb-2 font-medium">
+              <DropdownMenuItem
+                key={item.key}
+                className="mb-2 p-2 text-lg font-medium"
+              >
                 <Link
                   onClick={() => {
                     setOpenMenu(false);
                   }}
                   href={item.href}
-                  className="flex flex-row items-center"
+                  className="flex flex-row items-center space-x-2"
                 >
-                  <Icon className="text-foreground mr-1 h-4 w-4" />
+                  <Icon className="text-foreground size-5" />
                   <span>{item.title}</span>
                 </Link>
               </DropdownMenuItem>
