@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-10-14 13:13:33
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-14 22:39:10
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-23 23:22:49
  * @Description: 标签过滤组件
  */
 "use client";
@@ -68,7 +68,7 @@ export default function LabelFilter({
               }}
               className="text-main-text absolute top-0 right-0 translate-x-[30%] -translate-y-[30%]"
             >
-              <CircleXIcon fill="background" />
+              <CircleXIcon className="bg-background rounded-full" />
             </div>
           )}
         </Button>
