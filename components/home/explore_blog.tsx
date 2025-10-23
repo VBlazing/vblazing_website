@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-10-10 23:39:58
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 00:09:31
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-24 00:36:42
  * @Description: 发现博客
  */
 import { ArrowRight } from "lucide-react";
@@ -24,10 +24,10 @@ export default async function ExploreBlog() {
       <p className="text-main-text mx-auto mb-8 max-w-2xl text-base md:text-lg">
         {t("subtitle")}
       </p>
-      <Button className="group h-10 p-0 text-sm shadow-lg hover:shadow-xl md:h-14 md:text-lg">
+      <Button variant="default" asChild>
         <Link
           href={"/blog"}
-          className="inline-flex h-10 items-center space-x-2 px-4 md:h-14 md:px-8"
+          className="group inline-flex h-10 items-center space-x-2 p-0 text-sm shadow-lg hover:shadow-xl has-[>svg]:px-4 md:h-14 md:text-lg md:has-[>svg]:px-8"
         >
           <span className="font-medium">{t("explore")}</span>
           <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
