@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 18:32:24
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 01:32:31
+ * @LastEditTime: 2025-10-24 01:38:26
  * @Description: 主页介绍组件
  */
 import * as motion from "motion/react-client";
@@ -66,9 +66,9 @@ export default async function HeroSection() {
             <Button asChild>
               <Link
                 href={"/blog"}
-                className="group inline-flex h-10 items-center space-x-2 p-0 px-4 text-base font-medium shadow-lg hover:shadow-xl has-[>svg]:px-4 md:h-14 md:text-lg md:has-[>svg]:px-8"
+                className="group inline-flex h-10 items-center space-x-2 p-0 font-medium shadow-lg hover:shadow-xl has-[>svg]:px-5 md:h-14 md:text-lg md:has-[>svg]:px-8"
               >
-                <span>{t("explore")}</span>
+                <span className="text-base">{t("explore")}</span>
                 <ArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
             </Button>
@@ -76,9 +76,9 @@ export default async function HeroSection() {
             <Button asChild variant={"outline"}>
               <Link
                 href={"/about"}
-                className="inline-flex h-10 items-center p-0 px-4 text-base font-medium md:h-14 md:px-8 md:text-lg"
+                className="inline-flex h-10 items-center p-0 px-5 font-medium md:h-14 md:px-8 md:text-lg"
               >
-                <span>{t("about")}</span>
+                <span className="text-base">{t("about")}</span>
               </Link>
             </Button>
           </motion.div>
