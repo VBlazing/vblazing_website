@@ -62,7 +62,11 @@ export default async function AboutHeader({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <Button asChild size="lg" className="cursor-pointer px-8 py-3">
+            <Button
+              asChild
+              size="lg"
+              className="cursor-pointer px-8 py-3 text-base"
+            >
               <a href="mailto:18392192892z@gmail.com">
                 <Mail className="mr-2" />
                 {t("get_touch")}
