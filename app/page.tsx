@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-02 18:01:24
  * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 20:54:36
+ * @LastEditTime: 2025-10-23 12:25:20
  * @Description: 主页
  */
 import { Suspense } from "react";
@@ -22,7 +22,9 @@ export default function Home() {
 
       <div className="w-full pt-16 pb-12 sm:py-16">
         {/* 精选博客 */}
-        <FeaturedBlog />
+        <Suspense>
+          <FeaturedBlog />
+        </Suspense>
 
         {/* 最近博客 */}
         <Suspense fallback={<RecentBlogSkeleton />}>
