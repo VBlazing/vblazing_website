@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-15 22:40:11
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-24 01:08:31
  * @Description: 获取页面数据
  */
 import { getLocale } from 'next-intl/server';
@@ -31,7 +31,7 @@ export const fetchCategoryList = async () => {
       }
     },
     [locale],
-    { revalidate: 60 * 60 * 2 }
+    { revalidate: 60 * 5 }
   )()
 }
 
@@ -49,7 +49,7 @@ export const fetchLabelList = unstable_cache(
     }
   },
   [],
-  { revalidate: 60 * 60 * 2 }
+  { revalidate: 60 * 5 }
 )
 
 /**
@@ -71,7 +71,7 @@ export const fetchHomeHeroInfo = async () => {
       }
     },
     [locale],
-    { revalidate: 60 * 60 * 2 }
+    { revalidate: 60 * 5 }
   )()
 }
 
@@ -149,7 +149,7 @@ export const fetchPublishedBlogList = unstable_cache(
     return fetchBlogList(queryWithState)
   },
   [],
-  { revalidate: 60 * 60 * 2 }
+  { revalidate: 60 * 5 }
 )
 
 /**
@@ -169,7 +169,7 @@ export const fetchPublishedBlogTotal = unstable_cache(
     }
   },
   [],
-  { revalidate: 60 * 60 * 2 }
+  { revalidate: 60 * 5 }
 )
 
 /**
@@ -190,7 +190,7 @@ export const fetchPublishedBlogDetail = unstable_cache(
     }
   },
   [],
-  { revalidate: 60 * 60 * 2 }
+  { revalidate: 60 * 5 }
 )
 
 /**
@@ -212,7 +212,7 @@ export const fetchBlogSummaries = async () => {
       }
     },
     [locale],
-    { revalidate: 60 * 60 * 2 }
+    { revalidate: 60 * 5 }
   )()
 }
 
@@ -235,6 +235,6 @@ export const fetchAboutInfo = async () => {
       }
     },
     [locale],
-    { revalidate: 60 * 60 * 2 }
+    { revalidate: 60 * 5 }
   )()
 }
