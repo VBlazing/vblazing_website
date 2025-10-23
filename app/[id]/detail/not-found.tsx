@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-10-11 15:18:50
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 15:50:16
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-24 00:21:46
  * @Description: 文章内容未找到
  */
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ export default async function DetailNotFound() {
         <p className="text-main-text mb-8 text-sm md:text-lg">
           {t("not_found.text")}
         </p>
-        <Button variant="outline" className="p-0">
+        <Button variant="outline" asChild>
           <Link href="/blog" className="flex items-center space-x-2 px-4 py-2">
             <ArrowLeft />
             {t("not_found.back")}

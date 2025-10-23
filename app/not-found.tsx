@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-20 09:55:34
- * @LastEditors: vblazing
- * @LastEditTime: 2025-09-22 23:26:58
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-24 00:21:31
  * @Description: 页面未找到
  */
 import { useTranslations } from "next-intl";
@@ -22,7 +22,7 @@ export default function NotFound() {
         </div>
         <h2 className="text-main-text text-2xl">{t("text")}</h2>
         <div className="mt-10">
-          <Button variant="outline" className="p-0">
+          <Button variant="outline" asChild>
             <Link href="/" className="flex items-center space-x-2 px-4 py-2">
               <Home />
               <span>{t("go_home")}</span>

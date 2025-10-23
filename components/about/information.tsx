@@ -71,20 +71,17 @@ export default function Information({ about_info }: { about_info: AboutInfo }) {
           {connectList.map((item) => {
             if (item.href) {
               return (
-                <Link
+                <Button
                   key={item.id}
-                  href={item.href}
-                  target="_blank"
-                  className="mb-1"
+                  variant="ghost"
+                  asChild
+                  className="text-main-title w-full cursor-pointer justify-start has-[>svg]:px-4"
                 >
-                  <Button
-                    variant="ghost"
-                    className="text-main-title w-full cursor-pointer justify-start has-[>svg]:px-4"
-                  >
+                  <a href={item.href} target="_blank" className="mb-1">
                     {item.icon}
                     {item.text}
-                  </Button>
-                </Link>
+                  </a>
+                </Button>
               );
             }
             return (
