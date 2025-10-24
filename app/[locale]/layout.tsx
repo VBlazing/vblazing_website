@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-02 18:01:24
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 21:01:03
+ * @LastEditTime: 2025-10-24 21:20:17
  * @Description: 布局
  */
 import type { Metadata } from "next";
@@ -40,7 +40,6 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: PageParams<LocaleParams>;
 }>) {
-  console.log("params: ", params);
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();

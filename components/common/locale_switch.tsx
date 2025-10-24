@@ -2,12 +2,11 @@
  * @Author: vblazing
  * @Date: 2025-09-05 22:08:55
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 21:02:57
+ * @LastEditTime: 2025-10-24 21:26:32
  * @Description: 更换语言环境前端组件
  */
 "use client";
 
-import { useTransition } from "react";
 import { useLocale } from "next-intl";
 import { Globe } from "lucide-react";
 import {
@@ -17,8 +16,8 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import { LOCALE_CODE } from "@/lib/const";
+import { usePathname, useRouter } from "@/lib/i18n/navigation";
 
 const localeConfigs = [
   {
@@ -33,21 +32,18 @@ const localeConfigs = [
 
 export default function LocaleSwitchClient() {
   const locale = useLocale();
-  const [isPending, startTransition] = useTransition();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const currentLocaleConfig = localeConfigs.find(
     (item) => item.code === locale,
   );
 
   const handleSwitchLocale = (value: string) => {
-    // startTransition(() => {
-    //   setUserLocale(value);
-    // });
+    router.push(pathname, { locale: value });
   };
 
-  return isPending ? (
-    <Skeleton className="h-8 w-9 sm:w-24" />
-  ) : (
+  return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         {/* focus-visible:ring-[0]：删除自带的聚焦后边框 */}
