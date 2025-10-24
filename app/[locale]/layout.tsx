@@ -2,13 +2,14 @@
  * @Author: vblazing
  * @Date: 2025-09-02 18:01:24
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 21:20:17
+ * @LastEditTime: 2025-10-24 21:37:03
  * @Description: 布局
  */
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import ErrorManagerClient from "@/components/common/error_manager_client";
 import Header from "@/components/layout/header";
@@ -45,13 +46,15 @@ export default async function RootLayout({
     notFound();
   }
 
+  setRequestLocale(locale);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* 国际化 */}
-        <NextIntlClientProvider locale={locale}>
+        <NextIntlClientProvider>
           {/* 主题 */}
           <ThemeProvider
             attribute="class"

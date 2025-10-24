@@ -1,11 +1,11 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-23 15:52:28
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-14 23:00:00
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-24 21:46:11
  * @Description: 博客卡片组件
  */
-import Link from "next/link";
+import { JSX } from "react";
 import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 import CategoryTag from "@/components/common/category_tag";
@@ -16,7 +16,7 @@ import LabelList from "@/components/common/label_list";
 import { cn } from "@/lib/utils";
 import { BlogInfo, SettingsType } from "@/lib/definitions";
 import { getBlogDetailUrl } from "@/lib/navigate";
-import { JSX } from "react";
+import { Link } from "@/lib/i18n/navigation";
 
 export interface IBlogCardPros {
   blog_info: BlogInfo & { category_name: string };

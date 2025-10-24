@@ -2,13 +2,13 @@
  * @Author: vblazing
  * @Date: 2025-09-20 09:55:34
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 00:21:31
+ * @LastEditTime: 2025-10-24 21:43:19
  * @Description: 页面未找到
  */
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Link } from "@/lib/i18n/navigation";
 
 export default function NotFound() {
   const t = useTranslations("not_found");

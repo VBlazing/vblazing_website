@@ -2,17 +2,17 @@
  * @Author: vblazing
  * @Date: 2025-10-10 23:39:58
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 00:44:31
+ * @LastEditTime: 2025-10-24 21:46:56
  * @Description: 发现博客
  */
 import { ArrowRight } from "lucide-react";
 import * as motion from "motion/react-client";
-import { getTranslations } from "next-intl/server";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/lib/i18n/navigation";
 
-export default async function ExploreBlog() {
-  const t = await getTranslations("home.explore_blog");
+export default function ExploreBlog() {
+  const t = useTranslations("home.explore_blog");
   return (
     <motion.section
       initial={{ opacity: 0, y: 40 }}

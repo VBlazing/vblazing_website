@@ -1,11 +1,10 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-05 21:32:17
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-22 23:33:14
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-24 21:41:31
  * @Description: 页面顶部
  */
-import Link from "next/link";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -15,6 +14,7 @@ import LocaleSwitch from "@/components/common/locale_switch";
 import ThemeSwitch from "@/components/common/theme_switch";
 import LogoMenu from "@/components//common/logo_menu";
 import { getNavigate } from "@/lib/navigate";
+import { Link } from "@/lib/i18n/navigation";
 import { getIcon } from "@/lib/icon";
 
 export default async function Header() {

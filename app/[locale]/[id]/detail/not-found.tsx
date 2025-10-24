@@ -2,16 +2,16 @@
  * @Author: vblazing
  * @Date: 2025-10-11 15:18:50
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 00:21:46
+ * @LastEditTime: 2025-10-24 21:45:25
  * @Description: 文章内容未找到
  */
-import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { getTranslations } from "next-intl/server";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Button } from "@/components/ui/button";
+import { Link } from "@/lib/i18n/navigation";
 
-export default async function DetailNotFound() {
-  const t = await getTranslations("detail");
+export default function DetailNotFound() {
+  const t = useTranslations("detail");
   return (
     <div className="my-auto w-full px-6">
       <div className="text-center">

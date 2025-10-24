@@ -2,13 +2,12 @@
  * @Author: vblazing
  * @Date: 2025-09-20 15:41:47
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-23 23:58:33
+ * @LastEditTime: 2025-10-24 21:41:42
  * @Description: 移动端通过logo切换导航
  */
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import {
   DropdownMenu,
@@ -18,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { INavigateConfig } from "@/lib/navigate";
+import { Link } from "@/lib/i18n/navigation";
 import { getIcon } from "@/lib/icon";
 
 export default function LogoMenu({

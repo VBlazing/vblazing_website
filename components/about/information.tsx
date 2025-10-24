@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import * as motion from "motion/react-client";
 import { Mail } from "lucide-react";

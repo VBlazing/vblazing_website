@@ -2,14 +2,14 @@
  * @Author: vblazing
  * @Date: 2025-09-20 18:32:24
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 01:38:26
+ * @LastEditTime: 2025-10-24 21:47:10
  * @Description: 主页介绍组件
  */
 import * as motion from "motion/react-client";
 import { ArrowRight, Sparkles } from "lucide-react";
-import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/lib/i18n/navigation";
 import { fetchHomeHeroInfo, fetchPublishedBlogTotal } from "@/server/data";
 
 export default async function HeroSection() {
