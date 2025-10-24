@@ -1,15 +1,11 @@
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
 import * as motion from "motion/react-client";
 import { Button } from "@/components/ui/button";
 import { AboutInfo } from "@/lib/definitions";
 
-export default async function AboutHeader({
-  about_info,
-}: {
-  about_info: AboutInfo;
-}) {
-  const t = await getTranslations("about");
+export default function AboutHeader({ about_info }: { about_info: AboutInfo }) {
+  const t = useTranslations("about");
   return (
     <section className="bg-background py-20 max-sm:py-14">
       <div className="mx-auto max-w-4xl px-8">

@@ -1,14 +1,14 @@
 /*
  * @Author: vblazing
  * @Date: 2025-10-10 22:47:14
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 15:40:06
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-25 00:09:13
  * @Description: 页脚
  */
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
-export default async function Footer() {
-  const t = await getTranslations("footer");
+export default function Footer() {
+  const t = useTranslations("footer");
 
   return (
     <footer className="bg-background border-border/40 mt-auto w-full border-t">

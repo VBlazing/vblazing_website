@@ -2,11 +2,11 @@
  * @Author: vblazing
  * @Date: 2025-09-23 15:52:28
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 21:46:11
+ * @LastEditTime: 2025-10-25 00:10:33
  * @Description: 博客卡片组件
  */
 import { JSX } from "react";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import CategoryTag from "@/components/common/category_tag";
 import FeaturedImage from "@/components/common/featured_image";
@@ -26,11 +26,11 @@ export interface IBlogCardPros {
   labelMaxLength?: number;
 }
 
-async function SimpleBlogCard({
+function SimpleBlogCard({
   blog_info,
   className,
 }: Omit<IBlogCardPros, "showLabel" | "labelMaxLength" | "mode">) {
-  const t = await getTranslations("common");
+  const t = useTranslations("common");
   const { id, title, content, introduction, category_name, last_edited_time } =
     blog_info ?? {};
   const blogDetailUrl = getBlogDetailUrl(id);
@@ -70,13 +70,13 @@ async function SimpleBlogCard({
   );
 }
 
-async function FullBlogCard({
+function FullBlogCard({
   blog_info,
   showLabel = false,
   className,
   labelMaxLength = 3,
 }: IBlogCardPros) {
-  const t = await getTranslations("common");
+  const t = useTranslations("common");
 
   const {
     id,
