@@ -2,17 +2,21 @@
  * @Author: vblazing
  * @Date: 2025-10-19 19:18:50
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 01:54:07
+ * @LastEditTime: 2025-10-25 01:07:18
  * @Description: 关于我页面
  */
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import * as motion from "motion/react-client";
 import AboutHeader from "@/components/about/about_header";
+import Information from "@/components/about/information";
 import { AboutInfo } from "@/lib/definitions";
 import { fetchAboutInfo } from "@/server/data";
-import Information from "@/components/about/information";
 
-export default async function About() {
+export default async function About({ params }: PageProps<"/[locale]/about">) {
+  // for static rendering
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const t = await getTranslations("about");
   const about_info = await fetchAboutInfo();
   return (

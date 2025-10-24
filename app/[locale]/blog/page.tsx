@@ -14,6 +14,7 @@ import { BlogListSkeleton } from "@/components/ui/skeleton";
 import { BlogCategory } from "@/lib/definitions";
 import { fetchCategoryList } from "@/server/data";
 import { getSettings } from "@/lib/settings";
+import { setRequestLocale } from "next-intl/server";
 
 type UrlSearchParams = {
   search?: string;
@@ -21,17 +22,22 @@ type UrlSearchParams = {
   category?: string;
 };
 
-interface IBlogProps {
+interface IBlogProps extends PageProps<"/[locale]/blog"> {
   searchParams: Promise<UrlSearchParams>;
 }
 
-export default async function Blog({ searchParams }: IBlogProps) {
-  const params = await searchParams;
+export default async function Blog({ searchParams, params }: IBlogProps) {
+  // for static rendering
+  const { locale } = await params;
+  setRequestLocale(locale);
 
+  const urlQuery = await searchParams;
   const query = {
-    search: params.search,
-    labels: params.labels?.split(","),
-    category: params.category ? (+params.category as BlogCategory) : undefined,
+    search: urlQuery.search,
+    labels: urlQuery.labels?.split(","),
+    category: urlQuery.category
+      ? (+urlQuery.category as BlogCategory)
+      : undefined,
   };
   const category_list = await fetchCategoryList();
   const settings = await getSettings();

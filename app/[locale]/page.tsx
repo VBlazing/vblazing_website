@@ -1,18 +1,23 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-02 18:01:24
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-23 12:25:20
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-25 01:01:22
  * @Description: 主页
  */
-import { Suspense } from "react";
+import { Suspense, use } from "react";
+import { setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/home/hero_section";
 import { HomeHeroSkeleton, RecentBlogSkeleton } from "@/components/ui/skeleton";
 import FeaturedBlog from "@/components/home/featured_blog";
 import RecentBlog from "@/components/home/recent_blog";
 import ExploreBlog from "@/components/home/explore_blog";
 
-export default function Home() {
+export default function Home({ params }: PageProps<"/[locale]">) {
+  // for static rendering
+  const { locale } = use(params);
+  setRequestLocale(locale);
+
   return (
     <div className="min-h-screen w-full">
       {/* 介绍 */}
