@@ -1,11 +1,16 @@
 /*
  * @Author: vblazing
  * @Date: 2025-10-09 16:31:05
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-15 16:48:37
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-24 20:23:25
  * @Description: 常量
  */
 import { BlogState, BlogStateKey, BlogCategory, BlogCategoryKey } from "@/lib/definitions";
+
+export enum LOCALE_CODE {
+  EN = 'en',
+  ZH = 'zh'
+}
 
 // `所有`的id
 export const ALL = -1

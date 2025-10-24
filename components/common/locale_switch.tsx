@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 22:08:55
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 01:11:23
+ * @LastEditTime: 2025-10-24 21:02:57
  * @Description: 更换语言环境前端组件
  */
 "use client";
@@ -18,20 +18,31 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { defaultLocaleConfig, localeConfigs } from "@/i18n/config";
-import { setUserLocale } from "@/i18n/service";
+import { LOCALE_CODE } from "@/lib/const";
+
+const localeConfigs = [
+  {
+    code: LOCALE_CODE.ZH,
+    name: "简体中文",
+  },
+  {
+    code: LOCALE_CODE.EN,
+    name: "English",
+  },
+];
 
 export default function LocaleSwitchClient() {
   const locale = useLocale();
   const [isPending, startTransition] = useTransition();
 
-  const currentLocaleConfig =
-    localeConfigs.find((item) => item.code === locale) ?? defaultLocaleConfig;
+  const currentLocaleConfig = localeConfigs.find(
+    (item) => item.code === locale,
+  );
 
   const handleSwitchLocale = (value: string) => {
-    startTransition(() => {
-      setUserLocale(value);
-    });
+    // startTransition(() => {
+    //   setUserLocale(value);
+    // });
   };
 
   return isPending ? (
@@ -47,7 +58,7 @@ export default function LocaleSwitchClient() {
         >
           <Globe className="size-4 max-sm:size-5" />
           <span className="hidden text-sm sm:block">
-            {currentLocaleConfig.name}
+            {currentLocaleConfig?.name}
           </span>
         </Button>
       </DropdownMenuTrigger>
@@ -57,7 +68,7 @@ export default function LocaleSwitchClient() {
             key={lang.code}
             onClick={() => handleSwitchLocale(lang.code)}
             className={`flex cursor-pointer items-center space-x-3 ${
-              currentLocaleConfig.code === lang.code ? "bg-accent" : ""
+              currentLocaleConfig?.code === lang.code ? "bg-accent" : ""
             }`}
           >
             <span>{lang.name}</span>

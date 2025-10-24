@@ -1,10 +1,14 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-20 22:57:15
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-15 13:56:11
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-10-24 20:52:10
  * @Description: 数据类型定义
  */
+
+export type PageParams<T> = Promise<T>;
+
+export type LocaleParams = { locale: string }
 
 export type HomeHeroInfo = {
   welcome: string
