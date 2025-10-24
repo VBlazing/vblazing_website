@@ -2,13 +2,14 @@
  * @Author: vblazing
  * @Date: 2025-09-05 22:08:55
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 21:26:32
+ * @LastEditTime: 2025-10-25 00:31:55
  * @Description: 更换语言环境前端组件
  */
 "use client";
 
 import { useLocale } from "next-intl";
 import { Globe } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -33,6 +34,7 @@ const localeConfigs = [
 export default function LocaleSwitchClient() {
   const locale = useLocale();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const router = useRouter();
 
   const currentLocaleConfig = localeConfigs.find(
@@ -40,7 +42,8 @@ export default function LocaleSwitchClient() {
   );
 
   const handleSwitchLocale = (value: string) => {
-    router.push(pathname, { locale: value });
+    const query = Object.fromEntries(searchParams);
+    router.replace({ pathname, query }, { locale: value });
   };
 
   return (
