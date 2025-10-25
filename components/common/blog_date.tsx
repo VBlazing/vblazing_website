@@ -6,7 +6,7 @@
  * @Description: 博客日期组件
  */
 import { Calendar } from "lucide-react";
-import { format } from "date-fns";
+import { useFormatter } from "next-intl";
 import { cn } from "@/lib/utils";
 
 export default function BlogDate({
@@ -16,6 +16,7 @@ export default function BlogDate({
   date: string;
   className?: string;
 }) {
+  const format = useFormatter();
   if (!date) {
     return null;
   }
@@ -24,7 +25,13 @@ export default function BlogDate({
       className={cn("text-main-label flex items-center space-x-1", className)}
     >
       <Calendar />
-      <span>{format(new Date(date), "MMM d, yyyy")}</span>
+      <span>
+        {format.dateTime(new Date(date), {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })}
+      </span>
     </div>
   );
 }

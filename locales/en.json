@@ -13,6 +13,7 @@
   "common": {
     "loading": "Loading...",
     "read_more": "Read more",
+    "reading_time": "{time} min read",
     "tags": "Tags",
     "filter_by_tags": "Filter by tags",
     "clear": "Clear",

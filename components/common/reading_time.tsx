@@ -7,6 +7,7 @@
  */
 import { cn } from "@/lib/utils";
 import { Clock } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function ReadingTime({
   time,
@@ -15,6 +16,7 @@ export default function ReadingTime({
   time: number;
   className?: string;
 }) {
+  const t = useTranslations("common");
   if (!time) {
     return null;
   }
@@ -23,7 +25,7 @@ export default function ReadingTime({
       className={cn("text-main-label flex items-center space-x-1", className)}
     >
       <Clock />
-      <span>{`${time} min read`}</span>
+      <span>{t("reading_time", { time })}</span>
     </div>
   );
 }

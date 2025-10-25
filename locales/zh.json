@@ -13,6 +13,7 @@
   "common": {
     "loading": "加载中...",
     "read_more": "阅读全文",
+    "reading_time": "{time}分钟阅读",
     "tags": "标签",
     "filter_by_tags": "标签筛选",
     "clear": "清除",
