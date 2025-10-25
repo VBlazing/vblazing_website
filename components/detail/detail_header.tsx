@@ -90,17 +90,17 @@ export function DetailHeader({ blog_info }: IDetailHeaderProps) {
           />
           <BlogDate
             date={blog_info.last_edited_time}
-            className="text-main-text font-medium [&_svg]:size-4"
+            className="text-main-text sm:font-medium [&_svg]:size-4"
           />
           <ReadingTime
             time={blog_info.reading_time}
-            className="text-main-text font-medium [&_svg]:size-4"
+            className="text-main-text sm:font-medium [&_svg]:size-4"
           />
         </div>
 
         {/* Excerpt */}
         {blog_info.introduction && (
-          <p className="text-main-text mb-8 max-w-3xl text-base leading-relaxed sm:text-xl">
+          <p className="text-main-text mb-8 max-w-3xl text-base leading-relaxed italic sm:text-xl">
             {blog_info.introduction}
           </p>
         )}
