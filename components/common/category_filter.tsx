@@ -68,7 +68,7 @@ export default function CategoryFilter({
     <>
       {/* Mobile */}
       <div className="block sm:hidden">
-        <Select onValueChange={(v) => handleChange(v)}>
+        <Select onValueChange={(v) => handleChange(v)} value={value}>
           <SelectTrigger className="max-w-52 min-w-24">
             <SelectValue
               placeholder={t("select_something", { value: t("category") })}

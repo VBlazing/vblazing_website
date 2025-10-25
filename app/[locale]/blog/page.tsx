@@ -58,7 +58,7 @@ export default async function Blog({ searchParams, params }: IBlogProps) {
 
         {/* List */}
         <Suspense
-          key={JSON.stringify(params)}
+          key={JSON.stringify(query)}
           fallback={<BlogListSkeleton mode={settings.mode} />}
         >
           <BlogList
