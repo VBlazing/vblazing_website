@@ -8,9 +8,18 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import * as motion from "motion/react-client";
-import { fetchCategoryList, fetchPublishedBlogDetail } from "@/server/data";
-import { formatBlogListWithCategoryName } from "@/lib/formatData";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import rehypeHighlight from "rehype-highlight";
+import hljs from "highlight.js";
+import typescript from "highlight.js/lib/languages/typescript";
 import { DetailHeader } from "@/components/detail/detail_header";
+import { formatBlogListWithCategoryName } from "@/lib/formatData";
+import { fetchCategoryList, fetchPublishedBlogDetail } from "@/server/data";
+import "highlight.js/styles/atom-one-dark.css";
+
+hljs.registerLanguage("tsx", typescript);
 
 type UrlParams = {
   id: string;
@@ -67,14 +76,20 @@ export default async function Detail(props: IDetailProps) {
         )}
 
         {/* Content */}
-        <div className="px-6 py-16 sm:px-8">
+        <div className="px-6 py-16 pt-8 sm:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="prose prose-lg prose-slate text-main-text"
-            dangerouslySetInnerHTML={{ __html: blog_info.content }}
-          />
+            className="text-main-text prose dark:prose-invert"
+          >
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw, rehypeHighlight]}
+            >
+              {blog_info.content}
+            </ReactMarkdown>
+          </motion.div>
         </div>
       </div>
     </article>

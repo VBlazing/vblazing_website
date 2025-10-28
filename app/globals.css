@@ -177,3 +177,5 @@
     @apply bg-background text-foreground;
   }
 }
+
+@plugin "@tailwindcss/typography";
