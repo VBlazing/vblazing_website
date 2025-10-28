@@ -7,6 +7,7 @@
  */
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { CircleXIcon, Tag } from "lucide-react";
 import {
@@ -17,7 +18,6 @@ import {
 import { Button } from "@/components/ui/button";
 import ActiveLabel from "@/components/common/active_label";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 
 interface ILabelFilterProps {
   labels: string[];
