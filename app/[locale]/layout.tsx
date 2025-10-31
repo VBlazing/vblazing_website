@@ -15,6 +15,7 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/lib/i18n/routing";
+import { Metadata } from "next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata");
   const locale = await getLocale();
   return {
@@ -37,10 +38,14 @@ export async function generateMetadata() {
     description: t("description"),
     icons: {
       icon: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/icon.ico",
-      shortcut:
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/shortcut-icon.png",
-      apple:
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/apple-icon.png",
+      shortcut: [
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/shortcut-icon_16.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/shortcut-icon_32.png",
+      ],
+      apple: [
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/apple-icon_16.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/apple-icon_32.png",
+      ],
     },
     openGraph: {
       // images: [ogimage],
