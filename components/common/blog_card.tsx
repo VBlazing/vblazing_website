@@ -31,7 +31,7 @@ function SimpleBlogCard({
   className,
 }: Omit<IBlogCardPros, "showLabel" | "labelMaxLength" | "mode">) {
   const t = useTranslations("common");
-  const { id, title, content, introduction, category_name, last_edited_time } =
+  const { id, title, introduction, category_name, last_edited_time } =
     blog_info ?? {};
   const blogDetailUrl = getBlogDetailUrl(id);
   return (
@@ -58,7 +58,7 @@ function SimpleBlogCard({
             </div>
           </div>
           <p className="text-main-text line-clamp-2 max-w-xl overflow-hidden text-sm overflow-ellipsis italic sm:line-clamp-1">
-            {introduction || content}
+            {introduction}
           </p>
         </div>
         <div className="hidden flex-shrink-0 items-center gap-2 text-sm transition-all duration-200 group-hover:translate-x-1 sm:flex">
@@ -81,7 +81,6 @@ function FullBlogCard({
   const {
     id,
     title,
-    content,
     introduction,
     category_name,
     last_edited_time,
@@ -123,7 +122,7 @@ function FullBlogCard({
               <Link href={blogDetailUrl}>{title}</Link>
             </h3>
             <p className="text-main-text mb-4 line-clamp-3 text-base leading-relaxed overflow-ellipsis italic @lg:text-lg">
-              {introduction || content}
+              {introduction}
             </p>
             {showLabel && (
               <LabelList
