@@ -37,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: t("description"),
     icons: {
-      icon: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/icon.ico",
+      icon: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/icon_32.png",
       shortcut: [
         "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/shortcut-icon_16.png",
         "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/shortcut-icon_32.png",
