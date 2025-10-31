@@ -5,6 +5,7 @@
  * @LastEditTime: 2025-10-24 01:08:31
  * @Description: 获取页面数据
  */
+import { cache } from 'react';
 import { getLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
 import { isNotNil } from 'es-toolkit';
@@ -177,7 +178,7 @@ export const fetchPublishedBlogTotal = unstable_cache(
  * @return {BlogInfo} 博客详情
  */
 export const fetchPublishedBlogDetail = unstable_cache(
-  async (id: string) => {
+  cache(async (id: string) => {
     try {
       const result = await sql<BlogInfo[]>`
         SELECT * FROM blog_with_labels
@@ -188,9 +189,9 @@ export const fetchPublishedBlogDetail = unstable_cache(
     } catch (e) {
       console.error('Failed to fetch blog :', e);
     }
-  },
+  }),
   [],
-  { revalidate: 60 * 5 }
+  { revalidate: 1 * 5 }
 )
 
 /**

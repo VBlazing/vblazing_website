@@ -1,4 +1,13 @@
 {
+  "metadata": {
+    "blazer": "Blazer",
+    "title": "Blazer's blog",
+    "description": "Blazer's personal website, including blog、product and introduce",
+    "home": "Home",
+    "doc": "Doc",
+    "products": "Products",
+    "about": "About"
+  },
   "error": {
     "client_common_error": "Something went wrong, please try again later"
   },

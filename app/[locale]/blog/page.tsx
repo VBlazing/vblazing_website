@@ -17,7 +17,7 @@ import {
 import { BlogCategory } from "@/lib/definitions";
 import { fetchCategoryList } from "@/server/data";
 import { getSettings } from "@/lib/settings";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 type UrlSearchParams = {
   search?: string;
@@ -27,6 +27,13 @@ type UrlSearchParams = {
 
 interface IBlogProps extends PageProps<"/[locale]/blog"> {
   searchParams: Promise<UrlSearchParams>;
+}
+
+export async function generateMetadata() {
+  const t = await getTranslations("metadata");
+  return {
+    title: t("doc"),
+  };
 }
 
 export default async function Blog({ searchParams, params }: IBlogProps) {
