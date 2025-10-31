@@ -191,7 +191,7 @@ export const fetchPublishedBlogDetail = unstable_cache(
     }
   }),
   [],
-  { revalidate: 1 * 5 }
+  { revalidate: 60 * 5 }
 )
 
 /**
