@@ -38,9 +38,9 @@ export async function generateMetadata() {
     icons: {
       icon: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/icon.ico",
       shortcut:
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/shortcut-icon.ico",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/shortcut-icon.png",
       apple:
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/apple-icon.ico",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/apple-icon.png",
     },
     openGraph: {
       // images: [ogimage],
