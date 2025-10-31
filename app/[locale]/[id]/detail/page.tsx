@@ -21,20 +21,9 @@ import "highlight.js/styles/atom-one-dark.css";
 
 hljs.registerLanguage("tsx", typescript);
 
-type UrlParams = {
-  id: string;
-};
-
-type UrlSearchParams = {
-  query: string;
-};
-
-interface IDetailProps {
-  params: Promise<UrlParams>;
-  searchParams: Promise<UrlSearchParams>;
-}
-
-export default async function Detail(props: IDetailProps) {
+export default async function Detail(
+  props: PageProps<"/[locale]/[id]/detail">,
+) {
   const params = await props.params;
 
   const blog_info = await fetchPublishedBlogDetail(params?.id);
