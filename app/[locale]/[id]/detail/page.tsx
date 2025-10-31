@@ -5,6 +5,7 @@
  * @LastEditTime: 2025-10-11 22:55:32
  * @Description: 博客详情页面
  */
+import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import * as motion from "motion/react-client";
@@ -20,6 +21,49 @@ import { fetchCategoryList, fetchPublishedBlogDetail } from "@/server/data";
 import "highlight.js/styles/atom-one-dark.css";
 
 hljs.registerLanguage("tsx", typescript);
+
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string; id: string }>;
+}) {
+  const locale = await getLocale();
+  const params = await props.params;
+
+  const blog_info = await fetchPublishedBlogDetail(params?.id);
+  const category_list = await fetchCategoryList();
+
+  if (!blog_info) {
+    notFound();
+  }
+
+  const blog_list_with_category_name = formatBlogListWithCategoryName(
+    [blog_info],
+    category_list || [],
+  );
+
+  const { title, introduction, image_url } =
+    blog_list_with_category_name[0] ?? {};
+  return {
+    title: {
+      absolute: title,
+    },
+    description: introduction,
+    openGraph: {
+      images: image_url,
+      title,
+      description: introduction,
+      url: "https://blog.vblazing.com",
+      siteName: "blog.vblazing",
+      locale: locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: image_url,
+      title,
+      description: introduction,
+    },
+  };
+}
 
 export default async function Detail(
   props: PageProps<"/[locale]/[id]/detail">,
