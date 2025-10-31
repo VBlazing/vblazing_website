@@ -12,6 +12,13 @@ import Information from "@/components/about/information";
 import { AboutInfo } from "@/lib/definitions";
 import { fetchAboutInfo } from "@/server/data";
 
+export async function generateMetadata() {
+  const t = await getTranslations("metadata");
+  return {
+    title: t("about"),
+  };
+}
+
 export default async function About({ params }: PageProps<"/[locale]/about">) {
   // for static rendering
   const { locale } = await params;

@@ -6,13 +6,19 @@
  * @Description: 主页
  */
 import { Suspense, use } from "react";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/home/hero_section";
 import { HomeHeroSkeleton, RecentBlogSkeleton } from "@/components/ui/skeleton";
 import FeaturedBlog from "@/components/home/featured_blog";
 import RecentBlog from "@/components/home/recent_blog";
 import ExploreBlog from "@/components/home/explore_blog";
 
+export async function generateMetadata() {
+  const t = await getTranslations("metadata");
+  return {
+    title: `${t("blazer")} - ${t("home")}`,
+  };
+}
 export default function Home({ params }: PageProps<"/[locale]">) {
   // for static rendering
   const { locale } = use(params);

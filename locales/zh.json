@@ -1,4 +1,13 @@
 {
+  "metadata": {
+    "blazer": "布雷泽",
+    "title": "布雷泽的博客",
+    "description": "布雷泽的个人网站, 博客、产品、谁是布雷泽",
+    "home": "主页",
+    "doc": "文档",
+    "products": "产品",
+    "about": "谁是布雷泽？"
+  },
   "error": {
     "client_common_error": "出错了，请稍后再试"
   },
