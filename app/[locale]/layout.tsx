@@ -37,14 +37,14 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: t("description"),
     icons: {
-      icon: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/icon_32.png",
+      icon: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_32.png",
       shortcut: [
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/shortcut-icon_16.png",
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/shortcut-icon_32.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/shortcut-icon_16.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/shortcut-icon_32.png",
       ],
       apple: [
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/apple-icon_16.png",
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/apple-icon_32.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/apple-icon_16.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/apple-icon_32.png",
       ],
     },
     openGraph: {
