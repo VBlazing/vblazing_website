@@ -5,7 +5,7 @@
  * @LastEditTime: 2025-10-11 22:55:32
  * @Description: 博客详情页面
  */
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -27,7 +27,7 @@ export async function generateMetadata(
   props: {
     params: Promise<{ locale: string; id: string }>;
   },
-  parent: Promise<Metadata>,
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const locale = await getLocale();
   const params = await props.params;
