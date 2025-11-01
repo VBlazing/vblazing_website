@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
 import * as motion from "motion/react-client";
@@ -25,7 +26,13 @@ export default function AboutHeader({ about_info }: { about_info: AboutInfo }) {
             <div className="from-featured-img-from to-featured-img-to flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br">
               {/* todo: 切换头像 */}
               {about_info?.avatar ? (
-                <span>头像</span>
+                <Image
+                  width={110}
+                  height={110}
+                  src={about_info.avatar}
+                  alt="avatar"
+                  className="rounded-full"
+                />
               ) : (
                 <span className="text-4xl font-light text-slate-600">👋</span>
               )}
