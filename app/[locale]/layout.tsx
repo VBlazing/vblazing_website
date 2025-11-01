@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       images: [
         {
-          url: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/hero_800_600.png",
+          url: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/hero_800_400.png",
           width: 800,
           height: 400,
         },
