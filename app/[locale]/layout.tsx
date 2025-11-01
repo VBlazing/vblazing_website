@@ -5,6 +5,7 @@
  * @LastEditTime: 2025-10-25 00:02:23
  * @Description: 布局
  */
+import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -15,7 +16,6 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/lib/i18n/routing";
-import { Metadata } from "next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,7 +48,13 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
     },
     openGraph: {
-      // images: [ogimage],
+      images: [
+        {
+          url: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/hero_800_600.png",
+          width: 800,
+          height: 400,
+        },
+      ],
       title: t("title"),
       description: t("description"),
       url: "https://blog.vblazing.com",
