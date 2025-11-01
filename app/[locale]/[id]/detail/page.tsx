@@ -5,6 +5,7 @@
  * @LastEditTime: 2025-10-11 22:55:32
  * @Description: 博客详情页面
  */
+import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -22,11 +23,15 @@ import "highlight.js/styles/atom-one-dark.css";
 
 hljs.registerLanguage("tsx", typescript);
 
-export async function generateMetadata(props: {
-  params: Promise<{ locale: string; id: string }>;
-}) {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ locale: string; id: string }>;
+  },
+  parent: Promise<Metadata>,
+): Promise<Metadata> {
   const locale = await getLocale();
   const params = await props.params;
+  const parentMetadata = await parent;
 
   const blog_info = await fetchPublishedBlogDetail(params?.id);
   const category_list = await fetchCategoryList();
@@ -42,25 +47,29 @@ export async function generateMetadata(props: {
 
   const { title, introduction, image_url } =
     blog_list_with_category_name[0] ?? {};
+
+  const images = image_url
+    ? [
+        {
+          url: image_url,
+          width: 800,
+          height: 600,
+        },
+      ]
+    : parentMetadata?.openGraph?.images;
   return {
     title: {
       absolute: title,
     },
     description: introduction,
     openGraph: {
-      images: image_url,
+      images,
       title,
       description: introduction,
       url: "https://blog.vblazing.com",
       siteName: "blog.vblazing",
       locale: locale,
       type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      images: image_url,
-      title,
-      description: introduction,
     },
   };
 }
