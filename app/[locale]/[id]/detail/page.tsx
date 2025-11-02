@@ -123,6 +123,16 @@ export default async function Detail(
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw, rehypeHighlight]}
+              components={{
+                aside(props) {
+                  return (
+                    <aside
+                      {...props}
+                      className="flex gap-2 rounded-xl bg-[#edf1f6] p-4 dark:bg-[#30302e] [&_p]:my-0"
+                    />
+                  );
+                },
+              }}
             >
               {blog_info.content}
             </ReactMarkdown>
