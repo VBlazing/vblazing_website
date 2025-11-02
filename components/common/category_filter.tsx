@@ -89,7 +89,7 @@ export default function CategoryFilter({
         </Select>
       </div>
       {/* PC */}
-      <div className="border-border bg-background hidden items-center rounded-sm border-1 shadow-sm sm:inline-flex">
+      <div className="border-border hidden items-center rounded-sm border-1 bg-transparent shadow-sm sm:inline-flex">
         {categoryListWithAll.map((item) => {
           const idStr = String(item.id);
           const isChoose = idStr === value;
@@ -99,7 +99,7 @@ export default function CategoryFilter({
               onClick={() => handleChange(idStr)}
               key={item.id}
               className={cn(
-                "hover:bg-background dark:hover:bg-background cursor-pointer rounded-none px-6 first:rounded-l-sm last:rounded-r-sm",
+                "cursor-pointer rounded-none px-6 first:rounded-l-sm last:rounded-r-sm hover:bg-transparent dark:hover:bg-transparent",
                 {
                   "bg-active-background text-active-text dark:hover:bg-active-background hover:bg-active-background dark:hover:text-active-text hover:text-active-text":
                     isChoose,

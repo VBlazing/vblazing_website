@@ -13,7 +13,7 @@ export default function SummaryCard({
   content: string;
 }) {
   return (
-    <div className="flex w-full flex-col rounded-2xl border bg-white px-6 py-4 shadow-sm transition-all duration-300 hover:shadow-lg dark:bg-[#15181c]">
+    <div className="bg-card flex w-full flex-col rounded-2xl border px-6 py-4 shadow-sm transition-all duration-300 hover:shadow-lg">
       <div className="text-main-title mb-2 w-full text-start font-medium">
         {title}
       </div>
