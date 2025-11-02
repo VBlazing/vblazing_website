@@ -14,14 +14,9 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
-import hljs from "highlight.js";
-import typescript from "highlight.js/lib/languages/typescript";
 import { DetailHeader } from "@/components/detail/detail_header";
 import { formatBlogListWithCategoryName } from "@/lib/formatData";
 import { fetchCategoryList, fetchPublishedBlogDetail } from "@/server/data";
-import "highlight.js/styles/atom-one-dark.css";
-
-hljs.registerLanguage("tsx", typescript);
 
 export async function generateMetadata(
   props: {

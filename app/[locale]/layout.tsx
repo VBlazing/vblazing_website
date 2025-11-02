@@ -11,11 +11,17 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
+import hljs from "highlight.js";
+import typescript from "highlight.js/lib/languages/typescript";
 import ErrorManagerClient from "@/components/common/error_manager_client";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/lib/i18n/routing";
+import "highlight.js/styles/atom-one-dark.css";
+
+// register for md code
+hljs.registerLanguage("tsx", typescript);
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
