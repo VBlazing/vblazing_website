@@ -24,7 +24,6 @@ export default function AboutHeader({ about_info }: { about_info: AboutInfo }) {
             className="relative mx-auto mb-8 h-32 w-32"
           >
             <div className="from-featured-img-from to-featured-img-to flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br">
-              {/* todo: 切换头像 */}
               {about_info?.avatar ? (
                 <Image
                   width={110}
