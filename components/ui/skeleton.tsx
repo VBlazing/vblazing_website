@@ -97,10 +97,37 @@ function RecentBlogSkeleton() {
   );
 }
 
+function SummaryCardSkeleton() {
+  return (
+    <div className="border-border/40 flex w-full flex-col rounded-2xl border bg-white px-6 py-4 dark:bg-[#15181c]">
+      <Skeleton className="mb-4 h-10 w-full" />
+      <Skeleton className="h-20 w-full" />
+    </div>
+  );
+}
+
+function BlogPageHeaderSkeleton() {
+  return (
+    <div className="bg-background border-border/40 w-full border-b">
+      <div className="mx-auto max-w-6xl px-8 py-16">
+        <Skeleton className="mx-auto mb-4 h-12 w-[50%]" />
+        <Skeleton className="mx-auto mb-8 h-8 w-[75%] max-w-2xl" />
+        <div className="mx-auto mb-8 hidden max-w-3xl justify-evenly gap-6 sm:flex">
+          <SummaryCardSkeleton />
+          <SummaryCardSkeleton />
+          <SummaryCardSkeleton />
+        </div>
+        <Skeleton className="mx-auto mb-8 h-12 w-full max-w-2xl" />
+      </div>
+    </div>
+  );
+}
+
 export {
   Skeleton,
   HomeHeroSkeleton,
   BlogCardSkeleton,
   BlogListSkeleton,
   RecentBlogSkeleton,
+  BlogPageHeaderSkeleton,
 };

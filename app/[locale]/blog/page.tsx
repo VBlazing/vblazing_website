@@ -10,7 +10,10 @@ import * as motion from "motion/react-client";
 import Tabbar from "@/components/blog/tabbar";
 import BlogHeader from "@/components/blog/blog_header";
 import BlogList from "@/components/blog/blog_list";
-import { BlogListSkeleton } from "@/components/ui/skeleton";
+import {
+  BlogListSkeleton,
+  BlogPageHeaderSkeleton,
+} from "@/components/ui/skeleton";
 import { BlogCategory } from "@/lib/definitions";
 import { fetchCategoryList } from "@/server/data";
 import { getSettings } from "@/lib/settings";
@@ -51,7 +54,9 @@ export default async function Blog({ searchParams, params }: IBlogProps) {
 
   return (
     <div className="min-h-screen w-full">
-      <BlogHeader />
+      <Suspense fallback={<BlogPageHeaderSkeleton />}>
+        <BlogHeader />
+      </Suspense>
 
       <div className="mx-auto max-w-6xl px-6 py-10 sm:px-8">
         {/* Tabbar */}
