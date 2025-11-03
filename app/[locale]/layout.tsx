@@ -11,11 +11,17 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
+import hljs from "highlight.js";
+import typescript from "highlight.js/lib/languages/typescript";
 import ErrorManagerClient from "@/components/common/error_manager_client";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/lib/i18n/routing";
+import "highlight.js/styles/atom-one-dark.css";
+
+// register for md code
+hljs.registerLanguage("tsx", typescript);
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,20 +43,47 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: t("description"),
     icons: {
-      icon: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_32.png",
+      icon: [
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_36x36.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_72x72.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_114x114.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_144x144.png",
+      ],
       shortcut: [
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/shortcut-icon_16.png",
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/shortcut-icon_32.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_36x36.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_72x72.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_114x114.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_144x144.png",
       ],
       apple: [
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/apple-icon_16.png",
-        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/apple-icon_32.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_36x36.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_72x72.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_114x114.png",
+        "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_144x144.png",
+      ],
+      other: [
+        {
+          rel: "apple-touch-icon-precomposed",
+          url: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_36x36.png",
+        },
+        {
+          rel: "apple-touch-icon-precomposed",
+          url: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_72x72.png",
+        },
+        {
+          rel: "apple-touch-icon-precomposed",
+          url: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_114x114.png",
+        },
+        {
+          rel: "apple-touch-icon-precomposed",
+          url: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_144x144.png",
+        },
       ],
     },
     openGraph: {
       images: [
         {
-          url: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/hero_800_600.png",
+          url: "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/hero_800_400.png",
           width: 800,
           height: 400,
         },
@@ -58,7 +91,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: t("title"),
       description: t("description"),
       url: "https://blog.vblazing.com",
-      siteName: "blog.vblazing",
+      siteName: "Blazer V",
       locale: locale,
       type: "website",
     },

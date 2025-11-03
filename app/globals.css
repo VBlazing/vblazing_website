@@ -111,7 +111,7 @@
   /* 鼠标浮动时背景色 */
   --hover-background: #f5f5f5;
   /* 选中时背景色 */
-  --active-background: #262626;
+  --active-background: #1b1d21;
   /* 选中时字体色 */
   --active-text: #f7fafc;
 }

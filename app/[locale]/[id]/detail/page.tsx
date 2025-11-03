@@ -14,14 +14,9 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
-import hljs from "highlight.js";
-import typescript from "highlight.js/lib/languages/typescript";
 import { DetailHeader } from "@/components/detail/detail_header";
 import { formatBlogListWithCategoryName } from "@/lib/formatData";
 import { fetchCategoryList, fetchPublishedBlogDetail } from "@/server/data";
-import "highlight.js/styles/atom-one-dark.css";
-
-hljs.registerLanguage("tsx", typescript);
 
 export async function generateMetadata(
   props: {
@@ -67,7 +62,7 @@ export async function generateMetadata(
       title,
       description: introduction,
       url: "https://blog.vblazing.com",
-      siteName: "blog.vblazing",
+      siteName: "Blazer V",
       locale: locale,
       type: "website",
     },
@@ -128,6 +123,16 @@ export default async function Detail(
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw, rehypeHighlight]}
+              components={{
+                aside(props) {
+                  return (
+                    <aside
+                      {...props}
+                      className="flex gap-2 rounded-xl bg-[#edf1f6] p-4 dark:bg-[#30302e] [&_p]:my-0"
+                    />
+                  );
+                },
+              }}
             >
               {blog_info.content}
             </ReactMarkdown>

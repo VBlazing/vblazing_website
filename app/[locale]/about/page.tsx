@@ -6,11 +6,15 @@
  * @Description: 关于我页面
  */
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import ReactMarkdown from "react-markdown";
 import * as motion from "motion/react-client";
 import AboutHeader from "@/components/about/about_header";
 import Information from "@/components/about/information";
 import { AboutInfo } from "@/lib/definitions";
 import { fetchAboutInfo } from "@/server/data";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import rehypeHighlight from "rehype-highlight";
 
 export async function generateMetadata() {
   const t = await getTranslations("metadata");
@@ -42,10 +46,17 @@ export default async function About({ params }: PageProps<"/[locale]/about">) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="text-main-title mb-6 text-3xl font-light max-sm:text-2xl">
+            <h2 className="text-main-title mb-6 text-3xl max-sm:text-2xl">
               {t("my_story")}
             </h2>
-            <div>{about_info?.story}</div>
+            <div className="text-main-text prose dark:prose-invert [&_h3]:font-medium">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw, rehypeHighlight]}
+              >
+                {about_info?.story || ""}
+              </ReactMarkdown>
+            </div>
           </motion.div>
         </div>
       </div>

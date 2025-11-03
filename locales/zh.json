@@ -1,7 +1,7 @@
 {
   "metadata": {
     "blazer": "布雷泽",
-    "title": "布雷泽的博客",
+    "title": "布雷泽的个人网站",
     "description": "布雷泽的个人网站, 博客、产品、谁是布雷泽",
     "home": "主页",
     "doc": "文档",
@@ -63,7 +63,7 @@
       "title": "最新文章"
     },
     "explore_blog": {
-      "title": "探索所有故事",
+      "title": "探索所有文章",
       "subtitle": "从完整的档案发现更多想法、见解和故事。",
       "explore": "查看所有"
     }
