@@ -62,7 +62,7 @@ export async function generateMetadata(
       title,
       description: introduction,
       url: "https://blog.vblazing.com",
-      siteName: "blog.vblazing",
+      siteName: "Blazer V",
       locale: locale,
       type: "website",
     },

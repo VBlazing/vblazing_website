@@ -91,7 +91,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: t("title"),
       description: t("description"),
       url: "https://blog.vblazing.com",
-      siteName: "blog.vblazing",
+      siteName: "Blazer V",
       locale: locale,
       type: "website",
     },
