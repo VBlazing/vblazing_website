@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-20 17:54:37
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-15 23:21:01
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-11-07 17:48:54
  * @Description: 博客页面
  */
 import { Suspense } from "react";
@@ -29,8 +29,13 @@ interface IBlogProps extends PageProps<"/[locale]/blog"> {
   searchParams: Promise<UrlSearchParams>;
 }
 
-export async function generateMetadata() {
-  const t = await getTranslations("metadata");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
   return {
     title: t("doc"),
   };

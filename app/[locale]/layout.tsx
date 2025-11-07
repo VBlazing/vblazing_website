@@ -2,14 +2,14 @@
  * @Author: vblazing
  * @Date: 2025-09-02 18:01:24
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-07 16:52:03
+ * @LastEditTime: 2025-11-07 17:49:41
  * @Description: 布局
  */
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import hljs from "highlight.js";
 import typescript from "highlight.js/lib/languages/typescript";
@@ -33,9 +33,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("metadata");
-  const locale = await getLocale();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
   return {
     title: {
       template: `${t("blazer")} - %s`,
@@ -95,6 +99,9 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: locale,
       type: "website",
     },
+    verification: {
+      google: "l81mCOTeMiWvxv-OlnVJ9z2SUIuGouRB7H5CRuvTU8I",
+    },
   };
 }
 
@@ -116,12 +123,6 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head>
-        <meta
-          name="google-site-verification"
-          content="l81mCOTeMiWvxv-OlnVJ9z2SUIuGouRB7H5CRuvTU8I"
-        />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

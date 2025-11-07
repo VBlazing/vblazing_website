@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-19 19:18:50
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-25 01:07:18
+ * @LastEditTime: 2025-11-07 17:48:25
  * @Description: 关于我页面
  */
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -16,8 +16,13 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 
-export async function generateMetadata() {
-  const t = await getTranslations("metadata");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
   return {
     title: t("about"),
   };
