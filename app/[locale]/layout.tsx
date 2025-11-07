@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-02 18:01:24
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-25 00:02:23
+ * @LastEditTime: 2025-11-07 16:52:03
  * @Description: 布局
  */
 import type { Metadata } from "next";
@@ -116,6 +116,12 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="l81mCOTeMiWvxv-OlnVJ9z2SUIuGouRB7H5CRuvTU8I"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
