@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-05 10:58:49
+ * @LastEditTime: 2025-11-10 17:29:51
  * @Description: 获取页面数据
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -136,11 +136,11 @@ export async function fetchBlogList({
  * @return {BlogInfo[]} 博客列表
  */
 export const fetchPublishedBlogList = unstable_cache(
-  (query: {
+  (query?: {
     pagination?: Pagination
     filter?: BlogFilter
   }) => {
-    const { filter } = query
+    const { filter } = query ?? {}
     const queryWithState = {
       ...query,
       filter: {
