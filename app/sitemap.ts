@@ -2,7 +2,7 @@
  * @Author: VBlazing
  * @Date: 2025-11-10 17:13:42
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-10 17:54:03
+ * @LastEditTime: 2025-11-10 18:17:35
  * @Description: sitemap 站点地图
  */
 import { MetadataRoute } from 'next';
@@ -16,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogSiteUrl: MetadataRoute.Sitemap = blogList?.map(item => ({
     url: `${host}/${item.id}/detail`,
-    lastModified: item.last_edited_time,
+    lastModified: new Date(item.last_edited_time),
     changeFrequency: 'weekly',
     priority: 0.9,
     alternates: {
