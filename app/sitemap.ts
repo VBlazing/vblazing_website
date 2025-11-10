@@ -2,7 +2,7 @@
  * @Author: VBlazing
  * @Date: 2025-11-10 17:13:42
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-10 17:51:26
+ * @LastEditTime: 2025-11-10 17:54:03
  * @Description: sitemap 站点地图
  */
 import { MetadataRoute } from 'next';
@@ -41,7 +41,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }
     },
     {
-      url: host + 'blog',
+      url: host + '/blog',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -53,7 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }
     },
     {
-      url: host + 'about',
+      url: host + '/about',
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.5,
