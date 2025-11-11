@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-11 17:56:16
+ * @LastEditTime: 2025-11-11 21:24:10
  * @Description: 获取页面数据
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -183,7 +183,7 @@ export const fetchPublishedBlogDetail = unstable_cache(
       `
       return result?.[0]
     } catch (e: any) {
-      throw new Error('ailed to fetch blog: ' + e.message);
+      throw new Error('Failed to fetch blog: ' + e.message);
     }
   }),
   []
