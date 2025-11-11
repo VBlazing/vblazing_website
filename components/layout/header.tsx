@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 21:32:17
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-11 18:50:00
+ * @LastEditTime: 2025-11-11 18:51:37
  * @Description: 页面顶部
  */
 import { Suspense } from "react";
@@ -17,7 +17,6 @@ import LogoMenu from "@/components//common/logo_menu";
 import { getNavigate } from "@/lib/navigate";
 import { Link } from "@/lib/i18n/navigation";
 import { getIcon } from "@/lib/icon";
-import { Suspense } from "react";
 
 export default async function Header() {
   const navigate = await getNavigate();
