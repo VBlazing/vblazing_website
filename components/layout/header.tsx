@@ -2,9 +2,10 @@
  * @Author: vblazing
  * @Date: 2025-09-05 21:32:17
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 21:41:31
+ * @LastEditTime: 2025-11-11 18:34:44
  * @Description: 页面顶部
  */
+import { Suspense } from "react";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -56,7 +57,10 @@ export default async function Header() {
         {/* 配置 */}
         <div className="flex items-center justify-between">
           {/* 切换语言 */}
-          <LocaleSwitch />
+          {/* LocaleSwitch use useSearchParams, so need Suspense for ssg */}
+          <Suspense>
+            <LocaleSwitch />
+          </Suspense>
           {/* 切换主题 */}
           <ThemeSwitch />
         </div>

@@ -2,9 +2,10 @@
  * @Author: vblazing
  * @Date: 2025-10-14 12:23:17
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 00:56:12
+ * @LastEditTime: 2025-11-11 18:34:28
  * @Description: 博客页头
  */
+import { Suspense } from "react";
 import * as motion from "motion/react-client";
 import { getTranslations } from "next-intl/server";
 import { fetchBlogSummaries, fetchLabelList } from "@/server/data";
@@ -40,7 +41,10 @@ export default async function BlogHeader() {
               />
             ))}
           </div>
-          <SearchBar labels={labels || []} />
+          {/* SearchBar use useSearchParams, so need Suspense for ssg */}
+          <Suspense>
+            <SearchBar labels={labels || []} />
+          </Suspense>
         </motion.div>
       </div>
     </div>

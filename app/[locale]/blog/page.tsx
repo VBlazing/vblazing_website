@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 17:54:37
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-11 12:31:21
+ * @LastEditTime: 2025-11-11 18:02:00
  * @Description: 博客页面
  */
 import { Suspense } from "react";
@@ -10,10 +10,7 @@ import * as motion from "motion/react-client";
 import Tabbar from "@/components/blog/tabbar";
 import BlogHeader from "@/components/blog/blog_header";
 import BlogList from "@/components/blog/blog_list";
-import {
-  BlogListSkeleton,
-  BlogPageHeaderSkeleton,
-} from "@/components/ui/skeleton";
+import { BlogListSkeleton } from "@/components/ui/skeleton";
 import { BlogCategory } from "@/lib/definitions";
 import { fetchCategoryList } from "@/server/data";
 import { getSettings } from "@/lib/settings";
@@ -66,10 +63,7 @@ export default async function Blog({ searchParams, params }: IBlogProps) {
 
   return (
     <div className="min-h-screen w-full">
-      <Suspense fallback={<BlogPageHeaderSkeleton />}>
-        <BlogHeader />
-      </Suspense>
-
+      <BlogHeader />
       <div className="mx-auto max-w-6xl px-6 py-10 sm:px-8">
         {/* Tabbar */}
         <motion.div
