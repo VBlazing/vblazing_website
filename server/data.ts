@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-10 17:29:51
+ * @LastEditTime: 2025-11-11 17:56:16
  * @Description: 获取页面数据
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -33,7 +33,6 @@ export const fetchCategoryList = async () => {
       }
     },
     [locale],
-    { revalidate: 60 * 5 }
   )()
 }
 
@@ -51,7 +50,6 @@ export const fetchLabelList = unstable_cache(
     }
   },
   [],
-  { revalidate: 60 * 5 }
 )
 
 /**
@@ -73,7 +71,6 @@ export const fetchHomeHeroInfo = async () => {
       }
     },
     [locale],
-    { revalidate: 60 * 5 }
   )()
 }
 
@@ -151,7 +148,6 @@ export const fetchPublishedBlogList = unstable_cache(
     return fetchBlogList(queryWithState)
   },
   [],
-  { revalidate: 60 * 5 }
 )
 
 /**
@@ -171,7 +167,6 @@ export const fetchPublishedBlogTotal = unstable_cache(
     }
   },
   [],
-  { revalidate: 60 * 5 }
 )
 
 /**
@@ -191,8 +186,7 @@ export const fetchPublishedBlogDetail = unstable_cache(
       throw new Error('ailed to fetch blog: ' + e.message);
     }
   }),
-  [],
-  { revalidate: 60 * 5 }
+  []
 )
 
 /**
@@ -214,7 +208,6 @@ export const fetchBlogSummaries = async () => {
       }
     },
     [locale],
-    { revalidate: 60 * 5 }
   )()
 }
 
@@ -237,6 +230,5 @@ export const fetchAboutInfo = async () => {
       }
     },
     [locale],
-    { revalidate: 60 * 5 }
   )()
 }

@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-19 19:18:50
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-07 17:48:25
+ * @LastEditTime: 2025-11-11 12:36:45
  * @Description: 关于我页面
  */
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -25,6 +25,13 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "metadata" });
   return {
     title: t("about"),
+    alternates: {
+      canonical: "https://blog.vblazing.com/about",
+      languages: {
+        en: "https://blog.vblazing.com/en/about",
+        zh: "https://blog.vblazing.com/zh/about",
+      },
+    },
   };
 }
 

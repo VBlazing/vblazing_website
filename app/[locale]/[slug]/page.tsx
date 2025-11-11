@@ -2,12 +2,13 @@
  * @Author: vblazing
  * @Date: 2025-10-11 12:38:53
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-07 17:50:43
+ * @LastEditTime: 2025-11-11 18:46:18
  * @Description: 博客详情页面
  */
 import type { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 import * as motion from "motion/react-client";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -15,18 +16,31 @@ import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import { DetailHeader } from "@/components/detail/detail_header";
 import { formatBlogListWithCategoryName } from "@/lib/formatData";
-import { fetchCategoryList, fetchPublishedBlogDetail } from "@/server/data";
+import { routing } from "@/lib/i18n/routing";
+import {
+  fetchCategoryList,
+  fetchPublishedBlogDetail,
+  fetchPublishedBlogList,
+} from "@/server/data";
+
+export async function generateStaticParams() {
+  const blogList = (await fetchPublishedBlogList()) ?? [];
+  const staticParams = blogList?.map((post) => {
+    return routing.locales.map((locale) => ({ slug: post.id, locale }));
+  });
+  return staticParams.flat();
+}
 
 export async function generateMetadata(
   props: {
-    params: Promise<{ locale: string; id: string }>;
+    params: Promise<{ locale: string; slug: string }>;
   },
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const params = await props.params;
   const parentMetadata = await parent;
 
-  const blog_info = await fetchPublishedBlogDetail(params?.id);
+  const blog_info = await fetchPublishedBlogDetail(params?.slug);
   const category_list = await fetchCategoryList();
 
   if (!blog_info) {
@@ -38,7 +52,7 @@ export async function generateMetadata(
     category_list || [],
   );
 
-  const { title, introduction, image_url } =
+  const { title, introduction, image_url, id } =
     blog_list_with_category_name[0] ?? {};
 
   const images = image_url
@@ -55,6 +69,13 @@ export async function generateMetadata(
       absolute: title,
     },
     description: introduction,
+    alternates: {
+      canonical: `https://blog.vblazing.com/${id}`,
+      languages: {
+        en: `https://blog.vblazing.com/en/${id}`,
+        zh: `https://blog.vblazing.com/zh/${id}`,
+      },
+    },
     openGraph: {
       images,
       title,
@@ -67,12 +88,13 @@ export async function generateMetadata(
   };
 }
 
-export default async function Detail(
-  props: PageProps<"/[locale]/[id]/detail">,
-) {
+export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
   const params = await props.params;
 
-  const blog_info = await fetchPublishedBlogDetail(params?.id);
+  // for static rendering
+  setRequestLocale(params?.locale);
+
+  const blog_info = await fetchPublishedBlogDetail(params?.slug);
   const category_list = await fetchCategoryList();
 
   if (!blog_info) {
@@ -96,7 +118,7 @@ export default async function Detail(
             <motion.div
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.5 }}
               className="relative w-full"
             >
               <Image
@@ -112,12 +134,7 @@ export default async function Detail(
 
         {/* Content */}
         <div className="px-6 py-16 pt-8 sm:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-main-text prose dark:prose-invert"
-          >
+          <div className="text-main-text prose dark:prose-invert">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw, rehypeHighlight]}
@@ -134,7 +151,7 @@ export default async function Detail(
             >
               {blog_info.content}
             </ReactMarkdown>
-          </motion.div>
+          </div>
         </div>
       </div>
     </article>

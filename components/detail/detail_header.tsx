@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-10-11 20:35:11
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 22:30:42
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-11-11 18:08:46
  * @Description:
  */
 "use client";
@@ -10,7 +10,6 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import * as motion from "motion/react-client";
 import { Share2 } from "lucide-react";
 import { BlogInfo } from "@/lib/definitions";
 import { Button } from "@/components/ui/button";
@@ -60,11 +59,7 @@ export function DetailHeader({ blog_info }: IDetailHeaderProps) {
   return (
     <div className="w-full px-6 py-8 sm:px-8">
       {/* Post Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
+      <div>
         {/* Title */}
         <div className="mb-6 flex items-center justify-between space-x-10">
           <h1 className="text-main-title text-2xl leading-tight md:text-4xl lg:text-5xl">
@@ -114,7 +109,7 @@ export function DetailHeader({ blog_info }: IDetailHeaderProps) {
             className="gap-2"
           />
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
