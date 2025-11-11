@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-05 21:32:17
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 21:41:31
+ * @LastEditTime: 2025-11-11 12:20:44
  * @Description: 页面顶部
  */
 import {
@@ -16,6 +16,7 @@ import LogoMenu from "@/components//common/logo_menu";
 import { getNavigate } from "@/lib/navigate";
 import { Link } from "@/lib/i18n/navigation";
 import { getIcon } from "@/lib/icon";
+import { Suspense } from "react";
 
 export default async function Header() {
   const navigate = await getNavigate();
@@ -56,7 +57,9 @@ export default async function Header() {
         {/* 配置 */}
         <div className="flex items-center justify-between">
           {/* 切换语言 */}
-          <LocaleSwitch />
+          <Suspense>
+            <LocaleSwitch />
+          </Suspense>
           {/* 切换主题 */}
           <ThemeSwitch />
         </div>
