@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-11 12:38:53
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-11 18:46:18
+ * @LastEditTime: 2025-11-11 21:09:51
  * @Description: 博客详情页面
  */
 import type { Metadata, ResolvingMetadata } from "next";
@@ -70,7 +70,7 @@ export async function generateMetadata(
     },
     description: introduction,
     alternates: {
-      canonical: `https://blog.vblazing.com/${id}`,
+      canonical: `https://blog.vblazing.com/zh/${id}`,
       languages: {
         en: `https://blog.vblazing.com/en/${id}`,
         zh: `https://blog.vblazing.com/zh/${id}`,

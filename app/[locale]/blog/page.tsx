@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 17:54:37
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-11 18:02:00
+ * @LastEditTime: 2025-11-11 20:33:35
  * @Description: 博客页面
  */
 import { Suspense } from "react";
@@ -36,7 +36,7 @@ export async function generateMetadata({
   return {
     title: t("doc"),
     alternates: {
-      canonical: "https://blog.vblazing.com/blog",
+      canonical: "https://blog.vblazing.com/zh/blog",
       languages: {
         en: "https://blog.vblazing.com/en/bog",
         zh: "https://blog.vblazing.com/zh/blog",
