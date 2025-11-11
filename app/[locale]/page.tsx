@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-02 18:01:24
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-25 01:01:22
+ * @LastEditTime: 2025-11-07 17:47:56
  * @Description: 主页
  */
 import { Suspense, use } from "react";
@@ -13,8 +13,13 @@ import FeaturedBlog from "@/components/home/featured_blog";
 import RecentBlog from "@/components/home/recent_blog";
 import ExploreBlog from "@/components/home/explore_blog";
 
-export async function generateMetadata() {
-  const t = await getTranslations("metadata");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
   return {
     title: `${t("blazer")} - ${t("home")}`,
   };

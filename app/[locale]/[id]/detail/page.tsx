@@ -1,12 +1,11 @@
 /*
  * @Author: vblazing
  * @Date: 2025-10-11 12:38:53
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 22:55:32
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-11-07 17:50:43
  * @Description: 博客详情页面
  */
 import type { Metadata, ResolvingMetadata } from "next";
-import { getLocale } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import * as motion from "motion/react-client";
@@ -24,7 +23,6 @@ export async function generateMetadata(
   },
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const locale = await getLocale();
   const params = await props.params;
   const parentMetadata = await parent;
 
@@ -63,7 +61,7 @@ export async function generateMetadata(
       description: introduction,
       url: "https://blog.vblazing.com",
       siteName: "Blazer V",
-      locale: locale,
+      locale: params.locale,
       type: "website",
     },
   };

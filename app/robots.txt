@@ -1,0 +1,12 @@
+# robots.txt for https://blog.vblazing.com
+
+User-Agent: *
+Allow: /
+
+# 禁止爬取管理后台和 API 接口
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+Sitemap: https://blog.vblazing.com/sitemap.xml

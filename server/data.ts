@@ -2,9 +2,10 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 01:08:31
+ * @LastEditTime: 2025-11-10 17:29:51
  * @Description: 获取页面数据
  */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cache } from 'react';
 import { getLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
@@ -27,8 +28,8 @@ export const fetchCategoryList = async () => {
           WHERE locale = ${locale}
         `
         return list
-      } catch (e) {
-        console.error('Failed to fetch category:', e);
+      } catch (e: any) {
+        throw new Error('Failed to fetch category: ' + e.message);
       }
     },
     [locale],
@@ -45,8 +46,8 @@ export const fetchLabelList = unstable_cache(
     try {
       const list = await sql<{ id: string }[]>`SELECT id FROM labels`
       return list?.map(item => item.id)
-    } catch (e) {
-      console.error('Failed to fetch labels:', e);
+    } catch (e: any) {
+      throw new Error('Failed to fetch labels: ' + e.message);
     }
   },
   [],
@@ -67,8 +68,8 @@ export const fetchHomeHeroInfo = async () => {
           WHERE locale = ${locale}
         `
         return result?.[0]
-      } catch (e) {
-        console.error('Failed to fetch home info:', e);
+      } catch (e: any) {
+        throw new Error('Failed to fetch home info: ' + e.message);
       }
     },
     [locale],
@@ -123,8 +124,8 @@ export async function fetchBlogList({
       }
     `
     return list
-  } catch (e) {
-    console.error('Failed to fetch blog:', e);
+  } catch (e: any) {
+    throw new Error('Failed to fetch blog: ' + e.message);
   }
 }
 
@@ -135,11 +136,11 @@ export async function fetchBlogList({
  * @return {BlogInfo[]} 博客列表
  */
 export const fetchPublishedBlogList = unstable_cache(
-  (query: {
+  (query?: {
     pagination?: Pagination
     filter?: BlogFilter
   }) => {
-    const { filter } = query
+    const { filter } = query ?? {}
     const queryWithState = {
       ...query,
       filter: {
@@ -165,8 +166,8 @@ export const fetchPublishedBlogTotal = unstable_cache(
         WHERE state = ${BLOG_STATE.PUBLISHED}
       `
       return result?.[0]?.count
-    } catch (e) {
-      console.error('Failed to fetch blog total:', e);
+    } catch (e: any) {
+      throw new Error('Failed to fetch blog total: ' + e.message);
     }
   },
   [],
@@ -186,8 +187,8 @@ export const fetchPublishedBlogDetail = unstable_cache(
         AND id = ${id}
       `
       return result?.[0]
-    } catch (e) {
-      console.error('Failed to fetch blog :', e);
+    } catch (e: any) {
+      throw new Error('ailed to fetch blog: ' + e.message);
     }
   }),
   [],
@@ -208,8 +209,8 @@ export const fetchBlogSummaries = async () => {
           WHERE locale = ${locale}
         `
         return result
-      } catch (e) {
-        console.error('Failed to fetch home info:', e);
+      } catch (e: any) {
+        throw new Error('Failed to fetch blog summaries: ' + e.message);
       }
     },
     [locale],
@@ -231,8 +232,8 @@ export const fetchAboutInfo = async () => {
           WHERE locale = ${locale}
         `
         return result[0]
-      } catch (e) {
-        console.error('Failed to fetch home info:', e);
+      } catch (e: any) {
+        throw new Error('Failed to fetch about info: ' + e.message);
       }
     },
     [locale],

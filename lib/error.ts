@@ -1,16 +1,19 @@
+/*
+ * @Author: VBlazing
+ * @Date: 2025-10-13 23:16:43
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-11-05 10:57:54
+ * @Description: 错误处理
+ */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { toast } from 'sonner'
-import { getTranslations } from 'next-intl/server';
 
 export enum ERROR_CODE {
   CLIENT_COMMON_ERROR = 4000,
 }
 
-export const getErrorMsgMap = async () => {
-  const t = await getTranslations('error')
-  return {
-    [ERROR_CODE.CLIENT_COMMON_ERROR]: t('client_common_error'),
-  }
+export const ErrorMsgKeyMap = {
+  [ERROR_CODE.CLIENT_COMMON_ERROR]: 'client_common_error',
 }
 
 type ErrorType = 'runtime' | 'unhandledrejection' | 'caught' | 'render';
@@ -28,8 +31,7 @@ interface ErrorReport {
 
 /** 弹出用户提示（UI层） */
 async function showUserNotification(error: ErrorReport) {
-  const errorMsgMap = await getErrorMsgMap()
-  toast.error(errorMsgMap[ERROR_CODE.CLIENT_COMMON_ERROR], {
+  toast.error((window as any).__TRANSLATE_FN__(ErrorMsgKeyMap[ERROR_CODE.CLIENT_COMMON_ERROR]), {
     description: error.message.slice(0, 200),
     duration: 5000,
   });
@@ -47,10 +49,11 @@ function handleCaughtError(error: any, type: ErrorType = 'caught') {
 }
 
 /** 初始化全局监听 */
-export function initErrorManager() {
+export function initErrorManager(t: any) {
   if (typeof window === 'undefined') return;
   if ((window as any).__ERROR_MANAGER_INITIALIZED__) return;
   (window as any).__ERROR_MANAGER_INITIALIZED__ = true;
+  (window as any).__TRANSLATE_FN__ = t;
 
   // 运行时错误
   window.addEventListener('error', (event) => {

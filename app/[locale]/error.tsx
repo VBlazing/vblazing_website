@@ -24,8 +24,8 @@ export default function Error({
     // todo
     // 1. 页面打印信息
     // 2. 上报
-    // console.log("errorerror", error);
-  }, []);
+    console.error("Error", error.message);
+  }, [error]);
 
   return (
     <div className="flex w-full flex-1 flex-col items-center justify-center px-8 sm:items-start">
@@ -33,7 +33,9 @@ export default function Error({
         <div className="space-y-2">
           <h1 className="text-7xl font-light text-slate-300">Oops...</h1>
         </div>
-        <h2 className="text-subtitle text-2xl">{t("wrong")}</h2>
+        <h2 className="text-subtitle text-2xl">
+          {error.message || t("wrong")}
+        </h2>
         <div className="mt-10">
           <Button
             variant="outline"
