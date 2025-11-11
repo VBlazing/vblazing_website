@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-11 12:38:53
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-07 17:50:43
+ * @LastEditTime: 2025-11-11 12:39:52
  * @Description: 博客详情页面
  */
 import type { Metadata, ResolvingMetadata } from "next";
@@ -38,7 +38,7 @@ export async function generateMetadata(
     category_list || [],
   );
 
-  const { title, introduction, image_url } =
+  const { title, introduction, image_url, id } =
     blog_list_with_category_name[0] ?? {};
 
   const images = image_url
@@ -55,6 +55,13 @@ export async function generateMetadata(
       absolute: title,
     },
     description: introduction,
+    alternates: {
+      canonical: `https://blog.vblazing.com/${id}/detail`,
+      languages: {
+        en: `https://blog.vblazing.com/en/${id}/detail`,
+        zh: `https://blog.vblazing.com/zh/${id}/detail`,
+      },
+    },
     openGraph: {
       images,
       title,

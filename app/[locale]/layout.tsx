@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-02 18:01:24
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-07 17:49:41
+ * @LastEditTime: 2025-11-11 12:30:15
  * @Description: 布局
  */
 import type { Metadata } from "next";
@@ -46,6 +46,13 @@ export async function generateMetadata({
       default: t("title"),
     },
     description: t("description"),
+    alternates: {
+      canonical: "https://blog.vblazing.com",
+      languages: {
+        en: "https://blog.vblazing.com/en",
+        zh: "https://blog.vblazing.com/zh",
+      },
+    },
     icons: {
       icon: [
         "https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/icon/icon_36x36.png",
