@@ -2,12 +2,12 @@
  * @Author: VBlazing
  * @Date: 2025-10-24 00:57:13
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 21:43:44
+ * @LastEditTime: 2025-11-11 11:39:02
  * @Description: loading 页面
  */
 import { useTranslations } from "next-intl";
 
-export default function LoadingDetail() {
+export default function LoadingDetailsss() {
   const t = useTranslations("common");
   return (
     <div className="my-auto w-full text-center">

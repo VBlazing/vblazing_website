@@ -32,20 +32,20 @@ export default function Home({ params }: PageProps<"/[locale]">) {
   return (
     <div className="min-h-screen w-full">
       {/* 介绍 */}
-      <Suspense fallback={<HomeHeroSkeleton />}>
-        <HeroSection />
-      </Suspense>
+      {/* <Suspense fallback={<HomeHeroSkeleton />}> */}
+      <HeroSection />
+      {/* </Suspense> */}
 
       <div className="w-full pt-16 pb-12 sm:py-16">
         {/* 精选博客 */}
-        <Suspense>
-          <FeaturedBlog />
-        </Suspense>
+        {/* <Suspense> */}
+        <FeaturedBlog />
+        {/* </Suspense> */}
 
         {/* 最近博客 */}
-        <Suspense fallback={<RecentBlogSkeleton />}>
-          <RecentBlog />
-        </Suspense>
+        {/* <Suspense fallback={<RecentBlogSkeleton />}> */}
+        <RecentBlog />
+        {/* </Suspense> */}
 
         {/* 发现博客 */}
         <ExploreBlog />
