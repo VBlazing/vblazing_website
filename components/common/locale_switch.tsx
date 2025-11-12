@@ -54,6 +54,7 @@ export default function LocaleSwitchClient() {
           variant="ghost"
           size="sm"
           className="flex items-center font-normal focus-visible:ring-[0]"
+          aria-label="Change locale"
         >
           <Globe className="size-4 max-sm:size-5" />
           <span className="hidden text-sm sm:block">
