@@ -11,6 +11,8 @@ import * as motion from "motion/react-client";
 import AboutHeader from "@/components/about/about_header";
 import Information from "@/components/about/information";
 import { AboutInfo } from "@/lib/definitions";
+import { getUrl } from "@/lib/i18n/navigation";
+import { LOCALE_CODE } from "@/lib/const";
 import { fetchAboutInfo } from "@/server/data";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -26,10 +28,10 @@ export async function generateMetadata({
   return {
     title: t("about"),
     alternates: {
-      canonical: "https://blog.vblazing.com/zh/about",
+      canonical: getUrl("/about", LOCALE_CODE.ZH),
       languages: {
-        en: "https://blog.vblazing.com/en/about",
-        zh: "https://blog.vblazing.com/zh/about",
+        en: getUrl("/about", LOCALE_CODE.EN),
+        zh: getUrl("/about", LOCALE_CODE.ZH),
       },
     },
   };
