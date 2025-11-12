@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-19 16:34:38
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-11 18:30:45
+ * @LastEditTime: 2025-11-12 12:45:57
  * @Description: 导航配置
  */
 import { getTranslations } from 'next-intl/server';
@@ -50,4 +50,4 @@ export async function getNavigate(): Promise<INavigateConfig[]> {
  * @description: 获取跳转文章详情url
  * @return {string} url
  */
-export const getBlogDetailUrl = (slug: string) => `/${slug}`
+export const getPostPath = (slug: string) => `/${slug}`

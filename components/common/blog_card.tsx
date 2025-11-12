@@ -15,7 +15,7 @@ import ReadingTime from "@/components/common/reading_time";
 import LabelList from "@/components/common/label_list";
 import { cn } from "@/lib/utils";
 import { BlogInfo, SettingsType } from "@/lib/definitions";
-import { getBlogDetailUrl } from "@/lib/navigate";
+import { getPostPath } from "@/lib/navigate";
 import { Link } from "@/lib/i18n/navigation";
 
 export interface IBlogCardPros {
@@ -33,9 +33,9 @@ function SimpleBlogCard({
   const t = useTranslations("common");
   const { id, title, introduction, category_name, last_edited_time } =
     blog_info ?? {};
-  const blogDetailUrl = getBlogDetailUrl(id);
+  const postPath = getPostPath(id);
   return (
-    <Link href={blogDetailUrl} className="w-full">
+    <Link href={postPath} className="w-full">
       <div
         className={cn(
           "group flex items-center justify-between space-x-0 rounded-sm border bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg sm:space-x-4 dark:bg-[#15181c]",
@@ -88,7 +88,7 @@ function FullBlogCard({
     image_url,
     labels,
   } = blog_info ?? {};
-  const blogDetailUrl = getBlogDetailUrl(id);
+  const postPath = getPostPath(id);
   return (
     <div
       className={cn(
@@ -99,7 +99,7 @@ function FullBlogCard({
       <div className="flex flex-grow flex-col gap-0 @lg:flex-row">
         {/* 图片 */}
         <div className="relative h-50 w-full overflow-hidden @sm:h-64 @lg:h-auto">
-          <Link href={blogDetailUrl}>
+          <Link href={postPath}>
             <CategoryTag
               category={category_name}
               className="absolute top-3 left-3 z-1"
@@ -119,7 +119,7 @@ function FullBlogCard({
               <ReadingTime time={reading_time} />
             </div>
             <h3 className="text-main-title mb-2 text-2xl leading-tight @sm:mb-4 @lg:text-3xl">
-              <Link href={blogDetailUrl}>{title}</Link>
+              <Link href={postPath}>{title}</Link>
             </h3>
             <p className="text-main-text mb-4 line-clamp-3 text-base leading-relaxed overflow-ellipsis italic @lg:text-lg">
               {introduction}
@@ -133,7 +133,7 @@ function FullBlogCard({
             )}
           </div>
           <Link
-            href={blogDetailUrl}
+            href={postPath}
             className="text-main-title inline-flex items-center space-x-2 font-medium transition-all duration-200 group-hover:translate-x-1"
           >
             <span>{t("read_more")}</span>
