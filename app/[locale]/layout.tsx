@@ -11,6 +11,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import hljs from "highlight.js";
 import typescript from "highlight.js/lib/languages/typescript";
 import ErrorManagerClient from "@/components/common/error_manager_client";
@@ -135,6 +136,8 @@ export default async function LocaleLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* speed insights on vercel */}
+        <SpeedInsights />
         {/* 国际化 */}
         <NextIntlClientProvider>
           {/* 主题 */}
