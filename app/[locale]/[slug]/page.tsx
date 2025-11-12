@@ -122,6 +122,17 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
         url={getUrlWithLocale(getPostPath(blog_info.id))}
         datePublished={new Date(blog_info.create_time).toISOString()}
         dateModified={new Date(blog_info.last_edited_time).toISOString()}
+        image={
+          blog_info.image_url
+            ? {
+                "@type": "ImageObject",
+                url: blog_info.image_url,
+                width: 800,
+                height: 400,
+                caption: blog_info.title,
+              }
+            : undefined
+        }
         author={{
           "@type": "Person",
           name: "Blazer V",
