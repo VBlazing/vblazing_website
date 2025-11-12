@@ -105,7 +105,12 @@ export default async function BlogList({
 
   if (!blog_list_with_category_name.length) {
     return (
-      <div className="mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="mx-auto"
+      >
         <Empty>
           <EmptyHeader>
             <EmptyMedia
@@ -120,7 +125,7 @@ export default async function BlogList({
             </EmptyDescription>
           </EmptyHeader>
         </Empty>
-      </div>
+      </motion.div>
     );
   }
 
