@@ -41,10 +41,10 @@ export async function generateMetadata(
   },
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const params = await props.params;
+  const { locale, slug } = await props.params;
   const parentMetadata = await parent;
 
-  const blog_info = await fetchPublishedBlogDetail(params.slug);
+  const blog_info = await fetchPublishedBlogDetail(slug);
   const category_list = await fetchCategoryList();
 
   if (!blog_info) {
@@ -84,9 +84,9 @@ export async function generateMetadata(
       images,
       title,
       description: introduction,
-      url: "https://blog.vblazing.com",
+      url: getUrl("/", locale as LOCALE_CODE),
       siteName: "Blazer V",
-      locale: params.locale,
+      locale,
       type: "website",
     },
   };

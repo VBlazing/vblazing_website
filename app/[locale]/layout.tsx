@@ -18,6 +18,8 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/lib/i18n/routing";
+import { getUrl } from "@/lib/i18n/navigation";
+import { LOCALE_CODE } from "@/lib/const";
 import "highlight.js/styles/atom-one-dark.css";
 
 // register for md code
@@ -47,10 +49,10 @@ export async function generateMetadata({
     },
     description: t("description"),
     alternates: {
-      canonical: "https://blog.vblazing.com/zh",
+      canonical: getUrl("/", LOCALE_CODE.ZH),
       languages: {
-        en: "https://blog.vblazing.com/en",
-        zh: "https://blog.vblazing.com/zh",
+        en: getUrl("/", LOCALE_CODE.EN),
+        zh: getUrl("/", LOCALE_CODE.ZH),
       },
     },
     icons: {
@@ -101,7 +103,7 @@ export async function generateMetadata({
       ],
       title: t("title"),
       description: t("description"),
-      url: "https://blog.vblazing.com",
+      url: getUrl("/", locale as LOCALE_CODE),
       siteName: "Blazer V",
       locale: locale,
       type: "website",

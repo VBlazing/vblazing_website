@@ -7,6 +7,7 @@
  */
 import { Suspense } from "react";
 import * as motion from "motion/react-client";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Tabbar from "@/components/blog/tabbar";
 import BlogHeader from "@/components/blog/blog_header";
 import BlogList from "@/components/blog/blog_list";
@@ -14,7 +15,8 @@ import { BlogListSkeleton } from "@/components/ui/skeleton";
 import { BlogCategory } from "@/lib/definitions";
 import { fetchCategoryList } from "@/server/data";
 import { getSettings } from "@/lib/settings";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getUrl } from "@/lib/i18n/navigation";
+import { LOCALE_CODE } from "@/lib/const";
 
 type UrlSearchParams = {
   search?: string;
@@ -36,10 +38,10 @@ export async function generateMetadata({
   return {
     title: t("doc"),
     alternates: {
-      canonical: "https://blog.vblazing.com/zh/blog",
+      canonical: getUrl("/blog", LOCALE_CODE.ZH),
       languages: {
-        en: "https://blog.vblazing.com/en/bog",
-        zh: "https://blog.vblazing.com/zh/blog",
+        en: getUrl("/blog", LOCALE_CODE.EN),
+        zh: getUrl("/blog", LOCALE_CODE.ZH),
       },
     },
   };
