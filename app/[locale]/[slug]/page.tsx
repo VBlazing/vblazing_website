@@ -120,8 +120,8 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
         type="BlogPosting"
         headline={blog_info.title}
         url={getUrlWithLocale(getPostPath(blog_info.id))}
-        datePublished={new Date(blog_info.create_time).toLocaleTimeString()}
-        dateModified={new Date(blog_info.last_edited_time).toLocaleTimeString()}
+        datePublished={new Date(blog_info.create_time).toISOString()}
+        dateModified={new Date(blog_info.last_edited_time).toISOString()}
         author={{
           "@type": "Person",
           name: "Blazer V",
