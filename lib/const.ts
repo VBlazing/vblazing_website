@@ -5,7 +5,7 @@
  * @LastEditTime: 2025-11-12 12:44:35
  * @Description: 常量
  */
-import { BlogState, BlogStateKey, BlogCategory, BlogCategoryKey } from "@/lib/definitions";
+import { PostState, PostStateKey, PostCategory, PostCategoryKey } from "@/lib/definitions";
 
 export enum LOCALE_CODE {
   EN = 'en',
@@ -18,7 +18,7 @@ export const HOST = 'https://blog.vblazing.com'
 export const ALL = -1
 
 // 博客状态
-export const BLOG_STATE: Record<BlogStateKey, BlogState> = {
+export const POST_STATE: Record<PostStateKey, PostState> = {
   DRAFT: 1,
   PUBLISHED: 2,
   REMOVED: 3,
@@ -26,7 +26,7 @@ export const BLOG_STATE: Record<BlogStateKey, BlogState> = {
 };
 
 // 博客类型
-export const BLOG_CATEGORY: Record<BlogCategoryKey, BlogCategory> = {
+export const POST_CATEGORY: Record<PostCategoryKey, PostCategory> = {
   THOUGHTS: 1,
   TECHNOLOGY: 2,
   FINANCE: 3,

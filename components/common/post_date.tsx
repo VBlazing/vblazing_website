@@ -9,7 +9,7 @@ import { Calendar } from "lucide-react";
 import { useFormatter } from "next-intl";
 import { cn } from "@/lib/utils";
 
-export default function BlogDate({
+export default function PostDate({
   date,
   className,
 }: {

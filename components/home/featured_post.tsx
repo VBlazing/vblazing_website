@@ -1,29 +1,29 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-21 23:51:43
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 20:52:58
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-11-18 23:47:37
  * @Description: 精选博客组件
  */
 import * as motion from "motion/react-client";
 import { getTranslations } from "next-intl/server";
-import BlogCard from "@/components/common/blog_card";
-import { fetchCategoryList, fetchPublishedBlogList } from "@/server/data";
-import { formatBlogListWithCategoryName } from "@/lib/formatData";
+import PostCard from "@/components/common/post_card";
+import { fetchCategoryList, fetchPublishedPostList } from "@/server/data";
+import { formatPostListWithCategoryName } from "@/lib/formatData";
 
-export default async function FeaturedBlog() {
-  const t = await getTranslations("home.featured_blog");
+export default async function FeaturedPost() {
+  const t = await getTranslations("home.featured_post");
   const category_list = await fetchCategoryList();
-  const featured_blog_list = await fetchPublishedBlogList({
+  const featured_post_list = await fetchPublishedPostList({
     filter: { is_featured: true },
   });
 
-  if (!featured_blog_list?.length) {
+  if (!featured_post_list?.length) {
     return null;
   }
 
-  const blog_list_with_category_name = formatBlogListWithCategoryName(
-    featured_blog_list,
+  const post_list_with_category_name = formatPostListWithCategoryName(
+    featured_post_list,
     category_list || [],
   );
 
@@ -40,8 +40,8 @@ export default async function FeaturedBlog() {
           </h2>
           <div className="mx-auto h-0.5 w-12 bg-slate-300"></div>
         </div>
-        <BlogCard
-          blog_info={blog_list_with_category_name[0]}
+        <PostCard
+          post_info={post_list_with_category_name[0]}
           labelMaxLength={5}
           showLabel
         />

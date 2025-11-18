@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:57:15
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-18 23:02:19
+ * @LastEditTime: 2025-11-18 23:22:28
  * @Description: 数据类型定义
  */
 
@@ -21,7 +21,7 @@ export type BlogSummary = {
   content: string
 }
 
-export type BlogFilter = {
+export type PostFilter = {
   search?: string
   category?: number
   labels?: string[]
@@ -34,18 +34,18 @@ export type Pagination = {
   pageSize: number
 }
 
-export type BlogStateKey = 'DRAFT' | 'PUBLISHED' | 'REMOVED' | 'DELETED'
-export type BlogState = 1 | 2 | 3 | 4
+export type PostStateKey = 'DRAFT' | 'PUBLISHED' | 'REMOVED' | 'DELETED'
+export type PostState = 1 | 2 | 3 | 4
 
-export type BlogCategoryKey = 'THOUGHTS' | 'TECHNOLOGY' | 'FINANCE' | 'TRAVEL' | 'READING' | 'PERSONAL'
-export type BlogCategory = 1 | 2 | 3 | 4 | 5 | 6
+export type PostCategoryKey = 'THOUGHTS' | 'TECHNOLOGY' | 'FINANCE' | 'TRAVEL' | 'READING' | 'PERSONAL'
+export type PostCategory = 1 | 2 | 3 | 4 | 5 | 6
 
 export type CategoryInfo = {
-  id: BlogCategory
+  id: PostCategory
   name: string
 }
 
-export type BlogInfo = {
+export type PostInfo = {
   id: string
   slug: string
   title: string
@@ -57,8 +57,8 @@ export type BlogInfo = {
   word_count: number
   reading_time: number
   image_url: string
-  category_id: BlogCategory
-  state: BlogState
+  category_id: PostCategory
+  state: PostState
   is_featured: boolean
   labels: string[]
 }

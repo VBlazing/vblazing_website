@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-23 15:52:28
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-18 23:05:54
+ * @LastEditTime: 2025-11-18 23:38:00
  * @Description: 博客卡片组件
  */
 import { JSX } from "react";
@@ -10,29 +10,29 @@ import { useTranslations } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import CategoryTag from "@/components/common/category_tag";
 import FeaturedImage from "@/components/common/featured_image";
-import BlogDate from "@/components/common/blog_date";
+import PostDate from "@/components/common/post_date";
 import ReadingTime from "@/components/common/reading_time";
 import LabelList from "@/components/common/label_list";
 import { cn } from "@/lib/utils";
-import { BlogInfo, SettingsType } from "@/lib/definitions";
+import { PostInfo, SettingsType } from "@/lib/definitions";
 import { getPostPath } from "@/lib/navigate";
 import { Link } from "@/lib/i18n/navigation";
 
-export interface IBlogCardPros {
-  blog_info: BlogInfo & { category_name: string };
+export interface IPostCardPros {
+  post_info: PostInfo & { category_name: string };
   mode?: SettingsType["mode"];
   showLabel?: boolean;
   className?: string;
   labelMaxLength?: number;
 }
 
-function SimpleBlogCard({
-  blog_info,
+function SimplePostCard({
+  post_info,
   className,
-}: Omit<IBlogCardPros, "showLabel" | "labelMaxLength" | "mode">) {
+}: Omit<IPostCardPros, "showLabel" | "labelMaxLength" | "mode">) {
   const t = useTranslations("common");
   const { slug, title, introduction, category_name, last_edited_time } =
-    blog_info ?? {};
+    post_info ?? {};
   const postPath = getPostPath(slug);
   return (
     <Link href={postPath} className="w-full">
@@ -53,7 +53,7 @@ function SimpleBlogCard({
                 {title}
               </h3>
               <div className="flex-shrink-0 text-xs [&_svg]:size-3">
-                <BlogDate date={last_edited_time} />
+                <PostDate date={last_edited_time} />
               </div>
             </div>
           </div>
@@ -70,12 +70,12 @@ function SimpleBlogCard({
   );
 }
 
-function FullBlogCard({
-  blog_info,
+function FullPostCard({
+  post_info,
   showLabel = false,
   className,
   labelMaxLength = 3,
-}: IBlogCardPros) {
+}: IPostCardPros) {
   const t = useTranslations("common");
 
   const {
@@ -87,7 +87,7 @@ function FullBlogCard({
     reading_time,
     image_url,
     labels,
-  } = blog_info ?? {};
+  } = post_info ?? {};
   const postPath = getPostPath(slug);
   return (
     <div
@@ -115,7 +115,7 @@ function FullBlogCard({
         <div className="flex w-full flex-grow flex-col justify-between p-6 @sm:p-8">
           <div className="mb-6 flex w-full flex-col justify-center">
             <div className="mb-4 flex items-center space-x-3 text-xs @sm:space-x-5 @sm:text-sm [&_svg]:size-3 @sm:[&_svg]:size-4">
-              <BlogDate date={last_edited_time} />
+              <PostDate date={last_edited_time} />
               <ReadingTime time={reading_time} />
             </div>
             <h3 className="text-main-title mb-2 text-2xl leading-tight @sm:mb-4 @lg:text-3xl">
@@ -145,24 +145,24 @@ function FullBlogCard({
   );
 }
 
-function BlogCard(
-  props: Omit<IBlogCardPros, "mode"> & { mode?: "full" },
+function PostCard(
+  props: Omit<IPostCardPros, "mode"> & { mode?: "full" },
 ): Promise<JSX.Element>;
-function BlogCard(
-  props: Omit<IBlogCardPros, "showLabel" | "labelMaxLength" | "mode"> & {
+function PostCard(
+  props: Omit<IPostCardPros, "showLabel" | "labelMaxLength" | "mode"> & {
     mode?: "simple";
   },
 ): Promise<JSX.Element>;
-async function BlogCard({ mode = "full", ...restProps }: IBlogCardPros) {
+async function PostCard({ mode = "full", ...restProps }: IPostCardPros) {
   if (mode === "simple") {
     return (
-      <SimpleBlogCard
-        blog_info={restProps.blog_info}
+      <SimplePostCard
+        post_info={restProps.post_info}
         className={restProps.className}
       />
     );
   }
-  return <FullBlogCard {...restProps} />;
+  return <FullPostCard {...restProps} />;
 }
 
-export default BlogCard;
+export default PostCard;

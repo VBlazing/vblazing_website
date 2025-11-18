@@ -8,8 +8,8 @@
 import { use } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/home/hero_section";
-import FeaturedBlog from "@/components/home/featured_blog";
-import RecentBlog from "@/components/home/recent_blog";
+import FeaturedPost from "@/components/home/featured_post";
+import RecentPost from "@/components/home/recent_post";
 import ExploreBlog from "@/components/home/explore_blog";
 
 export async function generateMetadata({
@@ -35,10 +35,10 @@ export default function Home({ params }: PageProps<"/[locale]">) {
 
       <div className="w-full pt-16 pb-12 sm:py-16">
         {/* 精选博客 */}
-        <FeaturedBlog />
+        <FeaturedPost />
 
         {/* 最近博客 */}
-        <RecentBlog />
+        <RecentPost />
 
         {/* 发现博客 */}
         <ExploreBlog />

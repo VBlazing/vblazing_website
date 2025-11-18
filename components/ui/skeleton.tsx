@@ -1,8 +1,8 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-06 00:42:41
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-15 23:17:27
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-11-18 23:41:20
  * @Description: 骨架屏组件
  */
 import { SettingsType } from "@/lib/definitions";
@@ -30,7 +30,7 @@ function HomeHeroSkeleton() {
   );
 }
 
-function BlogCardSkeleton() {
+function PostCardSkeleton() {
   return (
     <div className="@container flex w-full rounded-2xl border bg-white not-first:hidden sm:not-first:block dark:bg-[#15181c]">
       <div className="flex flex-grow flex-col gap-0 @lg:flex-row">
@@ -48,7 +48,7 @@ function BlogCardSkeleton() {
   );
 }
 
-function SimpleBlogCardSkeleton() {
+function SimplePostCardSkeleton() {
   return (
     <div
       className={
@@ -64,35 +64,35 @@ function SimpleBlogCardSkeleton() {
   );
 }
 
-function BlogListSkeleton({ mode = "full" }: { mode?: SettingsType["mode"] }) {
+function PostListSkeleton({ mode = "full" }: { mode?: SettingsType["mode"] }) {
   if (mode === "simple") {
     return (
       <div className="flex flex-col gap-6">
-        <SimpleBlogCardSkeleton />
-        <SimpleBlogCardSkeleton />
-        <SimpleBlogCardSkeleton />
-        <SimpleBlogCardSkeleton />
-        <SimpleBlogCardSkeleton />
+        <SimplePostCardSkeleton />
+        <SimplePostCardSkeleton />
+        <SimplePostCardSkeleton />
+        <SimplePostCardSkeleton />
+        <SimplePostCardSkeleton />
       </div>
     );
   }
   return (
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <BlogCardSkeleton />
-      <BlogCardSkeleton />
-      <BlogCardSkeleton />
-      <BlogCardSkeleton />
-      <BlogCardSkeleton />
-      <BlogCardSkeleton />
+      <PostCardSkeleton />
+      <PostCardSkeleton />
+      <PostCardSkeleton />
+      <PostCardSkeleton />
+      <PostCardSkeleton />
+      <PostCardSkeleton />
     </div>
   );
 }
 
-function RecentBlogSkeleton() {
+function RecentPostSkeleton() {
   return (
     <div className="mx-auto mb-20 w-full max-w-6xl px-6 sm:px-8">
       <Skeleton className="mx-auto mb-10 h-10 w-[50%] sm:h-16 sm:w-[25%]" />
-      <BlogListSkeleton />
+      <PostListSkeleton />
     </div>
   );
 }
@@ -126,8 +126,8 @@ function BlogPageHeaderSkeleton() {
 export {
   Skeleton,
   HomeHeroSkeleton,
-  BlogCardSkeleton,
-  BlogListSkeleton,
-  RecentBlogSkeleton,
+  PostCardSkeleton,
+  PostListSkeleton,
+  RecentPostSkeleton,
   BlogPageHeaderSkeleton,
 };

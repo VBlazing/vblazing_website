@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-11 12:38:53
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-18 23:13:09
+ * @LastEditTime: 2025-11-18 23:27:56
  * @Description: 博客详情页面
  */
 import type { Metadata, ResolvingMetadata } from "next";
@@ -16,20 +16,20 @@ import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import { ArticleJsonLd } from "next-seo";
 import { DetailHeader } from "@/components/detail/detail_header";
-import { formatBlogListWithCategoryName } from "@/lib/formatData";
+import { formatPostListWithCategoryName } from "@/lib/formatData";
 import { routing } from "@/lib/i18n/routing";
 import { getUrl } from "@/lib/i18n/navigation";
 import { getPostPath } from "@/lib/navigate";
 import { LOCALE_CODE } from "@/lib/const";
 import {
   fetchCategoryList,
-  fetchPublishedBlogDetail,
-  fetchPublishedBlogList,
+  fetchPublishedPostDetail,
+  fetchPublishedPostList,
 } from "@/server/data";
 
 export async function generateStaticParams() {
-  const blogList = (await fetchPublishedBlogList()) ?? [];
-  const staticParams = blogList?.map((post) => {
+  const postList = (await fetchPublishedPostList()) ?? [];
+  const staticParams = postList?.map((post) => {
     return routing.locales.map((locale) => ({ slug: post.slug, locale }));
   });
   return staticParams.flat();
@@ -44,20 +44,20 @@ export async function generateMetadata(
   const { locale, slug } = await props.params;
   const parentMetadata = await parent;
 
-  const blog_info = await fetchPublishedBlogDetail(slug);
+  const post_info = await fetchPublishedPostDetail(slug);
   const category_list = await fetchCategoryList();
 
-  if (!blog_info) {
+  if (!post_info) {
     notFound();
   }
 
-  const blog_list_with_category_name = formatBlogListWithCategoryName(
-    [blog_info],
+  const post_list_with_category_name = formatPostListWithCategoryName(
+    [post_info],
     category_list || [],
   );
 
   const { title, introduction, image_url, id } =
-    blog_list_with_category_name[0] ?? {};
+    post_list_with_category_name[0] ?? {};
 
   const images = image_url
     ? [
@@ -102,15 +102,15 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
     return getUrl(pathname, params.locale as LOCALE_CODE);
   };
 
-  const blog_info = await fetchPublishedBlogDetail(params.slug);
+  const post_info = await fetchPublishedPostDetail(params.slug);
   const category_list = await fetchCategoryList();
 
-  if (!blog_info) {
+  if (!post_info) {
     notFound();
   }
 
-  const blog_list_with_category_name = formatBlogListWithCategoryName(
-    [blog_info],
+  const post_list_with_category_name = formatPostListWithCategoryName(
+    [post_info],
     category_list || [],
   );
 
@@ -118,18 +118,18 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
     <>
       <ArticleJsonLd
         type="BlogPosting"
-        headline={blog_info.title}
-        url={getUrlWithLocale(getPostPath(blog_info.id))}
-        datePublished={new Date(blog_info.create_time).toISOString()}
-        dateModified={new Date(blog_info.last_edited_time).toISOString()}
+        headline={post_info.title}
+        url={getUrlWithLocale(getPostPath(post_info.id))}
+        datePublished={new Date(post_info.create_time).toISOString()}
+        dateModified={new Date(post_info.last_edited_time).toISOString()}
         image={
-          blog_info.image_url
+          post_info.image_url
             ? {
                 "@type": "ImageObject",
-                url: blog_info.image_url,
+                url: post_info.image_url,
                 width: 800,
                 height: 400,
-                caption: blog_info.title,
+                caption: post_info.title,
               }
             : undefined
         }
@@ -144,16 +144,16 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
         }}
         mainEntityOfPage={{
           "@type": "WebPage",
-          "@id": getUrlWithLocale(getPostPath(blog_info.id)),
+          "@id": getUrlWithLocale(getPostPath(post_info.id)),
         }}
       />
       <article className="bg-main-content min-h-screen w-full pb-10 sm:pb-16">
         <div className="mx-auto w-full max-w-4xl">
           {/* Header */}
-          <DetailHeader blog_info={blog_list_with_category_name[0]} />
+          <DetailHeader post_info={post_list_with_category_name[0]} />
 
           {/* Featured Image */}
-          {blog_info.image_url && (
+          {post_info.image_url && (
             <div className="w-full">
               <motion.div
                 initial={{ opacity: 0, scale: 1.05 }}
@@ -162,8 +162,8 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
                 className="relative w-full"
               >
                 <Image
-                  src={blog_info.image_url}
-                  alt={blog_info.title}
+                  src={post_info.image_url}
+                  alt={post_info.title}
                   width={800}
                   height={400}
                   className="w-full"
@@ -189,7 +189,7 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
                   },
                 }}
               >
-                {blog_info.content}
+                {post_info.content}
               </ReactMarkdown>
             </div>
           </div>

@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-18 23:01:22
+ * @LastEditTime: 2025-11-18 23:33:51
  * @Description: 获取页面数据
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -10,8 +10,8 @@ import { cache } from 'react';
 import { getLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
 import { isNotNil } from 'es-toolkit';
-import { AboutInfo, BlogFilter, BlogInfo, BlogSummary, CategoryInfo, HomeHeroInfo, Pagination } from '@/lib/definitions';
-import { BLOG_STATE } from '@/lib/const';
+import { AboutInfo, PostFilter, PostInfo, BlogSummary, CategoryInfo, HomeHeroInfo, Pagination } from '@/lib/definitions';
+import { POST_STATE } from '@/lib/const';
 import { sql } from './client'
 
 /**
@@ -77,21 +77,21 @@ export const fetchHomeHeroInfo = async () => {
 /**
  * @description: 获取博客列表
  * @param {Pagination} pagination 分页信息
- * @param {BlogFilter} filter 过滤条件
- * @return {BlogInfo[]} 博客列表
+ * @param {PostFilter} filter 过滤条件
+ * @return {PostInfo[]} 博客列表
  */
-export async function fetchBlogList({
+export async function fetchPostList({
   pagination,
   filter,
 }: {
   pagination?: Pagination
-  filter?: BlogFilter
+  filter?: PostFilter
 }) {
   const { page, pageSize } = pagination ?? {}
   const { category, labels, state, is_featured, search } = filter ?? {}
 
   try {
-    const list = await sql<BlogInfo[]>`
+    const list = await sql<PostInfo[]>`
       SELECT * FROM post_with_labels
       WHERE TRUE
       ${search
@@ -129,41 +129,44 @@ export async function fetchBlogList({
 /**
  * @description: 获取已发布的博客列表
  * @param {Pagination} pagination 分页信息
- * @param {BlogFilter} filter 过滤条件
- * @return {BlogInfo[]} 博客列表
+ * @param {PostFilter} filter 过滤条件
+ * @return {PostInfo[]} 博客列表
  */
-export const fetchPublishedBlogList = unstable_cache(
+export const fetchPublishedPostList = unstable_cache(
   (query?: {
     pagination?: Pagination
-    filter?: BlogFilter
+    filter?: PostFilter
   }) => {
     const { filter } = query ?? {}
     const queryWithState = {
       ...query,
       filter: {
         ...filter,
-        state: filter?.state?.length ? filter.state : [BLOG_STATE.PUBLISHED]
+        state: filter?.state?.length ? filter.state : [POST_STATE.PUBLISHED]
       }
     }
-    return fetchBlogList(queryWithState)
+    return fetchPostList(queryWithState)
   },
   [],
+  {
+    revalidate: 60,
+  }
 )
 
 /**
  * @description: 获取已发布博客数量
  * @return {number} 已发布博客数量
  */
-export const fetchPublishedBlogTotal = unstable_cache(
+export const fetchPublishedPostTotal = unstable_cache(
   async () => {
     try {
       const result = await sql<{ count: number }[]>`
         SELECT COUNT(*) FROM post_with_labels
-        WHERE state = ${BLOG_STATE.PUBLISHED}
+        WHERE state = ${POST_STATE.PUBLISHED}
       `
       return result?.[0]?.count
     } catch (e: any) {
-      throw new Error('Failed to fetch blog total: ' + e.message);
+      throw new Error('Failed to fetch post total: ' + e.message);
     }
   },
   [],
@@ -171,19 +174,19 @@ export const fetchPublishedBlogTotal = unstable_cache(
 
 /**
  * @description: 获取博客详情
- * @return {BlogInfo} 博客详情
+ * @return {PostInfo} 博客详情
  */
-export const fetchPublishedBlogDetail = unstable_cache(
+export const fetchPublishedPostDetail = unstable_cache(
   cache(async (slug: string) => {
     try {
-      const result = await sql<BlogInfo[]>`
+      const result = await sql<PostInfo[]>`
         SELECT * FROM post_with_labels
-        WHERE state = ${BLOG_STATE.PUBLISHED}
+        WHERE state = ${POST_STATE.PUBLISHED}
         AND slug = ${slug}
       `
       return result?.[0]
     } catch (e: any) {
-      throw new Error('Failed to fetch blog: ' + e.message);
+      throw new Error('Failed to fetch post: ' + e.message);
     }
   }),
   []

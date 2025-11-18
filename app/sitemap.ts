@@ -8,13 +8,13 @@
 import { MetadataRoute } from 'next';
 import { getUrl } from '@/lib/i18n/navigation';
 import { HOST, LOCALE_CODE } from '@/lib/const';
-import { fetchPublishedBlogList } from '@/server/data';
+import { fetchPublishedPostList } from '@/server/data';
 import { getPostPath } from '@/lib/navigate';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const blogList = await fetchPublishedBlogList() ?? []
+  const postList = await fetchPublishedPostList() ?? []
 
-  const blogSiteUrl: MetadataRoute.Sitemap = blogList?.map(item => ({
+  const postSiteUrl: MetadataRoute.Sitemap = postList?.map(item => ({
     url: HOST + getPostPath(item.slug),
     lastModified: new Date(item.last_edited_time),
     changeFrequency: 'weekly',
@@ -64,6 +64,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
       }
     },
-    ...blogSiteUrl,
+    ...postSiteUrl,
   ];
 }

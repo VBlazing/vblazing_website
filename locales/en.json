@@ -48,7 +48,7 @@
       "explore": "Explore",
       "about": "About",
       "stats_view_all": "View All",
-      "stats_blog_count": "+ Posts",
+      "stats_post_count": "+ Posts",
       "stats_blog_title": "Docs",
       "stats_product_count": "+ Products",
       "stats_product_title": "Products",
@@ -56,10 +56,10 @@
       "stats_idea_title": "Ideas",
       "stats_idea_all": "Brainstorming"
     },
-    "featured_blog": {
+    "featured_post": {
       "title": "Featured Post"
     },
-    "recent_blog": {
+    "recent_post": {
       "title": "Recent Posts"
     },
     "explore_blog": {

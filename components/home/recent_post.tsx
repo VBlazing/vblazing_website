@@ -1,26 +1,26 @@
 /*
  * @Author: vblazing
  * @Date: 2025-09-25 15:52:46
- * @LastEditors: vblazing
- * @LastEditTime: 2025-10-11 13:50:52
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-11-18 23:26:22
  * @Description: 最近博客
  */
 import * as motion from "motion/react-client";
 import { getTranslations } from "next-intl/server";
-import BlogCard from "@/components/common/blog_card";
-import { fetchCategoryList, fetchPublishedBlogList } from "@/server/data";
-import { formatBlogListWithCategoryName } from "@/lib/formatData";
+import PostCard from "@/components/common/post_card";
+import { fetchCategoryList, fetchPublishedPostList } from "@/server/data";
+import { formatPostListWithCategoryName } from "@/lib/formatData";
 
-export default async function RecentBlog() {
-  const t = await getTranslations("home.recent_blog");
+export default async function RecentPost() {
+  const t = await getTranslations("home.recent_post");
 
   const category_list = await fetchCategoryList();
-  const featured_blog_list = await fetchPublishedBlogList({
+  const featured_post_list = await fetchPublishedPostList({
     pagination: { page: 1, pageSize: 6 },
   });
 
-  const blog_list_with_category_name = formatBlogListWithCategoryName(
-    featured_blog_list || [],
+  const post_list_with_category_name = formatPostListWithCategoryName(
+    featured_post_list || [],
     category_list || [],
   );
 
@@ -38,7 +38,7 @@ export default async function RecentBlog() {
           <div className="mx-auto h-0.5 w-12 bg-slate-300"></div>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {blog_list_with_category_name?.map((item, index) => {
+          {post_list_with_category_name?.map((item, index) => {
             return (
               <motion.article
                 key={item.id}
@@ -47,9 +47,9 @@ export default async function RecentBlog() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="flex not-[:nth-child(-n+3)]:hidden sm:not-[:nth-child(-n+3)]:flex"
               >
-                <BlogCard
+                <PostCard
                   key={item?.id}
-                  blog_info={item}
+                  post_info={item}
                   className="flex-grow"
                 />
               </motion.article>

@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 17:54:37
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-11 20:33:35
+ * @LastEditTime: 2025-11-18 23:37:27
  * @Description: 博客页面
  */
 import { Suspense } from "react";
@@ -10,9 +10,9 @@ import * as motion from "motion/react-client";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Tabbar from "@/components/blog/tabbar";
 import BlogHeader from "@/components/blog/blog_header";
-import BlogList from "@/components/blog/blog_list";
-import { BlogListSkeleton } from "@/components/ui/skeleton";
-import { BlogCategory } from "@/lib/definitions";
+import PostList from "@/components/blog/post_list";
+import { PostListSkeleton } from "@/components/ui/skeleton";
+import { PostCategory } from "@/lib/definitions";
 import { fetchCategoryList } from "@/server/data";
 import { getSettings } from "@/lib/settings";
 import { getUrl } from "@/lib/i18n/navigation";
@@ -57,7 +57,7 @@ export default async function Blog({ searchParams, params }: IBlogProps) {
     search: urlQuery.search,
     labels: urlQuery.labels?.split(","),
     category: urlQuery.category
-      ? (+urlQuery.category as BlogCategory)
+      ? (+urlQuery.category as PostCategory)
       : undefined,
   };
   const category_list = await fetchCategoryList();
@@ -79,9 +79,9 @@ export default async function Blog({ searchParams, params }: IBlogProps) {
         {/* List */}
         <Suspense
           key={JSON.stringify(query)}
-          fallback={<BlogListSkeleton mode={settings.mode} />}
+          fallback={<PostListSkeleton mode={settings.mode} />}
         >
-          <BlogList
+          <PostList
             mode={settings.mode}
             query={query}
             category_list={category_list || []}

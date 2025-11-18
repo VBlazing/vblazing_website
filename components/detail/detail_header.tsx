@@ -11,28 +11,28 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Share2 } from "lucide-react";
-import { BlogInfo } from "@/lib/definitions";
+import { PostInfo } from "@/lib/definitions";
 import { Button } from "@/components/ui/button";
 import LabelList from "@/components/common/label_list";
 import CategoryTag from "@/components/common/category_tag";
-import BlogDate from "@/components/common/blog_date";
+import PostDate from "@/components/common/post_date";
 import ReadingTime from "@/components/common/reading_time";
 
 interface IDetailHeaderProps {
-  blog_info: BlogInfo & { category_name: string };
+  post_info: PostInfo & { category_name: string };
 }
 
-export function DetailHeader({ blog_info }: IDetailHeaderProps) {
+export function DetailHeader({ post_info }: IDetailHeaderProps) {
   const t = useTranslations("detail");
   const [shareLoading, setShareLoading] = useState(false);
 
   const handleShare = async () => {
-    if (navigator.share && blog_info) {
+    if (navigator.share && post_info) {
       setShareLoading(true);
       try {
         await navigator.share({
-          title: blog_info.title,
-          text: blog_info.introduction,
+          title: post_info.title,
+          text: post_info.introduction,
           url: window.location.href,
         });
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -63,7 +63,7 @@ export function DetailHeader({ blog_info }: IDetailHeaderProps) {
         {/* Title */}
         <div className="mb-6 flex items-center justify-between space-x-10">
           <h1 className="text-main-title text-2xl leading-tight md:text-4xl lg:text-5xl">
-            {blog_info.title}
+            {post_info.title}
           </h1>
           <Button
             variant="outline"
@@ -80,30 +80,30 @@ export function DetailHeader({ blog_info }: IDetailHeaderProps) {
         {/* Meta Info */}
         <div className="mb-6 flex flex-wrap items-center gap-4 text-sm">
           <CategoryTag
-            category={blog_info.category_name}
+            category={post_info.category_name}
             className="dark:bg-background bg-[#edf1f6] font-medium opacity-100"
           />
-          <BlogDate
-            date={blog_info.last_edited_time}
+          <PostDate
+            date={post_info.last_edited_time}
             className="text-main-text sm:font-medium [&_svg]:size-4"
           />
           <ReadingTime
-            time={blog_info.reading_time}
+            time={post_info.reading_time}
             className="text-main-text sm:font-medium [&_svg]:size-4"
           />
         </div>
 
         {/* Excerpt */}
-        {blog_info.introduction && (
+        {post_info.introduction && (
           <p className="text-main-text mb-8 max-w-3xl text-base leading-relaxed italic sm:text-xl">
-            {blog_info.introduction}
+            {post_info.introduction}
           </p>
         )}
 
         {/* Share Button */}
         <div className="flex flex-wrap gap-2">
           <LabelList
-            labels={blog_info.labels}
+            labels={post_info.labels}
             maxLength={10}
             showIcon={true}
             className="gap-2"

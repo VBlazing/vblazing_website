@@ -6,10 +6,10 @@
  * @Description: 博客列表
  */
 import * as motion from "motion/react-client";
-import BlogCard, { IBlogCardPros } from "@/components/common/blog_card";
-import { BlogCategory, CategoryInfo, SettingsType } from "@/lib/definitions";
-import { formatBlogListWithCategoryName } from "@/lib/formatData";
-import { fetchPublishedBlogList } from "@/server/data";
+import PostCard, { IPostCardPros } from "@/components/common/post_card";
+import { PostCategory, CategoryInfo, SettingsType } from "@/lib/definitions";
+import { formatPostListWithCategoryName } from "@/lib/formatData";
+import { fetchPublishedPostList } from "@/server/data";
 import {
   Empty,
   EmptyDescription,
@@ -20,26 +20,26 @@ import {
 import { File } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
-export type BlogListQuery = {
+export type PostListQuery = {
   search?: string;
   labels?: string[];
-  category?: BlogCategory;
+  category?: PostCategory;
 };
 
-interface IBlogListProps {
-  query: BlogListQuery;
+interface IPostListProps {
+  query: PostListQuery;
   category_list: CategoryInfo[];
   mode?: SettingsType["mode"];
 }
 
-function FullBlogList({
-  blog_list,
+function FullPostList({
+  post_list,
 }: {
-  blog_list: IBlogCardPros["blog_info"][];
+  post_list: IPostCardPros["post_info"][];
 }) {
   return (
     <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {blog_list?.map((item, index) => {
+      {post_list?.map((item, index) => {
         return (
           <motion.article
             key={item.id}
@@ -48,10 +48,10 @@ function FullBlogList({
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className="flex"
           >
-            <BlogCard
+            <PostCard
               showLabel
               key={item?.id}
-              blog_info={item}
+              post_info={item}
               className="flex-grow"
               mode="full"
             />
@@ -62,14 +62,14 @@ function FullBlogList({
   );
 }
 
-function SimpleBlogList({
-  blog_list,
+function SimplePostList({
+  post_list,
 }: {
-  blog_list: IBlogCardPros["blog_info"][];
+  post_list: IPostCardPros["post_info"][];
 }) {
   return (
     <div className="flex flex-col space-y-4 sm:space-y-6">
-      {blog_list?.map((item, index) => {
+      {post_list?.map((item, index) => {
         return (
           <motion.article
             key={item.id}
@@ -78,9 +78,9 @@ function SimpleBlogList({
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className="flex"
           >
-            <BlogCard
+            <PostCard
               key={item?.id}
-              blog_info={item}
+              post_info={item}
               className="flex-grow"
               mode="simple"
             />
@@ -91,19 +91,19 @@ function SimpleBlogList({
   );
 }
 
-export default async function BlogList({
+export default async function PostList({
   query,
   category_list,
   mode = "full",
-}: IBlogListProps) {
+}: IPostListProps) {
   const t = await getTranslations("blog.not_found");
-  const blog_list = await fetchPublishedBlogList({ filter: query });
-  const blog_list_with_category_name = formatBlogListWithCategoryName(
-    blog_list || [],
+  const post_list = await fetchPublishedPostList({ filter: query });
+  const post_list_with_category_name = formatPostListWithCategoryName(
+    post_list || [],
     category_list,
   );
 
-  if (!blog_list_with_category_name.length) {
+  if (!post_list_with_category_name.length) {
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -130,8 +130,8 @@ export default async function BlogList({
   }
 
   if (mode === "simple") {
-    return <SimpleBlogList blog_list={blog_list_with_category_name} />;
+    return <SimplePostList post_list={post_list_with_category_name} />;
   }
 
-  return <FullBlogList blog_list={blog_list_with_category_name} />;
+  return <FullPostList post_list={post_list_with_category_name} />;
 }

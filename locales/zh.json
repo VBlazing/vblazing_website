@@ -48,7 +48,7 @@
       "explore": "发现",
       "about": "关于我",
       "stats_view_all": "查看所有",
-      "stats_blog_count": " 篇文章",
+      "stats_post_count": " 篇文章",
       "stats_blog_title": "文档",
       "stats_product_count": " 个产品",
       "stats_product_title": "产品",
@@ -56,10 +56,10 @@
       "stats_idea_title": "创意",
       "stats_idea_all": "脑洞大开"
     },
-    "featured_blog": {
+    "featured_post": {
       "title": "精选文章"
     },
-    "recent_blog": {
+    "recent_post": {
       "title": "最新文章"
     },
     "explore_blog": {

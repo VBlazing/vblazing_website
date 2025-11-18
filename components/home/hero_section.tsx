@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 18:32:24
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 21:47:10
+ * @LastEditTime: 2025-11-18 23:45:13
  * @Description: 主页介绍组件
  */
 import * as motion from "motion/react-client";
@@ -10,12 +10,12 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/lib/i18n/navigation";
-import { fetchHomeHeroInfo, fetchPublishedBlogTotal } from "@/server/data";
+import { fetchHomeHeroInfo, fetchPublishedPostTotal } from "@/server/data";
 
 export default async function HeroSection() {
   const t = await getTranslations("home.hero");
   const home_hero_info = await fetchHomeHeroInfo();
-  const blog_total = await fetchPublishedBlogTotal();
+  const post_total = await fetchPublishedPostTotal();
   return (
     <section className="bg-home-hero-section relative w-full pb-8 sm:pt-12 sm:pb-20">
       <div className="relative mx-auto max-w-6xl px-8">
@@ -90,14 +90,14 @@ export default async function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mx-auto flex w-full max-w-2xl items-center justify-around pt-6 pb-8 text-center sm:mt-12 sm:border-t sm:border-slate-300 sm:pt-12"
         >
-          {blog_total && (
+          {post_total && (
             <Link
               href={"/blog"}
               className="group cursor-pointer text-center transition-all"
             >
               <div className="text-main-title mb-1 text-xl font-light duration-200 group-hover:-translate-y-1 md:text-3xl">
-                {blog_total}
-                {t("stats_blog_count")}
+                {post_total}
+                {t("stats_post_count")}
               </div>
               <div className="text-main-text relative overflow-hidden text-xs tracking-wide md:text-base">
                 <div className="w-full translate-x-0 scale-100 uppercase duration-200 group-hover:translate-x-20 group-hover:scale-0">
