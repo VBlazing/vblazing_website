@@ -2,7 +2,7 @@
  * @Author: VBlazing
  * @Date: 2025-11-10 17:13:42
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-12 12:45:10
+ * @LastEditTime: 2025-11-18 23:03:54
  * @Description: sitemap 站点地图
  */
 import { MetadataRoute } from 'next';
@@ -15,14 +15,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogList = await fetchPublishedBlogList() ?? []
 
   const blogSiteUrl: MetadataRoute.Sitemap = blogList?.map(item => ({
-    url: HOST + getPostPath(item.id),
+    url: HOST + getPostPath(item.slug),
     lastModified: new Date(item.last_edited_time),
     changeFrequency: 'weekly',
     priority: 0.9,
     alternates: {
       languages: {
-        en: getUrl(getPostPath(item.id), LOCALE_CODE.EN),
-        zh: getUrl(getPostPath(item.id), LOCALE_CODE.ZH),
+        en: getUrl(getPostPath(item.slug), LOCALE_CODE.EN),
+        zh: getUrl(getPostPath(item.slug), LOCALE_CODE.ZH),
       }
     }
   }))

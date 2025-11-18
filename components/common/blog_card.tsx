@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-23 15:52:28
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-25 00:10:33
+ * @LastEditTime: 2025-11-18 23:05:54
  * @Description: 博客卡片组件
  */
 import { JSX } from "react";
@@ -31,9 +31,9 @@ function SimpleBlogCard({
   className,
 }: Omit<IBlogCardPros, "showLabel" | "labelMaxLength" | "mode">) {
   const t = useTranslations("common");
-  const { id, title, introduction, category_name, last_edited_time } =
+  const { slug, title, introduction, category_name, last_edited_time } =
     blog_info ?? {};
-  const postPath = getPostPath(id);
+  const postPath = getPostPath(slug);
   return (
     <Link href={postPath} className="w-full">
       <div
@@ -79,7 +79,7 @@ function FullBlogCard({
   const t = useTranslations("common");
 
   const {
-    id,
+    slug,
     title,
     introduction,
     category_name,
@@ -88,7 +88,7 @@ function FullBlogCard({
     image_url,
     labels,
   } = blog_info ?? {};
-  const postPath = getPostPath(id);
+  const postPath = getPostPath(slug);
   return (
     <div
       className={cn(

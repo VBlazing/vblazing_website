@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:57:15
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-10-24 20:52:10
+ * @LastEditTime: 2025-11-18 23:02:19
  * @Description: 数据类型定义
  */
 
@@ -47,11 +47,14 @@ export type CategoryInfo = {
 
 export type BlogInfo = {
   id: string
+  slug: string
   title: string
-  content: string
   introduction: string
+  content: string
+  author: string
   create_time: string
   last_edited_time: string
+  word_count: number
   reading_time: number
   image_url: string
   category_id: BlogCategory

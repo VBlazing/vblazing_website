@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-11 21:24:10
+ * @LastEditTime: 2025-11-18 23:01:22
  * @Description: 获取页面数据
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -92,7 +92,7 @@ export async function fetchBlogList({
 
   try {
     const list = await sql<BlogInfo[]>`
-      SELECT * FROM blog_with_labels
+      SELECT * FROM post_with_labels
       WHERE TRUE
       ${search
         ? sql`
@@ -107,9 +107,9 @@ export async function fetchBlogList({
       ${labels
         ? sql`
           AND id IN (
-            SELECT DISTINCT b.id FROM blogs b
-            LEFT JOIN blog_labels bl ON b.id = bl.blog_id
-            WHERE bl.label_id IN ${sql(labels)}
+            SELECT DISTINCT p.id FROM posts p
+            LEFT JOIN post_labels pl ON p.id = pl.post_id
+            WHERE pl.label_id IN ${sql(labels)}
           )
         `
         : sql``}
@@ -122,7 +122,7 @@ export async function fetchBlogList({
     `
     return list
   } catch (e: any) {
-    throw new Error('Failed to fetch blog: ' + e.message);
+    throw new Error('Failed to fetch post: ' + e.message);
   }
 }
 
@@ -158,7 +158,7 @@ export const fetchPublishedBlogTotal = unstable_cache(
   async () => {
     try {
       const result = await sql<{ count: number }[]>`
-        SELECT COUNT(*) FROM blog_with_labels
+        SELECT COUNT(*) FROM post_with_labels
         WHERE state = ${BLOG_STATE.PUBLISHED}
       `
       return result?.[0]?.count
@@ -174,12 +174,12 @@ export const fetchPublishedBlogTotal = unstable_cache(
  * @return {BlogInfo} 博客详情
  */
 export const fetchPublishedBlogDetail = unstable_cache(
-  cache(async (id: string) => {
+  cache(async (slug: string) => {
     try {
       const result = await sql<BlogInfo[]>`
-        SELECT * FROM blog_with_labels
+        SELECT * FROM post_with_labels
         WHERE state = ${BLOG_STATE.PUBLISHED}
-        AND id = ${id}
+        AND slug = ${slug}
       `
       return result?.[0]
     } catch (e: any) {
