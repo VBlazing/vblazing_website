@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-11 12:38:53
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-12 13:42:27
+ * @LastEditTime: 2025-11-18 23:13:09
  * @Description: 博客详情页面
  */
 import type { Metadata, ResolvingMetadata } from "next";
@@ -30,7 +30,7 @@ import {
 export async function generateStaticParams() {
   const blogList = (await fetchPublishedBlogList()) ?? [];
   const staticParams = blogList?.map((post) => {
-    return routing.locales.map((locale) => ({ slug: post.id, locale }));
+    return routing.locales.map((locale) => ({ slug: post.slug, locale }));
   });
   return staticParams.flat();
 }
