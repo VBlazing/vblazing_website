@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-18 23:33:51
+ * @LastEditTime: 2025-11-19 11:47:35
  * @Description: 获取页面数据
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -234,4 +234,24 @@ export const fetchAboutInfo = async () => {
     },
     [locale],
   )()
+}
+
+
+// -------------------- Upload ------------------------
+
+/**
+ * @description 新增文章
+ * @param { Omit<PostInfo, 'id' | 'is_featured' | 'labels'> } data 新增的文章
+ * @returns null
+ */
+export const AddPost = async (data: Omit<PostInfo, 'id' | 'is_featured' | 'labels'>) => {
+  try {
+    const result = await sql`
+      INSERT INTO posts ${sql(data, 'slug', 'title', 'introduction', 'content', 'author', 'create_time', 'last_edited_time', 'word_count', 'reading_time', 'image_url', 'category_id', 'state')
+      }
+    `
+    return result
+  } catch (e: any) {
+    throw new Error('Failed to add post: ' + e.message);
+  }
 }
