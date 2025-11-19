@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-11 20:35:11
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-11 18:08:46
+ * @LastEditTime: 2025-11-19 15:50:21
  * @Description:
  */
 "use client";
@@ -57,12 +57,12 @@ export function DetailHeader({ post_info }: IDetailHeaderProps) {
   };
 
   return (
-    <div className="w-full px-6 py-8 sm:px-8">
+    <div className="w-full px-6 pt-8 sm:px-8">
       {/* Post Header */}
       <div>
         {/* Title */}
         <div className="mb-6 flex items-center justify-between space-x-10">
-          <h1 className="text-main-title text-2xl leading-tight md:text-4xl lg:text-5xl">
+          <h1 className="text-main-title text-3xl leading-tight font-medium md:text-4xl lg:text-5xl">
             {post_info.title}
           </h1>
           <Button
@@ -95,7 +95,7 @@ export function DetailHeader({ post_info }: IDetailHeaderProps) {
 
         {/* Excerpt */}
         {post_info.introduction && (
-          <p className="text-main-text mb-8 max-w-3xl text-base leading-relaxed italic sm:text-xl">
+          <p className="text-main-text max-w-3xl text-base leading-relaxed italic sm:text-xl">
             {post_info.introduction}
           </p>
         )}

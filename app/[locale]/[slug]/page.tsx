@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-11 12:38:53
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-18 23:27:56
+ * @LastEditTime: 2025-11-19 16:10:19
  * @Description: 博客详情页面
  */
 import type { Metadata, ResolvingMetadata } from "next";
@@ -148,33 +148,31 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
         }}
       />
       <article className="bg-main-content min-h-screen w-full pb-10 sm:pb-16">
-        <div className="mx-auto w-full max-w-4xl">
+        <div className="mx-auto w-full max-w-4xl space-y-8">
           {/* Header */}
           <DetailHeader post_info={post_list_with_category_name[0]} />
 
           {/* Featured Image */}
           {post_info.image_url && (
-            <div className="w-full">
-              <motion.div
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="relative w-full"
-              >
-                <Image
-                  src={post_info.image_url}
-                  alt={post_info.title}
-                  width={800}
-                  height={400}
-                  className="w-full"
-                />
-              </motion.div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative sm:px-8"
+            >
+              <Image
+                src={post_info.image_url}
+                alt={post_info.title}
+                width={800}
+                height={400}
+                className="w-full"
+              />
+            </motion.div>
           )}
 
           {/* Content */}
-          <div className="px-6 py-16 pt-8 sm:px-8">
-            <div className="text-main-text prose dark:prose-invert">
+          <div className="px-6 pb-16 sm:px-8">
+            <div className="text-main-text prose dark:prose-invert [&_h2]:text-main-title [&_h3]:text-main-title [&_strong]:text-main-title min-w-full">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeRaw, rehypeHighlight]}
