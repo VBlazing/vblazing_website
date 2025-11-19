@@ -1,0 +1,20 @@
+INSERT INTO blog_labels
+VALUES
+	('2abb6c10-ed02-436f-b71a-ae9bcce95ec9', 'book'),
+	('2abb6c10-ed02-436f-b71a-ae9bcce95ec9', 'habits'),
+	('2abb6c10-ed02-436f-b71a-ae9bcce95ec9', '分析'),
+	('2abb6c10-ed02-436f-b71a-ae9bcce95ec9', 'yes'),
+	('470e800b-31da-4b76-a88a-aa69f4244221', 'book'),
+	('470e800b-31da-4b76-a88a-aa69f4244221', '热点'),
+	('5edabd41-d3b3-42f4-8a69-88fa58998ed8', 'view'),
+	('5edabd41-d3b3-42f4-8a69-88fa58998ed8', 'song'),
+	('64d592ba-855e-4719-8cd0-a0912caa1377', 'music'),
+	('64d592ba-855e-4719-8cd0-a0912caa1377', 'solo travel'),
+	('64d592ba-855e-4719-8cd0-a0912caa1377', '热点'),
+	('64d592ba-855e-4719-8cd0-a0912caa1377', 'test'),
+	('64d592ba-855e-4719-8cd0-a0912caa1377', 'habits'),
+	('796db55b-4300-4e30-97df-c4a219a42c37', 'song'),
+	('7dd349f9-4634-4136-afa9-2595babcc622', 'yes'),
+	('9278e1d9-0f46-465c-a67f-d1becd7d48b4', 'solo travel'),
+	('9bf02610-ea9f-42e2-ba78-6ada0c77c2eb', '分析'),
+	('af5b6a5d-10c4-470d-a1f5-7c6918c50f4c', 'test');
