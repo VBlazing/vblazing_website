@@ -78,7 +78,8 @@
     "share": "Share",
     "cancel_share": "Share canceled",
     "failed_share": "Share Failed",
-    "copy_clipboard": "Copied to clipboard"
+    "copy_clipboard": "Copied to clipboard",
+    "share_success": "Shared successfully"
   },
   "blog": {
     "header": {

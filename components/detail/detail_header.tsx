@@ -7,55 +7,18 @@
  */
 "use client";
 
-import { useState } from "react";
-import { useTranslations } from "next-intl";
-import { toast } from "sonner";
-import { Share2 } from "lucide-react";
 import { PostInfo } from "@/lib/definitions";
-import { Button } from "@/components/ui/button";
 import LabelList from "@/components/common/label_list";
 import CategoryTag from "@/components/common/category_tag";
 import PostDate from "@/components/common/post_date";
 import ReadingTime from "@/components/common/reading_time";
+import { ShareButton } from "@/components/detail/share_button";
 
 interface IDetailHeaderProps {
   post_info: PostInfo & { category_name: string };
 }
 
 export function DetailHeader({ post_info }: IDetailHeaderProps) {
-  const t = useTranslations("detail");
-  const [shareLoading, setShareLoading] = useState(false);
-
-  const handleShare = async () => {
-    if (navigator.share && post_info) {
-      setShareLoading(true);
-      try {
-        await navigator.share({
-          title: post_info.title,
-          text: post_info.introduction,
-          url: window.location.href,
-        });
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (e: any) {
-        // 20 为 DOMException 中的 AbortError，代表用户取消分享
-        if (e.code === 20) {
-          toast.info(t("cancel_share"));
-        } else {
-          toast.warning(t("failed_share"), {
-            richColors: true,
-            description: e.message,
-          });
-        }
-      } finally {
-        setShareLoading(false);
-      }
-    } else {
-      // Fallback: copy URL to clipboard
-      toast.info(t("copy_clipboard"));
-      navigator.clipboard.writeText(window.location.href);
-    }
-  };
-
   return (
     <div className="w-full px-6 pt-8 sm:px-8">
       {/* Post Header */}
@@ -65,16 +28,10 @@ export function DetailHeader({ post_info }: IDetailHeaderProps) {
           <h1 className="text-main-title text-3xl leading-tight font-medium md:text-4xl lg:text-5xl">
             {post_info.title}
           </h1>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleShare}
-            disabled={shareLoading}
+          <ShareButton
+            post={post_info}
             className="flex cursor-pointer items-center space-x-2"
-          >
-            <Share2 />
-            <span>{t("share")}</span>
-          </Button>
+          />
         </div>
 
         {/* Meta Info */}
