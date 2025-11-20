@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-19 11:47:35
+ * @LastEditTime: 2025-11-20 11:08:37
  * @Description: 获取页面数据
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -164,6 +164,7 @@ export const fetchPublishedPostTotal = unstable_cache(
         SELECT COUNT(*) FROM post_with_labels
         WHERE state = ${POST_STATE.PUBLISHED}
       `
+      console.log('result', result)
       return result?.[0]?.count
     } catch (e: any) {
       throw new Error('Failed to fetch post total: ' + e.message);
