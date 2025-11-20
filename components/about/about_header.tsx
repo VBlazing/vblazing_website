@@ -1,3 +1,10 @@
+/*
+ * @Author: VBlazing
+ * @Date: 2025-11-03 16:25:47
+ * @LastEditors: VBlazing
+ * @LastEditTime: 2025-11-20 17:03:08
+ * @Description: about page header
+ */
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
