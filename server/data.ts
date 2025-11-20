@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-20 11:12:33
+ * @LastEditTime: 2025-11-20 12:31:48
  * @Description: 获取页面数据
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -12,6 +12,7 @@ import { unstable_cache } from 'next/cache';
 import { isNotNil } from 'es-toolkit';
 import { AboutInfo, PostFilter, PostInfo, BlogSummary, CategoryInfo, HomeHeroInfo, Pagination } from '@/lib/definitions';
 import { POST_STATE } from '@/lib/const';
+import { normalizeLabels } from '@/lib/utils';
 import { sql } from './client'
 
 /**
@@ -240,16 +241,70 @@ export const fetchAboutInfo = async () => {
 // -------------------- Upload ------------------------
 
 /**
+ * @description: 确认标签是否存在，不存在则新增
+ * @param {string[]} labels 待确认的标签列表
+ * @return {Promise<void>} 无
+ */
+const ensureLabelsExist = async (labels: string[]) => {
+  if (!labels.length) return
+  try {
+    const existing = await sql<{ id: string }[]>`
+      SELECT id FROM labels WHERE id IN ${sql(labels)}
+    `
+    const existingSet = new Set(existing?.map(item => item.id))
+    const newLabels = labels
+      .filter(label => !existingSet.has(label))
+      .map(label => ({ id: label, name: label }))
+    if (newLabels.length) {
+      await sql`
+        INSERT INTO labels ${sql(newLabels, 'id', 'name')}
+      `
+    }
+  } catch (e: any) {
+    throw new Error('Failed to ensure labels: ' + e.message);
+  }
+}
+
+/**
+ * @description: 关联标签和文章，自动新增不存在的标签
+ * @param {string} postId 文章 ID
+ * @param {string[]} labels 标签列表
+ * @return {Promise<void>} 无
+ */
+const attachLabelsToPost = async (postId: string, labels?: string[]) => {
+  const normalizedLabels = normalizeLabels(labels)
+  if (!normalizedLabels.length) return
+  try {
+    await ensureLabelsExist(normalizedLabels)
+    const relations = normalizedLabels.map(label => ({
+      post_id: postId,
+      label_id: label,
+    }))
+    await sql`
+      INSERT INTO post_labels ${sql(relations, 'post_id', 'label_id')}
+      ON CONFLICT (post_id, label_id) DO NOTHING
+    `
+  } catch (e: any) {
+    throw new Error('Failed to attach labels to post: ' + e.message);
+  }
+}
+
+/**
  * @description 新增文章
  * @param { Omit<PostInfo, 'id' | 'is_featured' | 'labels'> } data 新增的文章
  * @returns null
  */
-export const AddPost = async (data: Omit<PostInfo, 'id' | 'is_featured' | 'labels'>) => {
+export const AddPost = async (data: Omit<PostInfo, 'id' | 'is_featured'>) => {
   try {
+    const { labels, ...postData } = data
     const result = await sql`
-      INSERT INTO posts ${sql(data, 'slug', 'title', 'introduction', 'content', 'author', 'create_time', 'last_edited_time', 'word_count', 'reading_time', 'image_url', 'category_id', 'state')
-      }
+      INSERT INTO posts ${sql(postData, 'slug', 'title', 'introduction', 'content', 'author', 'create_time', 'last_edited_time', 'word_count', 'reading_time', 'image_url', 'category_id', 'state')}
+      RETURNING id
     `
+    const postId = result?.[0]?.id
+    if (postId && labels?.length) {
+      await attachLabelsToPost(postId, labels)
+    }
     return result
   } catch (e: any) {
     throw new Error('Failed to add post: ' + e.message);

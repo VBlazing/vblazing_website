@@ -36,3 +36,16 @@ export const delay = (time: number) => {
 export const throwError = () => {
   throw new Error('database error')
 }
+
+/**
+ * @description: 过滤标签列表（去除空值并去重）
+ * @param {string[]} labels 标签列表
+ * @return {string[]} 处理后的标签列表
+ */
+export const normalizeLabels = (labels?: string[]) => {
+  if (!labels?.length) return []
+  const normalized = labels
+    .map(label => label?.trim())
+    .filter((label): label is string => Boolean(label))
+  return Array.from(new Set(normalized))
+}
