@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-19 19:18:50
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-11 20:33:32
+ * @LastEditTime: 2025-11-21 12:50:08
  * @Description: 关于我页面
  */
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -28,7 +28,7 @@ export async function generateMetadata({
   return {
     title: t("about"),
     alternates: {
-      canonical: getUrl("/about", LOCALE_CODE.ZH),
+      canonical: getUrl("/about", locale as LOCALE_CODE),
       languages: {
         en: getUrl("/about", LOCALE_CODE.EN),
         zh: getUrl("/about", LOCALE_CODE.ZH),

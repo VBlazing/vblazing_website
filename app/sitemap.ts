@@ -2,20 +2,22 @@
  * @Author: VBlazing
  * @Date: 2025-11-10 17:13:42
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-18 23:03:54
+ * @LastEditTime: 2025-11-21 13:02:29
  * @Description: sitemap 站点地图
  */
 import { MetadataRoute } from 'next';
 import { getUrl } from '@/lib/i18n/navigation';
-import { HOST, LOCALE_CODE } from '@/lib/const';
+import { LOCALE_CODE } from '@/lib/const';
 import { fetchPublishedPostList } from '@/server/data';
 import { getPostPath } from '@/lib/navigate';
+import { routing } from '@/lib/i18n/routing';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const localeList = routing.locales
   const postList = await fetchPublishedPostList() ?? []
 
   const postSiteUrl: MetadataRoute.Sitemap = postList?.map(item => ({
-    url: HOST + getPostPath(item.slug),
+    url: getPostPath(item.slug),
     lastModified: new Date(item.last_edited_time),
     changeFrequency: 'weekly',
     priority: 0.9,
@@ -27,9 +29,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }))
 
-  return [
+  // 单语言下的所有页面
+  const singleLocalePageList: MetadataRoute.Sitemap = [
     {
-      url: HOST,
+      url: '/',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -41,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }
     },
     {
-      url: HOST + '/blog',
+      url: '/blog',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -53,7 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }
     },
     {
-      url: HOST + '/about',
+      url: '/about',
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.5,
@@ -66,4 +69,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...postSiteUrl,
   ];
+
+  // 添加不同语言
+  const pageList = localeList.flatMap(locale => {
+    return singleLocalePageList.map(page => ({
+      ...page,
+      url: getUrl(page.url, locale)
+    }))
+  })
+
+  return pageList
 }

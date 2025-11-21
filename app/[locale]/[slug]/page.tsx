@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-11 12:38:53
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-21 11:16:39
+ * @LastEditTime: 2025-11-21 12:50:13
  * @Description: 博客详情页面
  */
 import type { Metadata, ResolvingMetadata } from "next";
@@ -74,7 +74,7 @@ export async function generateMetadata(
     },
     description: introduction,
     alternates: {
-      canonical: getUrl(getPostPath(id), LOCALE_CODE.ZH),
+      canonical: getUrl(getPostPath(id), locale as LOCALE_CODE),
       languages: {
         en: getUrl(getPostPath(id), LOCALE_CODE.EN),
         zh: getUrl(getPostPath(id), LOCALE_CODE.ZH),

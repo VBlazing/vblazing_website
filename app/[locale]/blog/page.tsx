@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 17:54:37
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-18 23:37:27
+ * @LastEditTime: 2025-11-21 12:49:46
  * @Description: 博客页面
  */
 import { Suspense } from "react";
@@ -38,7 +38,7 @@ export async function generateMetadata({
   return {
     title: t("doc"),
     alternates: {
-      canonical: getUrl("/blog", LOCALE_CODE.ZH),
+      canonical: getUrl("/blog", locale as LOCALE_CODE),
       languages: {
         en: getUrl("/blog", LOCALE_CODE.EN),
         zh: getUrl("/blog", LOCALE_CODE.ZH),
