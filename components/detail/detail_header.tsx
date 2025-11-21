@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-11 20:35:11
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-20 14:51:25
+ * @LastEditTime: 2025-11-21 10:21:58
  * @Description:
  */
 "use client";
@@ -58,7 +58,7 @@ export function DetailHeader({ post_info }: IDetailHeaderProps) {
         )}
 
         {/* Share Button */}
-        {!!post_info.labels.length && (
+        {!!post_info.labels?.length && (
           <div className="mt-4 flex flex-wrap gap-2">
             <LabelList
               labels={post_info.labels}
