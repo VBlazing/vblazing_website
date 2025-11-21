@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-10-11 12:38:53
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-19 16:10:19
+ * @LastEditTime: 2025-11-21 09:54:02
  * @Description: 博客详情页面
  */
 import type { Metadata, ResolvingMetadata } from "next";
@@ -182,6 +182,18 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
                       <aside
                         {...props}
                         className="flex gap-2 rounded-xl bg-[#edf1f6] p-4 dark:bg-[#30302e] [&_p]:my-0"
+                      />
+                    );
+                  },
+                  // 正文中的图片也使用 next/image 优化
+                  img(props) {
+                    return (
+                      <Image
+                        width={600}
+                        height={400}
+                        className="object-contain"
+                        alt={props.alt || `${post_info.slug}-img`}
+                        src={props.src as string}
                       />
                     );
                   },
