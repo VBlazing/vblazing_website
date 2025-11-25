@@ -2,7 +2,7 @@
  * @Author: vblazing
  * @Date: 2025-09-20 22:50:58
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-11-25 14:05:45
+ * @LastEditTime: 2025-11-25 14:18:42
  * @Description: 获取页面数据
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -178,7 +178,7 @@ export const fetchPublishedPostTotal = unstable_cache(
  * @description: 获取博客详情
  * @return {PostInfo} 博客详情
  */
-export const fetchPublishedPostDetail = unstable_cache(
+export const fetchPublishedPostDetail =
   cache(async (slug: string) => {
     try {
       const result = await sql<PostInfo[]>`
@@ -191,9 +191,7 @@ export const fetchPublishedPostDetail = unstable_cache(
     } catch (e: any) {
       throw new Error('Failed to fetch post: ' + e.message);
     }
-  }),
-  []
-)
+  })
 
 /**
  * @description: 获取博客概览信息
