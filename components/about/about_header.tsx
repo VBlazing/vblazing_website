@@ -38,6 +38,7 @@ export default function AboutHeader({ about_info }: { about_info: AboutInfo }) {
                   src={about_info.avatar}
                   alt="avatar"
                   className="rounded-full"
+                  unoptimized
                 />
               ) : (
                 <span className="text-4xl font-light text-slate-600">👋</span>

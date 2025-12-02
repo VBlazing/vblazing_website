@@ -166,6 +166,7 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
                 width={800}
                 height={400}
                 className="w-full"
+                unoptimized
               />
             </motion.div>
           )}

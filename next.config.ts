@@ -22,6 +22,8 @@ const nextConfig: NextConfig = {
       // bucket
       hostname: 'vblazing-blog-1253367486.cos.accelerate.myqcloud.com'
     }],
+    // 允许
+    dangerouslyAllowLocalIP: true,
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

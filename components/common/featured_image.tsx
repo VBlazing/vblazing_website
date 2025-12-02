@@ -31,6 +31,7 @@ export default function FeaturedImage({
           width={800}
           height={400}
           className="h-full w-full object-cover"
+          unoptimized
         />
       ) : (
         <div className="flex h-full w-full items-center justify-center">
