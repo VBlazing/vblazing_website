@@ -5,7 +5,6 @@
  * @LastEditTime: 2025-11-25 14:18:42
  * @Description: 获取页面数据
  */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cache } from 'react';
 import { getLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
@@ -13,6 +12,7 @@ import { isNotNil } from 'es-toolkit';
 import { AboutInfo, PostFilter, PostInfo, BlogSummary, CategoryInfo, HomeHeroInfo, Pagination } from '@/lib/definitions';
 import { POST_STATE } from '@/lib/const';
 import { normalizeLabels } from '@/lib/utils';
+import { parseError } from '@/lib/error';
 import { sql } from './client'
 
 /**
@@ -29,8 +29,8 @@ export const fetchCategoryList = async () => {
           WHERE locale = ${locale}
         `
         return list
-      } catch (e: any) {
-        throw new Error('Failed to fetch category: ' + e.message);
+      } catch (error) {
+        throw new Error('Failed to fetch category: ' + parseError(error).message);
       }
     },
     [locale],
@@ -46,8 +46,8 @@ export const fetchLabelList = unstable_cache(
     try {
       const list = await sql<{ id: string }[]>`SELECT id FROM labels`
       return list?.map(item => item.id)
-    } catch (e: any) {
-      throw new Error('Failed to fetch labels: ' + e.message);
+    } catch (error) {
+      throw new Error('Failed to fetch labels: ' + parseError(error).message);
     }
   },
   [],
@@ -67,8 +67,8 @@ export const fetchHomeHeroInfo = async () => {
           WHERE locale = ${locale}
         `
         return result?.[0]
-      } catch (e: any) {
-        throw new Error('Failed to fetch home info: ' + e.message);
+      } catch (error) {
+        throw new Error('Failed to fetch home info: ' + parseError(error).message);
       }
     },
     [locale],
@@ -122,8 +122,8 @@ export async function fetchPostList({
       }
     `
     return list
-  } catch (e: any) {
-    throw new Error('Failed to fetch post: ' + e.message);
+  } catch (error) {
+    throw new Error('Failed to fetch post: ' + parseError(error).message);
   }
 }
 
@@ -167,8 +167,8 @@ export const fetchPublishedPostTotal = unstable_cache(
       `
       console.log('result: ', result)
       return result?.[0]?.count
-    } catch (e: any) {
-      throw new Error('Failed to fetch post total: ' + e.message);
+    } catch (error) {
+      throw new Error('Failed to fetch post total: ' + parseError(error).message);
     }
   },
   [],
@@ -186,10 +186,9 @@ export const fetchPublishedPostDetail =
         WHERE state = ${POST_STATE.PUBLISHED}
         AND slug = ${slug}
       `
-      console.log('result: ', result)
       return result?.[0]
-    } catch (e: any) {
-      throw new Error('Failed to fetch post: ' + e.message);
+    } catch (error) {
+      throw new Error('Failed to fetch post: ' + parseError(error).message);
     }
   })
 
@@ -207,8 +206,8 @@ export const fetchBlogSummaries = async () => {
           WHERE locale = ${locale}
         `
         return result
-      } catch (e: any) {
-        throw new Error('Failed to fetch blog summaries: ' + e.message);
+      } catch (error) {
+        throw new Error('Failed to fetch blog summaries: ' + parseError(error).message);
       }
     },
     [locale],
@@ -229,8 +228,8 @@ export const fetchAboutInfo = async () => {
           WHERE locale = ${locale}
         `
         return result[0]
-      } catch (e: any) {
-        throw new Error('Failed to fetch about info: ' + e.message);
+      } catch (error) {
+        throw new Error('Failed to fetch about info: ' + parseError(error).message);
       }
     },
     [locale],
@@ -260,8 +259,8 @@ const ensureLabelsExist = async (labels: string[]) => {
         INSERT INTO labels ${sql(newLabels, 'id', 'name')}
       `
     }
-  } catch (e: any) {
-    throw new Error('Failed to ensure labels: ' + e.message);
+  } catch (error) {
+    throw new Error('Failed to ensure labels: ' + parseError(error).message);
   }
 }
 
@@ -284,8 +283,8 @@ const attachLabelsToPost = async (postId: string, labels?: string[]) => {
       INSERT INTO post_labels ${sql(relations, 'post_id', 'label_id')}
       ON CONFLICT (post_id, label_id) DO NOTHING
     `
-  } catch (e: any) {
-    throw new Error('Failed to attach labels to post: ' + e.message);
+  } catch (error) {
+    throw new Error('Failed to attach labels to post: ' + parseError(error).message);
   }
 }
 
@@ -306,7 +305,7 @@ export const AddPost = async (data: Omit<PostInfo, 'id' | 'is_featured'>) => {
       await attachLabelsToPost(postId, labels)
     }
     return result
-  } catch (e: any) {
-    throw new Error('Failed to add post: ' + e.message);
+  } catch (error) {
+    throw new Error('Failed to add post: ' + parseError(error).message);
   }
 }

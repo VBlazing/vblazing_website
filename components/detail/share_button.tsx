@@ -58,14 +58,15 @@ export function ShareButton({
           url: shareUrl,
         });
         toast.success(t("share_success"));
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (e: any) {
-        if (e?.code === 20) {
+      } catch (error) {
+        const isAborted =
+          error instanceof DOMException ? error.code === 20 : false;
+        if (isAborted) {
           toast.info(t("cancel_share"));
         } else {
           toast.warning(t("failed_share"), {
             richColors: true,
-            description: e?.message,
+            description: error instanceof Error ? error.message : undefined,
           });
         }
       } finally {
