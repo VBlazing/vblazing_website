@@ -47,7 +47,7 @@ INSERT INTO about_me
 VALUES
 	('en', 'https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/avatar_200x200.png', 'Hello, I''m Blazer', 'Dedicated to becoming a freelance developer who provides value to others, sharing thoughts on technology, life, and everything in between', '### Who am I
 
-Front-end developer, AI enthusiast, a knowledge-hungry daydreamer, a chronic victim of short-lived passions (working on recovery), and a fitness lover.
+Front-end developer, AI enthusiast, a knowledge-hungry, and a fitness lover.
 
 ### What am I supposed to do here
 
@@ -55,11 +55,11 @@ Front-end developer, AI enthusiast, a knowledge-hungry daydreamer, a chronic vic
 - Record creative ideas and showcase personal projects
 - Document personal plans
 - Share interesting stories from travels
-- Gain exposure and let more people get to know me
+- Let more people get to know me
 - Offer small bits of value to those who stumble upon this site, contribute a little light to the internet, and leave behind some traces of myself', '{"technology", "finance", "movie", "fitness", "swimming", "books", "Intense competition"}'),
 	('zh', 'https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/avatar_200x200.png', '你好陌生人，叫我布雷泽', '致力于成为一名能为他人提供价值的自由开发者，分享对科技、生活以及一切事物的看法～', '### 我是谁
 
-前端开发工程师、AI 技术追随者、对知识足够贪心喜欢胡思乱想的一个人、三分钟热度重度患者（在努力治愈自己）、健身爱好者
+前端开发工程师、AI 技术追随者、对知识足够贪婪、健身爱好者
 
 ### 在这里要做什么
 
@@ -67,6 +67,6 @@ Front-end developer, AI enthusiast, a knowledge-hungry daydreamer, a chronic vic
 - 记录自己的脑洞、展示自己的产品
 - 记录个人规划
 - 搬运旅途中的趣事
-- 赚取流量，希望大家认识我
+- 希望大家认识我
 - 为不小心点进网站的人提供一些微不足道的价值，为互联网发光发热，为自己留下一些痕迹', '{"科技", "金融", "电影", "健身", "游泳", "书籍", "激烈的比赛"}');
 	
