@@ -35,7 +35,7 @@ export default function FeaturedImage({
         />
       ) : (
         <div className="flex h-full w-full items-center justify-center">
-          <span className="text-4xl font-light text-slate-400 dark:text-[#cbd5e1]">
+          <span className="p-6 text-4xl font-light text-slate-400 dark:text-[#cbd5e1]">
             {title}
           </span>
         </div>
