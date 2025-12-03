@@ -167,6 +167,8 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
                 height={400}
                 className="w-full"
                 unoptimized
+                // for Largest Contentful Paint
+                loading="eager"
               />
             </motion.div>
           )}

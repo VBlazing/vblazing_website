@@ -39,6 +39,8 @@ export default function AboutHeader({ about_info }: { about_info: AboutInfo }) {
                   alt="avatar"
                   className="rounded-full"
                   unoptimized
+                  // for Largest Contentful Paint
+                  loading="eager"
                 />
               ) : (
                 <span className="text-4xl font-light text-slate-600">👋</span>
