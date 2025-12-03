@@ -17,6 +17,18 @@ export const HOST = 'https://blog.vblazing.com'
 // `所有`的id
 export const ALL = -1
 
+// cache tag
+export const CACHE_CATEGORY_LIST = 'cache_category_list'
+export const CACHE_LABEL_LIST = 'cache_label_list'
+export const CACHE_HOME_HERO_INFO = 'cache_home_hero_info'
+export const CACHE_PUBLISHED_POST_LIST = 'cache_published_post_list'
+export const CACHE_PUBLISHED_POST = 'cache_published_post'
+export const CACHE_BLOG_SUMMARY = 'cache_blog_summary'
+export const CACHE_ABOUT_INFO = 'cache_about_info'
+
+
+
+
 // 博客状态
 export const POST_STATE: Record<PostStateKey, PostState> = {
   DRAFT: 1,

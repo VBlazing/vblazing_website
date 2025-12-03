@@ -7,10 +7,10 @@
  */
 import { cache } from 'react';
 import { getLocale } from 'next-intl/server';
-import { unstable_cache } from 'next/cache';
+import { cacheTag, revalidateTag } from 'next/cache';
 import { isNotNil } from 'es-toolkit';
 import { AboutInfo, PostFilter, PostInfo, BlogSummary, CategoryInfo, HomeHeroInfo, Pagination } from '@/lib/definitions';
-import { POST_STATE } from '@/lib/const';
+import { CACHE_ABOUT_INFO, CACHE_BLOG_SUMMARY, CACHE_CATEGORY_LIST, CACHE_HOME_HERO_INFO, CACHE_LABEL_LIST, CACHE_PUBLISHED_POST, CACHE_PUBLISHED_POST_LIST, POST_STATE } from '@/lib/const';
 import { normalizeLabels } from '@/lib/utils';
 import { parseError } from '@/lib/error';
 import { sql } from './client'
@@ -19,60 +19,62 @@ import { sql } from './client'
  * @description: 获取博客类型列表
  * @return {CategoryInfo[]} 博客类型列表
  */
+const fetchCategoryListImpl = async ({ locale }: { locale: string }) => {
+  'use cache'
+  cacheTag(CACHE_CATEGORY_LIST)
+
+  try {
+    const list = await sql<CategoryInfo[]>`
+      SELECT category_id AS id, name FROM category_locales
+      WHERE locale = ${locale}
+    `
+    return list
+  } catch (error) {
+    throw new Error('Failed to fetch category: ' + parseError(error).message);
+  }
+}
 export const fetchCategoryList = async () => {
   const locale = await getLocale()
-  return unstable_cache(
-    async () => {
-      try {
-        const list = await sql<CategoryInfo[]>`
-          SELECT category_id AS id, name FROM category_locales
-          WHERE locale = ${locale}
-        `
-        return list
-      } catch (error) {
-        throw new Error('Failed to fetch category: ' + parseError(error).message);
-      }
-    },
-    [locale],
-  )()
+  return await fetchCategoryListImpl({ locale })
 }
 
 /**
  * @description: 获取博客标签列表
  * @return {string[]} 博客标签列表
  */
-export const fetchLabelList = unstable_cache(
-  async () => {
-    try {
-      const list = await sql<{ id: string }[]>`SELECT id FROM labels`
-      return list?.map(item => item.id)
-    } catch (error) {
-      throw new Error('Failed to fetch labels: ' + parseError(error).message);
-    }
-  },
-  [],
-)
+export const fetchLabelList = async () => {
+  'use cache'
+  cacheTag(CACHE_LABEL_LIST)
+
+  try {
+    const list = await sql<{ id: string }[]>`SELECT id FROM labels`
+    return list?.map(item => item.id)
+  } catch (error) {
+    throw new Error('Failed to fetch labels: ' + parseError(error).message);
+  }
+}
 
 /**
  * @description: 获取主页简介数据
  * @return {HomeHeroInfo} 主页简介数据
  */
+const fetchHomeHeroInfoImpl = async ({ locale }: { locale: string }) => {
+  'use cache'
+  cacheTag(CACHE_HOME_HERO_INFO)
+
+  try {
+    const result = await sql<HomeHeroInfo[]>`
+        SELECT welcome, title, subtitle FROM home_info
+        WHERE locale = ${locale}
+      `
+    return result?.[0]
+  } catch (error) {
+    throw new Error('Failed to fetch home info: ' + parseError(error).message);
+  }
+}
 export const fetchHomeHeroInfo = async () => {
   const locale = await getLocale()
-  return unstable_cache(
-    async () => {
-      try {
-        const result = await sql<HomeHeroInfo[]>`
-          SELECT welcome, title, subtitle FROM home_info
-          WHERE locale = ${locale}
-        `
-        return result?.[0]
-      } catch (error) {
-        throw new Error('Failed to fetch home info: ' + parseError(error).message);
-      }
-    },
-    [locale],
-  )()
+  return await fetchHomeHeroInfoImpl({ locale })
 }
 
 /**
@@ -133,46 +135,42 @@ export async function fetchPostList({
  * @param {PostFilter} filter 过滤条件
  * @return {PostInfo[]} 博客列表
  */
-export const fetchPublishedPostList = unstable_cache(
-  (query?: {
-    pagination?: Pagination
-    filter?: PostFilter
-  }) => {
-    const { filter } = query ?? {}
-    const queryWithState = {
-      ...query,
-      filter: {
-        ...filter,
-        state: filter?.state?.length ? filter.state : [POST_STATE.PUBLISHED]
-      }
+export const fetchPublishedPostList = async (query?: {
+  pagination?: Pagination
+  filter?: PostFilter
+}) => {
+  'use cache'
+  cacheTag(CACHE_PUBLISHED_POST_LIST)
+
+  const { filter } = query ?? {}
+  const queryWithState = {
+    ...query,
+    filter: {
+      ...filter,
+      state: filter?.state?.length ? filter.state : [POST_STATE.PUBLISHED]
     }
-    return fetchPostList(queryWithState)
-  },
-  [],
-  {
-    revalidate: 60,
   }
-)
+  return fetchPostList(queryWithState)
+}
 
 /**
  * @description: 获取已发布博客数量
  * @return {number} 已发布博客数量
  */
-export const fetchPublishedPostTotal = unstable_cache(
-  async () => {
-    try {
-      const result = await sql<{ count: number }[]>`
+export const fetchPublishedPostTotal = async () => {
+  'use cache'
+  cacheTag(CACHE_PUBLISHED_POST_LIST)
+
+  try {
+    const result = await sql<{ count: number }[]>`
         SELECT COUNT(*) FROM post_with_labels
         WHERE state = ${POST_STATE.PUBLISHED}
       `
-      console.log('result: ', result)
-      return result?.[0]?.count
-    } catch (error) {
-      throw new Error('Failed to fetch post total: ' + parseError(error).message);
-    }
-  },
-  [],
-)
+    return result?.[0]?.count
+  } catch (error) {
+    throw new Error('Failed to fetch post total: ' + parseError(error).message);
+  }
+}
 
 /**
  * @description: 获取博客详情
@@ -180,6 +178,9 @@ export const fetchPublishedPostTotal = unstable_cache(
  */
 export const fetchPublishedPostDetail =
   cache(async (slug: string) => {
+    'use cache'
+    cacheTag(CACHE_PUBLISHED_POST)
+
     try {
       const result = await sql<PostInfo[]>`
         SELECT * FROM post_with_labels
@@ -196,45 +197,48 @@ export const fetchPublishedPostDetail =
  * @description: 获取博客概览信息
  * @return {BlogSummary[]} 博客概览信息
  */
+export const fetchBlogSummariesImpl = async ({ locale }: { locale: string }) => {
+  'use cache'
+  cacheTag(CACHE_BLOG_SUMMARY)
+
+  try {
+    const result = await sql<BlogSummary[]>`
+      SELECT title, content FROM blog_summaries
+      WHERE locale = ${locale}
+    `
+    return result
+  } catch (error) {
+    throw new Error('Failed to fetch blog summaries: ' + parseError(error).message);
+  }
+}
 export const fetchBlogSummaries = async () => {
   const locale = await getLocale()
-  return unstable_cache(
-    async () => {
-      try {
-        const result = await sql<BlogSummary[]>`
-          SELECT title, content FROM blog_summaries
-          WHERE locale = ${locale}
-        `
-        return result
-      } catch (error) {
-        throw new Error('Failed to fetch blog summaries: ' + parseError(error).message);
-      }
-    },
-    [locale],
-  )()
+  return await fetchBlogSummariesImpl({ locale })
 }
 
 /**
  * @description: 获取关于我信息
  * @return {AboutInfo[]} 关于我信息
  */
+export const fetchAboutInfoImpl = async ({ locale }: { locale: string }) => {
+  'use cache'
+  cacheTag(CACHE_ABOUT_INFO)
+
+  try {
+    const result = await sql<AboutInfo[]>`
+      SELECT avatar, title, subtitle, story, interests FROM about_me
+      WHERE locale = ${locale}
+    `
+    return result[0]
+  } catch (error) {
+    throw new Error('Failed to fetch about info: ' + parseError(error).message);
+  }
+}
 export const fetchAboutInfo = async () => {
   const locale = await getLocale()
-  return unstable_cache(
-    async () => {
-      try {
-        const result = await sql<AboutInfo[]>`
-          SELECT avatar, title, subtitle, story, interests FROM about_me
-          WHERE locale = ${locale}
-        `
-        return result[0]
-      } catch (error) {
-        throw new Error('Failed to fetch about info: ' + parseError(error).message);
-      }
-    },
-    [locale],
-  )()
+  return await fetchAboutInfoImpl({ locale })
 }
+
 
 
 // -------------------- Upload ------------------------
@@ -259,6 +263,7 @@ const ensureLabelsExist = async (labels: string[]) => {
         INSERT INTO labels ${sql(newLabels, 'id', 'name')}
       `
     }
+    revalidateTag(CACHE_LABEL_LIST, 'max')
   } catch (error) {
     throw new Error('Failed to ensure labels: ' + parseError(error).message);
   }
@@ -304,6 +309,7 @@ export const AddPost = async (data: Omit<PostInfo, 'id' | 'is_featured'>) => {
     if (postId && labels?.length) {
       await attachLabelsToPost(postId, labels)
     }
+    revalidateTag(CACHE_PUBLISHED_POST_LIST, 'max')
     return result
   } catch (error) {
     throw new Error('Failed to add post: ' + parseError(error).message);

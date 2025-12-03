@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Settings as SettingsIcon } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,6 @@ import {
 } from "@/components/ui/popover";
 import { SettingsType } from "@/lib/definitions";
 import { setSettings } from "@/lib/settings";
-import { useTranslations } from "next-intl";
 
 export default function Settings({
   defaultValue,
