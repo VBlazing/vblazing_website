@@ -10,6 +10,11 @@ import { getRequestConfig } from 'next-intl/server';
 import { hasLocale } from 'next-intl';
 import { routing } from '@/lib/i18n/routing';
 
+const timezone = {
+  zh: 'Asia/Shanghai',
+  en: 'America/New_York'
+}
+
 export default getRequestConfig(async ({ requestLocale }) => {
   // Typically corresponds to the `[locale]` segment
   const requested = await requestLocale;
@@ -21,6 +26,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   return {
     locale,
-    messages: messages.default
+    messages: messages.default,
+    timeZone: timezone[locale]
   };
 });

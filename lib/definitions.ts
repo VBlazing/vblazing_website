@@ -52,8 +52,8 @@ export type PostInfo = {
   introduction: string
   content: string
   author: string
-  create_time: string
-  last_edited_time: string
+  create_time: Date
+  last_edited_time: Date
   word_count: number
   reading_time: number
   image_url: string

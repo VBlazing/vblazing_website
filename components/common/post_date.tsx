@@ -13,12 +13,12 @@ export default function PostDate({
   date,
   className,
 }: {
-  date: string;
+  date: Date;
   className?: string;
 }) {
   const format = useFormatter();
   console.log("date", date);
-  console.log("sdd", new Date(date), format.dateTime(new Date(date)));
+
   if (!date) {
     return null;
   }
@@ -28,7 +28,7 @@ export default function PostDate({
     >
       <Calendar />
       <span>
-        {format.dateTime(new Date(date), {
+        {format.dateTime(date, {
           year: "numeric",
           month: "short",
           day: "numeric",
