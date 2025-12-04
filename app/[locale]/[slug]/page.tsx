@@ -150,7 +150,7 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
       <article className="bg-main-content min-h-screen w-full pb-10 sm:pb-16">
         <div className="mx-auto w-full max-w-4xl space-y-8">
           {/* Header */}
-          <DetailHeader post_info={post_list_with_category_name[0]} />
+          {/* <DetailHeader post_info={post_list_with_category_name[0]} /> */}
 
           {/* Featured Image */}
           {post_info.image_url && (
