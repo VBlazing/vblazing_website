@@ -17,6 +17,8 @@ export default function PostDate({
   className?: string;
 }) {
   const format = useFormatter();
+  console.log("date", date);
+  console.log("sdd", new Date(date), format.dateTime(new Date(date)));
   if (!date) {
     return null;
   }
