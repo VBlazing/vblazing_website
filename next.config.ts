@@ -13,9 +13,6 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     remotePatterns: [{
-      // 图库
-      hostname: 'images.unsplash.com',
-    }, {
       // simple icons
       // links: https://simpleicons.org/
       hostname: 'cdn.simpleicons.org',
@@ -28,15 +25,7 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-  },
-  productionBrowserSourceMaps: true, // 开启 Source Map，便于在浏览器定位源码
-  webpack: (config, { dev }) => {
-    if (!dev) {
-      // 强制不压缩 JS，让你能看懂报错的组件名
-      config.optimization.minimize = false;
-    }
-    return config;
-  },
+  }
 };
 
 const withNextIntl = createNextIntlPlugin('./lib//i18n//request.ts')
