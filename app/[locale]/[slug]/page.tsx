@@ -174,7 +174,7 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
           )}
 
           {/* Content */}
-          <div className="px-6 pb-16 sm:px-8">
+          {/* <div className="px-6 pb-16 sm:px-8">
             <div className="text-main-text prose dark:prose-invert [&_h2]:text-main-title [&_h3]:text-main-title [&_strong]:text-main-title min-w-full">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -193,7 +193,7 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
                 {post_info.content}
               </ReactMarkdown>
             </div>
-          </div>
+          </div> */}
         </div>
       </article>
     </>
