@@ -40,10 +40,10 @@ export function DetailHeader({ post_info }: IDetailHeaderProps) {
             category={post_info.category_name}
             className="dark:bg-background bg-[#edf1f6] font-medium opacity-100"
           />
-          <PostDate
+          {/* <PostDate
             date={post_info.last_edited_time}
             className="text-main-text sm:font-medium [&_svg]:size-4"
-          />
+          /> */}
           <ReadingTime
             time={post_info.reading_time}
             className="text-main-text sm:font-medium [&_svg]:size-4"

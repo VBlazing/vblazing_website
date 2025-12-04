@@ -150,7 +150,7 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
       <article className="bg-main-content min-h-screen w-full pb-10 sm:pb-16">
         <div className="mx-auto w-full max-w-4xl space-y-8">
           {/* Header */}
-          {/* <DetailHeader post_info={post_list_with_category_name[0]} /> */}
+          <DetailHeader post_info={post_list_with_category_name[0]} />
 
           {/* Featured Image */}
           {post_info.image_url && (
@@ -174,7 +174,7 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
           )}
 
           {/* Content */}
-          {/* <div className="px-6 pb-16 sm:px-8">
+          <div className="px-6 pb-16 sm:px-8">
             <div className="text-main-text prose dark:prose-invert [&_h2]:text-main-title [&_h3]:text-main-title [&_strong]:text-main-title min-w-full">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -193,7 +193,7 @@ export default async function Detail(props: PageProps<"/[locale]/[slug]">) {
                 {post_info.content}
               </ReactMarkdown>
             </div>
-          </div> */}
+          </div>
         </div>
       </article>
     </>
