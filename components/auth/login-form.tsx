@@ -2,9 +2,13 @@
  * @Author: VBlazing
  * @Date: 2025-12-15 11:04:28
  * @LastEditors: VBlazing
- * @LastEditTime: 2025-12-15 11:14:26
+ * @LastEditTime: 2025-12-15 12:17:06
  * @Description:
  */
+"use client";
+
+import Image from "next/image";
+import { signIn } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +26,6 @@ import {
   FieldSeparator,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
 
 export function LoginForm({
   className,
@@ -78,7 +81,11 @@ export function LoginForm({
                   />
                   Login with Google
                 </Button>
-                <Button variant="outline" type="button">
+                <Button
+                  variant="outline"
+                  type="button"
+                  onClick={() => signIn("github")}
+                >
                   <Image
                     width={16}
                     height={16}
