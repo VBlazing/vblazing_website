@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
     }, {
       // bucket
       hostname: 'vblazing-blog-1253367486.cos.accelerate.myqcloud.com'
+    }, {
+      // github
+      hostname: 'avatars.githubusercontent.com'
     }],
     // 允许
     dangerouslyAllowLocalIP: true,

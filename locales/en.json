@@ -8,6 +8,10 @@
     "products": "Products",
     "about": "About"
   },
+  "auth": {
+    "signin": "Sign In",
+    "signout": "Sign Out"
+  },
   "error": {
     "client_common_error": "Something went wrong, please try again later"
   },

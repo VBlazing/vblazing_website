@@ -14,6 +14,7 @@ import {
 import LocaleSwitch from "@/components/common/locale_switch";
 import ThemeSwitch from "@/components/common/theme_switch";
 import LogoMenu from "@/components//common/logo_menu";
+import UserOperationButton from "@/components/auth/user_operation";
 import { getNavigate } from "@/lib/navigate";
 import { Link } from "@/lib/i18n/navigation";
 import { getIcon } from "@/lib/icon";
@@ -63,6 +64,8 @@ export default async function Header() {
           </Suspense>
           {/* 切换主题 */}
           <ThemeSwitch />
+          {/* 登录操作 */}
+          <UserOperationButton />
         </div>
       </div>
     </header>

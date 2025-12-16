@@ -8,6 +8,10 @@
     "products": "产品",
     "about": "谁是布雷泽？"
   },
+  "auth": {
+    "signin": "登录",
+    "signout": "退出登录"
+  },
   "error": {
     "client_common_error": "出错了，请稍后再试"
   },

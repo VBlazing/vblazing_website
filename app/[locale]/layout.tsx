@@ -11,6 +11,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
+import { SessionProvider } from "next-auth/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import hljs from "highlight.js";
 import typescript from "highlight.js/lib/languages/typescript";
@@ -140,22 +141,24 @@ export default async function LocaleLayout({
         <SpeedInsights />
         {/* 国际化 */}
         <NextIntlClientProvider>
-          {/* 主题 */}
-          <ThemeProvider
-            attribute="class"
-            enableSystem={false}
-            storageKey="VBLAZING_THEME"
-          >
-            <div className="bg-main-content flex min-h-screen w-full flex-col items-center font-sans sm:items-start">
-              <Header />
-              <main className="flex w-full flex-1 flex-col items-center sm:items-start">
-                {children}
-              </main>
-              <Footer />
-            </div>
-            <Toaster position="top-right" />
-            <ErrorManagerClient />
-          </ThemeProvider>
+          <SessionProvider>
+            {/* 主题 */}
+            <ThemeProvider
+              attribute="class"
+              enableSystem={false}
+              storageKey="VBLAZING_THEME"
+            >
+              <div className="bg-main-content flex min-h-screen w-full flex-col items-center font-sans sm:items-start">
+                <Header />
+                <main className="flex w-full flex-1 flex-col items-center sm:items-start">
+                  {children}
+                </main>
+                <Footer />
+              </div>
+              <Toaster position="top-right" />
+              <ErrorManagerClient />
+            </ThemeProvider>
+          </SessionProvider>
         </NextIntlClientProvider>
       </body>
     </html>
