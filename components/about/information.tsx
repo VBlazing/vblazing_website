@@ -94,11 +94,22 @@ export default function Information({ about_info }: { about_info: AboutInfo }) {
                     {item.text}
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="w-52 [&_button]:cursor-pointer [&_button]:focus:ring-0">
+                <DialogContent className="w-auto [&_button]:cursor-pointer [&_button]:focus:ring-0">
                   <DialogHeader>
                     <DialogTitle>{t("we_chat")}</DialogTitle>
-                    <DialogDescription>vblazing</DialogDescription>
                   </DialogHeader>
+                  <div>
+                    <span className="text-main-title ml-2 text-xl">
+                      vblazing
+                    </span>
+                    <Image
+                      width={200}
+                      height={200}
+                      alt="wechat qrcode"
+                      unoptimized
+                      src="https://vblazing-blog-1253367486.cos.accelerate.myqcloud.com/image/wechat.jpeg"
+                    />
+                  </div>
                 </DialogContent>
               </Dialog>
             );
